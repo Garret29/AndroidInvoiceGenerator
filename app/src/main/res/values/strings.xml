@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AndroidInvoiceGenerator</string>
     <string name="title_activity_main2">MainActivity</string>
+    <string name="dodaj_styl_z_pami_ci">Dodaj styl z pamięci</string>
+    <string name="automatyczna_walidacja">Automatyczna walidacja</string>
+    <string name="dodaj_styl_z_bazy">Dodaj styl z bazy</string>
+    <string name="nazwa_stylu">Nazwa stylu</string>
 </resources>
