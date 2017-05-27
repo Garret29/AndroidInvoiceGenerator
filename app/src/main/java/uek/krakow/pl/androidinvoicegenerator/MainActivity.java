@@ -31,17 +31,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void add(View view) {
-
+        Intent intent = new Intent(this, FormActivity.class);
+        startActivity(intent);
     }
 
     public void goToPrefs(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
-
-
-
 
     public ArrayList<String> getInvoices() {
         return invoices;

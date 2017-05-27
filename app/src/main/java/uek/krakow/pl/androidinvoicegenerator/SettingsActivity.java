@@ -1,9 +1,13 @@
 package uek.krakow.pl.androidinvoicegenerator;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ListViewCompat;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -13,19 +17,28 @@ public class SettingsActivity extends AppCompatActivity {
     private ArrayList<String> styles;
     private ArrayAdapter<String> adapter;
 
+    private Button styleButton;
+    private Button remoteStyleButton;
+    private CheckBox validationCheckBox;
+    private EditText styleNameText;
+    private ListView listView;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        listView = (ListView) findViewById(R.id.stylesListView);
+        styleButton = (Button) findViewById(R.id.styleButton);
+        remoteStyleButton = (Button) findViewById(R.id.remoteStyleButton);
+        validationCheckBox = (CheckBox) findViewById(R.id.validationCheckBox);
+        styleNameText = (EditText) findViewById(R.id.styleNameText);
+
         styles = new ArrayList<>();
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, styles);
 
-        for (int i=0; i<=30; i++){
-            styles.add("styl "+i);
-        }
-
-        ListView listView = (ListView) findViewById(R.id.stylesListView);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -34,6 +47,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-
+        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("validation", validationCheckBox.isChecked());
     }
 }
