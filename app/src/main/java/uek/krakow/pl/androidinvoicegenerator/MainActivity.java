@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void add(View view) {
-        invoices.add("hehe");
+        invoices.add("hahaha");
         adapter.notifyDataSetChanged();
     }
 
