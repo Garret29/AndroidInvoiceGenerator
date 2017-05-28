@@ -20,6 +20,7 @@
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="7dp" />
 
@@ -101,18 +102,78 @@
             android:ems="10"
             android:inputType="number" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="95dp"
+        <Button
+            android:id="@+id/b_pobierzDaneSprzed"
+            android:layout_width="121dp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            app:srcCompat="?android:attr/actionModeFindDrawable" />
+            android:text="Pobierz dane" />
 
         <TextView
-            android:id="@+id/tv_adresDost"
+            android:id="@+id/tv_nazwaDost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adres:"
+            android:text="Nazwa:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_nazwaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences" />
+
+        <TextView
+            android:id="@+id/tv_ulicaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ulica:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_ulicaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_domDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer budynku:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_domDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_lokalDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer lokalu:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_lokalDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_miejscowośćDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Miejscowość:"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -122,6 +183,289 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_kodDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kod pocztowy:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_kodDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_rachunekDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer rachunku bankowego:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_rachunekDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/tv_bankDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bank:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_bankDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_telefonDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer telefonu:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_telefonDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" />
+        <TextView
+            android:id="@+id/tv_emailDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_emailDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/tv_nabywca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nabywca:"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="182dp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_nazwaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nazwa:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_nazwaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences" />
+
+        <TextView
+            android:id="@+id/tv_ulicaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ulica:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_ulicaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_domNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer budynku:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_domNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_lokalNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer lokalu:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_lokalNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_miejscowośćNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Miejscowość:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_miejscowoscNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_kodNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kod pocztowy:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_kodNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_towar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dane towarów i usług:"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="182dp" />
+
+        <TextView
+            android:id="@+id/tv_nazwaTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nazwa towaru/usługi:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_nazwaTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_iloscTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ilość:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_iloscTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberSigned" />
+
+        <TextView
+            android:id="@+id/tv_jednostkaTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jednostka miary:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_jednostkaTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_cenaBruttoTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cena brutto za jednostkę:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_cenaBruttTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/tv_rabatTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rabat w procentach:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_rabatTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/tv_stawkaVATTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stawka VAT:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_stawkaVATTowar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal" />
+
+
+
 
     </LinearLayout>
 </ScrollView>
