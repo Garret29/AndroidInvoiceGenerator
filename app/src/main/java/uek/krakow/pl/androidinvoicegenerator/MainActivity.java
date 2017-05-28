@@ -7,8 +7,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 
 import uek.krakow.pl.androidinvoicegenerator.generator.Invoice;
 
@@ -22,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        forwardPort();
 
         invoices = new ArrayList<>();
         invoicesMap = new HashMap<>();
@@ -44,5 +50,24 @@ public class MainActivity extends AppCompatActivity {
         return invoices;
     }
 
+
+    private void forwardPort(){
+        final JSch jsch = new JSch();
+        Session session = null;
+        try {
+            session = jsch.getSession("s187825", "v-ie.uek.krakow.pl", 22);
+
+            session.setPassword("qwerty12");
+
+            final Properties config = new Properties();
+            config.put("StrictHostKeyChecking", "no");
+            session.setConfig(config);
+
+            session.connect();
+            session.setPortForwardingL(5433, "dbhost", 5432);
+        } catch (JSchException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
