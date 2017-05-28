@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         invoices = new ArrayList<>();
         invoicesMap = new HashMap<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, invoices);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, invoices);
         ListView listView = (ListView)findViewById(R.id.list);
         listView.setAdapter(adapter);
     }
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void forwardPort(){
         final JSch jsch = new JSch();
-        Session session = null;
+        Session session;
         try {
             session = jsch.getSession("s187825", "v-ie.uek.krakow.pl", 22);
 
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             session.setConfig(config);
 
             session.connect();
-            session.setPortForwardingL(5433, "dbhost", 5432);
+            session.setPortForwardingL(5433, "sbazy.uek.krakow.pl", 5432);
         } catch (JSchException e) {
             e.printStackTrace();
         }
