@@ -17,7 +17,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".FormActivity" />
-        <activity android:name=".SettingsActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".generator.ProviderFormActivity"></activity>
     </application>
 
 </manifest>
