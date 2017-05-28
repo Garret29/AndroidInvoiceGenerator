@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faktura>
-	<miejscowosc_wystawienia></miejscowosc_wystawienia>
+	<miejscowosc_wystawienia> </miejscowosc_wystawienia>
 	<data_wystawienia> </data_wystawienia>
 	<data_dostawy> </data_dostawy>
-	<termin_platnosci></termin_platnosci>
-	<sposob_platnosci></sposob_platnosci>
+	<termin_platnosci> </termin_platnosci>
+	<sposob_platnosci> </sposob_platnosci>
 	<numer> </numer>
+	<tekst_dokumentu>
+		<data_konca>Data dokonania/zakończenia dostawy towarów</data_konca>
+		<waluta>[zł.gr]</waluta>
+		<wartosc>Wartość</wartosc>
+		<ilosc>Ilość</ilosc>
+		<naleznosc>Należność ogółem</naleznosc>
+		<naleznosc_slownie>Należność ogółem słownie</naleznosc_slownie>
+		<sposob_zaplaty>Sposób zapłaty</sposob_zaplaty>
+		<termin_zaplaty>Termin zapłaty do</termin_zaplaty>
+	</tekst_dokumentu>
 
 
 	<sprzedawca>
@@ -16,10 +26,10 @@
 		<miasto> </miasto>
 		<kod> </kod>
 		<NIP_PESEL> </NIP_PESEL>
-		<rachunek></rachunek>
-		<bank></bank>
-		<telefon></telefon>
-		<email></email>
+		<rachunek> </rachunek>
+		<bank> </bank>
+		<telefon> </telefon>
+		<email> </email>
 	</sprzedawca>
 
 	<nabywca>
@@ -29,32 +39,104 @@
 		<lokal> </lokal>
 		<miasto> </miasto>
 		<kod> </kod>
-	</nabywca>	
+	</nabywca>
+	<towary>
+		<towar1>
+			<liczba_porzadkowa> </liczba_porzadkowa>
+			<nazwa> </nazwa>
+			<ilosc> </ilosc>
+			<jednostka> </jednostka>
+			<cena_brutto_jednost> </cena_brutto_jednost>
+			<rabat> </rabat>
+			<cena_brutto_jednost_po_rabacie> </cena_brutto_jednost_po_rabacie>
+			<brutto> </brutto>
+			<stawka_VAT> </stawka_VAT>
+			<VAT> </VAT>
+			<netto> </netto>
+		</towar1>
 
-	<towar>
-		<liczba_porzadkowa></liczba_porzadkowa>
-		<nazwa> </nazwa>
-		<ilosc> </ilosc>
-		<jednostka></jednostka>
-		<cena_brutto_jednost> </cena_brutto_jednost>
-		<rabat> </rabat>
-		<cena_brutto_jednost_po_rabacie></cena_brutto_jednost_po_rabacie>
-		<brutto> </brutto>
-		<stawka_VAT> </stawka_VAT>
-		<VAT> </VAT>
-		<netto> </netto>
-	</towar>
+		<towar2>
+			<liczba_porzadkowa> </liczba_porzadkowa>
+			<nazwa> </nazwa>
+			<ilosc> </ilosc>
+			<jednostka> </jednostka>
+			<cena_brutto_jednost> </cena_brutto_jednost>
+			<rabat> </rabat>
+			<cena_brutto_jednost_po_rabacie> </cena_brutto_jednost_po_rabacie>
+			<brutto> </brutto>
+			<stawka_VAT> </stawka_VAT>
+			<VAT> </VAT>
+			<netto> </netto>
+		</towar2>
+
+		<towar3>
+			<liczba_porzadkowa> </liczba_porzadkowa>
+			<nazwa> </nazwa>
+			<ilosc> </ilosc>
+			<jednostka> </jednostka>
+			<cena_brutto_jednost> </cena_brutto_jednost>
+			<rabat> </rabat>
+			<cena_brutto_jednost_po_rabacie> </cena_brutto_jednost_po_rabacie>
+			<brutto> </brutto>
+			<stawka_VAT> </stawka_VAT>
+			<VAT> </VAT>
+			<netto> </netto>
+		</towar3>
+
+		<towar4>
+			<liczba_porzadkowa> </liczba_porzadkowa>
+			<nazwa> </nazwa>
+			<ilosc> </ilosc>
+			<jednostka> </jednostka>
+			<cena_brutto_jednost> </cena_brutto_jednost>
+			<rabat> </rabat>
+			<cena_brutto_jednost_po_rabacie> </cena_brutto_jednost_po_rabacie>
+			<brutto> </brutto>
+			<stawka_VAT> </stawka_VAT>
+			<VAT> </VAT>
+			<netto> </netto>
+		</towar4>
+
+		<towar5>
+			<liczba_porzadkowa> </liczba_porzadkowa>
+			<nazwa> </nazwa>
+			<ilosc> </ilosc>
+			<jednostka> </jednostka>
+			<cena_brutto_jednost> </cena_brutto_jednost>
+			<rabat> </rabat>
+			<cena_brutto_jednost_po_rabacie> </cena_brutto_jednost_po_rabacie>
+			<brutto> </brutto>
+			<stawka_VAT> </stawka_VAT>
+			<VAT> </VAT>
+			<netto> </netto>
+		</towar5>
+	</towary>
 
 	<razem>
 		<brutto> </brutto>
-		<VAT></VAT>
-		<netto></netto>
-		<netto_slownie></netto_slownie>
-		<w_tym>
-			<brutto></brutto>
-			<stawka_VAT> </stawka_VAT>
-			<VAT></VAT>
+		<VAT> </VAT>
+		<netto> </netto>
+		<netto_slownie> </netto_slownie>
+		<w_tym_0>
+			<brutto> </brutto>
+			<VAT> </VAT>
 			<netto> </netto>
-		</w_tym>
+		</w_tym_0>
+		<w_tym_5>
+			<brutto> </brutto>
+			<VAT> </VAT>
+			<netto> </netto>
+		</w_tym_5>
+		<w_tym_8>
+			<brutto> </brutto>
+			<VAT> </VAT>
+			<netto> </netto>
+		</w_tym_8>
+
+		<w_tym_23>
+			<brutto> </brutto>
+			<VAT> </VAT>
+			<netto> </netto>
+		</w_tym_23>
 	</razem>
 </faktura>
