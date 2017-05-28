@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faktura>
+	<miejscowosc_wystawienia></miejscowosc_wystawienia>
+	<data_wystawienia> </data_wystawienia>
+	<data_dostawy> </data_dostawy>
+	<termin_platnosci></termin_platnosci>
+	<sposob_platnosci></sposob_platnosci>
+	<numer> </numer>
+
+
+	<sprzedawca>
+		<nazwa> </nazwa>
+		<ulica> </ulica>
+		<dom> </dom>
+		<lokal> </lokal>
+		<miasto> </miasto>
+		<kod> </kod>
+		<NIP_PESEL> </NIP_PESEL>
+		<rachunek></rachunek>
+		<bank></bank>
+		<telefon></telefon>
+		<email></email>
+	</sprzedawca>
+
+	<nabywca>
+		<nazwa> </nazwa>
+		<ulica> </ulica>
+		<dom> </dom>
+		<lokal> </lokal>
+		<miasto> </miasto>
+		<kod> </kod>
+	</nabywca>	
+
+	<towar>
+		<liczba_porzadkowa></liczba_porzadkowa>
+		<nazwa> </nazwa>
+		<ilosc> </ilosc>
+		<jednostka></jednostka>
+		<cena_brutto_jednost> </cena_brutto_jednost>
+		<rabat> </rabat>
+		<cena_brutto_jednost_po_rabacie></cena_brutto_jednost_po_rabacie>
+		<brutto> </brutto>
+		<stawka_VAT> </stawka_VAT>
+		<VAT> </VAT>
+		<netto> </netto>
+	</towar>
+
+	<razem>
+		<brutto> </brutto>
+		<VAT></VAT>
+		<netto></netto>
+		<netto_slownie></netto_slownie>
+		<w_tym>
+			<brutto></brutto>
+			<stawka_VAT> </stawka_VAT>
+			<VAT></VAT>
+			<netto> </netto>
+		</w_tym>
+	</razem>
+</faktura>
