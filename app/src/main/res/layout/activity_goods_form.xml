@@ -10,11 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tv_towar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dane towarów i usług:"
+            android:text="Dane towarów i usług"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"
@@ -101,7 +102,7 @@
             android:id="@+id/tv_stawkaVATTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stawka VAT:"
+            android:text="Stawka VAT w procentach:"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -109,7 +110,8 @@
             android:id="@+id/spinner_stawkaVAT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:spinnerMode="dialog" />
+            android:spinnerMode="dialog"
+            android:entries="@array/stawka_VAT" />
 
         <Button
             android:id="@+id/b_towarPodsumowanie"

@@ -5,4 +5,11 @@
     <string name="automatyczna_walidacja">Automatyczna walidacja</string>
     <string name="dodaj_styl_z_bazy">Dodaj styl z bazy</string>
     <string name="nazwa_stylu">Nazwa stylu</string>
+
+    <string-array name="stawka_VAT">
+        <item>0</item>
+        <item>5</item>
+        <item>8</item>
+        <item>23</item>
+    </string-array>
 </resources>
