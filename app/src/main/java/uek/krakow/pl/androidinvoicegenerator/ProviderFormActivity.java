@@ -1,4 +1,4 @@
-package uek.krakow.pl.androidinvoicegenerator.generator;
+package uek.krakow.pl.androidinvoicegenerator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

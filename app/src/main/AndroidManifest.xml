@@ -20,7 +20,7 @@
         <activity
             android:name=".SettingsActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".generator.ProviderFormActivity"></activity>
+        <activity android:name=".ProviderFormActivity"></activity>
     </application>
 
 </manifest>
