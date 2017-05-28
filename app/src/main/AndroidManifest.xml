@@ -23,7 +23,8 @@
         <activity android:name=".ProviderFormActivity" />
         <activity android:name=".BuyerFormActivity" />
         <activity android:name=".GoodsFormActivity" />
-        <activity android:name=".SummaryFormActivity"></activity>
+        <activity android:name=".SummaryFormActivity" />
+        <activity android:name=".ShareFormActivity"></activity>
     </application>
 
 </manifest>

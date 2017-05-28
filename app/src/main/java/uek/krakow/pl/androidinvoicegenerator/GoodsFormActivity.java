@@ -1,5 +1,6 @@
 package uek.krakow.pl.androidinvoicegenerator;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,4 +31,8 @@ public class GoodsFormActivity extends AppCompatActivity {
     }
 
 
+    public void toSummary(View view) {
+        Intent intent = new Intent(this, SummaryFormActivity.class);
+        startActivity(intent);
+    }
 }

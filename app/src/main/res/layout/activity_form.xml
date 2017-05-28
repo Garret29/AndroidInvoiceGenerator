@@ -25,6 +25,21 @@
             tools:layout_editor_absoluteY="7dp" />
 
         <TextView
+            android:id="@+id/tv_numerFaktury"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Numer faktury:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_numerFaktury"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
             android:id="@+id/tv_miejscowoscWystawiania"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,6 +90,37 @@
             android:ems="10"
             android:inputType="date" />
 
+
+        <TextView
+            android:id="@+id/tv_sposobZaplaty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sposób zapłaty:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_sposobZaplaty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_terminZaplatyDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Termin zapłaty do:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_terimnZaplatyDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/b_fakturaSprzedawca"
