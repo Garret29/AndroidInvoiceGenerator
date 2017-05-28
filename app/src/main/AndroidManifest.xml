@@ -21,7 +21,8 @@
             android:name=".SettingsActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ProviderFormActivity" />
-        <activity android:name=".BuyerFormActivity"></activity>
+        <activity android:name=".BuyerFormActivity" />
+        <activity android:name=".GoodsFormActivity"></activity>
     </application>
 
 </manifest>
