@@ -3,6 +3,7 @@ package uek.krakow.pl.androidinvoicegenerator.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import org.w3c.dom.Document;
@@ -10,6 +11,7 @@ import org.w3c.dom.Document;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.xml.transform.Result;
@@ -49,7 +51,7 @@ public class SummaryFormActivity extends AppCompatActivity {
         }
         app.setXml(xml);
 
-        File dir = new File(getApplicationInfo().dataDir);
+        File dir = new File(String.valueOf(getFilesDir()));
 
         try {
             app.setPdf(pdfGenerator.generatePDF(app.getXslStream(), new FileInputStream(xml), dir));

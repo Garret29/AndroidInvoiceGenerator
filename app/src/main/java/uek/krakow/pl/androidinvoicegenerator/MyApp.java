@@ -32,8 +32,6 @@ public class MyApp extends Application {
         super.onCreate();
         portForwardTask = new PortForwardTask();
         portForwardTask.execute();
-        StrictMode.VmPolicy.Builder buildervm = new StrictMode.VmPolicy.Builder();
-        StrictMode.setVmPolicy(buildervm.build());
 
         xslStream = getResources().openRawResource(R.raw.faktura);
 

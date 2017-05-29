@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 
@@ -20,13 +21,18 @@ public class ShareFormActivity extends AppCompatActivity {
     }
 
     public void openFile(View view){
-        String mime = MimeTypeMap.getSingleton().getExtensionFromMimeType("PDF");
+//        String mime = MimeTypeMap.getSingleton().getExtensionFromMimeType("PDF");
         MyApp app = (MyApp)  getApplication();
 
-        Uri uri = Uri.fromFile(app.getPdf());
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, mime);
+//        Uri uri = Uri.fromFile(app.getPdf());
+        Intent intent = new Intent(Intent.ACTION_SEND);
+//        intent.setAction(Intent.ACTION_VIEW);
+//        intent.setDataAndType(uri, mime);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_EMAIL, "xseventythreex@gmail.com");
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+app.getPdf().getAbsolutePath()));
+
+
         startActivity(intent);
 
     }

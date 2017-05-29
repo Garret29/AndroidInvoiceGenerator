@@ -1,5 +1,7 @@
 package uek.krakow.pl.androidinvoicegenerator.generator;
 
+import android.util.Log;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -23,12 +25,11 @@ public class PDFGenerator {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         try {
             File html = new File(dir, "invoice.html");
+            File pdf = new File(dir, "invoice123.pdf");
             Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslStream));
             transformer.transform(new StreamSource(xmlStream), new StreamResult(new FileOutputStream(html)));
 
-            File pdf = new File(dir, "invoice.pdf");
             OutputStream os = new FileOutputStream(pdf);
-
             Document document = new Document();
             PdfWriter pdfWriter = PdfWriter.getInstance(document, os);
             document.open();
