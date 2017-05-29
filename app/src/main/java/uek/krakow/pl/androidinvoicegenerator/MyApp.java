@@ -19,10 +19,13 @@ import javax.xml.parsers.ParserConfigurationException;
 public class MyApp extends Application {
     private InputStream xslStream;
     private Document doc;
+    private PortForwardTask portForwardTask;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        portForwardTask = new PortForwardTask();
+        portForwardTask.execute();
 
         xslStream = getResources().openRawResource(R.raw.faktury_style);
 
@@ -34,6 +37,12 @@ public class MyApp extends Application {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        portForwardTask.cancel(true);
     }
 
     public InputStream getXslStream() {

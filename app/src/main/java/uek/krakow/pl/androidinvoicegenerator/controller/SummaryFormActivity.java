@@ -20,8 +20,7 @@ public class SummaryFormActivity extends AppCompatActivity {
 
     public void toShare(View view) {
         PDFGenerator pdfGenerator = new PDFGenerator();
-        Serializable xml = getIntent().getSerializableExtra("xml");
-        Serializable style = getIntent().getSerializableExtra("style");
+
 
         Intent intent = new Intent(this, ShareFormActivity.class);
         startActivity(intent);
