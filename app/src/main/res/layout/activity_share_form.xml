@@ -36,7 +36,8 @@
         android:text="Otwórz utworzony dokument"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:onClick="openFile"/>
 
 
 

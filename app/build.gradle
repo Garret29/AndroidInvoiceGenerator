@@ -32,6 +32,6 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-core:5.0'
     compile 'com.jcraft:jsch:0.1.54'
     testCompile 'junit:junit:4.12'
-    compile 'com.itextpdf:itext7-core:7.0.2'
-    compile 'org.xhtmlrenderer:core-renderer:R8pre2'
+    compile 'com.itextpdf:itextg:5.5.10'
+    compile 'com.itextpdf.tool:xmlworker:5.5.11'
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ConvertXMLtoPDF>
+    <TestData>
+        <Title>Ebook of XML</Title>
+        <Price>300</Price>
+    </TestData>
+    <TestData>
+        <Title>Ebook of XSLT</Title>
+        <Price>200</Price>
+    </TestData>
+    <TestData>
+        <Title>Ebook of Java</Title>
+        <Price>400</Price>
+    </TestData>
+</ConvertXMLtoPDF>

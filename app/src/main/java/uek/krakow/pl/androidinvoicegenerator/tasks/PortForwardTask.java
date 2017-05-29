@@ -1,4 +1,4 @@
-package uek.krakow.pl.androidinvoicegenerator;
+package uek.krakow.pl.androidinvoicegenerator.tasks;
 
 import android.os.AsyncTask;
 
