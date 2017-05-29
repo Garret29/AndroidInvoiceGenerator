@@ -5,19 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uek.krakow.pl.androidinvoicegenerator.controller.ShareFormActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ok"
+        android:layout_weight="0.12" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tworzenie zakończone poprawnie!"
+        android:text="Tworzenie zakończone pomyślnie"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp" />
-
-
 
     <Button
         android:id="@+id/button2"
