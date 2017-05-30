@@ -59,7 +59,6 @@ public class GoodsFormActivity extends AppCompatActivity {
         towar.id="";
         //itd.
 
-
         faktura.towary.add(towar);
         Intent intent = new Intent(this, SummaryFormActivity.class);
         startActivity(intent);
