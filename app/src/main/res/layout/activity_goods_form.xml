@@ -114,12 +114,21 @@
             android:entries="@array/stawka_VAT" />
 
         <Button
+            android:id="@+id/b_kolejnyProdukt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_light"
+            android:text="Dodaj kolejny towar/usługę"
+            android:onClick="addMoreGoods"/>
+
+        <Button
             android:id="@+id/b_towarPodsumowanie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
-            android:text="Zapisz i przejdz dalej"
-            android:onClick="toSummary"/>
+            android:onClick="toSummary"
+            android:text="Zakończ dodawanie towarów/usług i przejdz dalej"
+            android:textColor="@android:color/holo_red_dark" />
     </LinearLayout>
 
 </ScrollView>

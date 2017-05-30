@@ -40,10 +40,10 @@
 
         <Button
             android:id="@+id/b_NIPpobierzDaneSprzed"
-            android:layout_width="121dp"
+            android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:text="Pobierz dane" />
+            android:text="Pobierz dane z GUS" />
 
         <TextView
             android:id="@+id/tv_nazwaDost"
