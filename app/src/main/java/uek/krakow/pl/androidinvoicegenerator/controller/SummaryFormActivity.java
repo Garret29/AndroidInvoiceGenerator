@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -32,11 +33,14 @@ import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Razem;
 
 public class SummaryFormActivity extends AppCompatActivity {
+    EditText ed_naleznoscSlownie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary_form);
+
+        ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
     }
 
     public void toShare(View view) {
@@ -46,7 +50,7 @@ public class SummaryFormActivity extends AppCompatActivity {
 //        TransformerFactory factory = TransformerFactory.newInstance();
         Faktura faktura = app.getFaktura();
         Razem razem = new Razem();
-        razem.bruttoWords=" ";//słownie
+        razem.bruttoWords=ed_naleznoscSlownie.getText().toString();//słownie
         //itd...
 
         faktura.razem = razem;

@@ -32,14 +32,14 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/ed_NIP"
+            android:id="@+id/ed_NIPDost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number" />
 
         <Button
-            android:id="@+id/b_NIPpobierzDaneSprzed"
+            android:id="@+id/b_NIPpobierzDaneDost"
             android:layout_width="185dp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
