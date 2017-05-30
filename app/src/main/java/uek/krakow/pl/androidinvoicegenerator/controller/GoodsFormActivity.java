@@ -9,10 +9,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.itextpdf.awt.geom.CubicCurve2D;
-import com.j256.ormlite.stmt.query.In;
-
-import uek.krakow.pl.androidinvoicegenerator.MyApp;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
@@ -52,8 +48,7 @@ public class GoodsFormActivity extends AppCompatActivity {
     }
 
     public void addMoreGoods(View view) {
-        MyApp app = (MyApp) getApplication();
-        Faktura faktura = app.getFaktura();
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
 
         Towar towar = new Towar();
         towar.id = idS;
@@ -76,12 +71,12 @@ public class GoodsFormActivity extends AppCompatActivity {
 
         faktura.towary.add(towar);
         Intent intent = new Intent(this, GoodsFormActivity.class);
+        intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 
     public void toSummary(View view) {
-        MyApp app = (MyApp) getApplication();
-        Faktura faktura = app.getFaktura();
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
 
         Towar towar = new Towar();
         towar.id = idS;
@@ -109,6 +104,7 @@ public class GoodsFormActivity extends AppCompatActivity {
 
         faktura.towary.add(towar);
         Intent intent = new Intent(this, SummaryFormActivity.class);
+        intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 }

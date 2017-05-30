@@ -6,14 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import uek.krakow.pl.androidinvoicegenerator.MyApp;
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.controller.BuyerFormActivity;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Sprzedawca;
-
-import static uek.krakow.pl.androidinvoicegenerator.R.id.ed_domDost;
-import static uek.krakow.pl.androidinvoicegenerator.R.id.ed_numerFaktury;
 
 public class ProviderFormActivity extends AppCompatActivity {
     private EditText ed_NIPDost, ed_nazwaDost, ed_ulicaDost, ed_domDost, ed_lokalDost, ed_miejscowoscDost, ed_kodDost, ed_rachunekDost, ed_bankDost, ed_telefonDost, ed_emailDost;
@@ -39,8 +34,7 @@ public class ProviderFormActivity extends AppCompatActivity {
     }
 
     public void toBuyer(View view) {
-        MyApp app = (MyApp) getApplication();
-        Faktura faktura = app.getFaktura();
+        Faktura faktura = (Faktura) this.getIntent().getSerializableExtra("faktura");
 
         Sprzedawca sprzedawca = new Sprzedawca();
         sprzedawca.providerApartment=ed_lokalDost.getText().toString();
@@ -59,6 +53,7 @@ public class ProviderFormActivity extends AppCompatActivity {
         faktura.sprzedawca=sprzedawca;
 
         Intent intent = new Intent(this, BuyerFormActivity.class);
+        intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 

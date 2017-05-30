@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import uek.krakow.pl.androidinvoicegenerator.MyApp;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 
@@ -28,16 +27,7 @@ public class FormActivity extends AppCompatActivity {
 
 
     public void toProvider(View view) {
-        MyApp app = (MyApp) getApplication();
-        Faktura faktura = app.getFaktura();
-        //// TODO: 30.05.2017  
-        faktura.id =""; //numer
-        faktura.invoiceCity=""; //miasto
-        faktura.invoiceDate=""; //data wystawienia
-        faktura.invoiceShippingDate=""; //data dostawy
-        faktura.paymentDate=""; //termin zaplaty
-        faktura.paymentMethod=""; //sposób platnosci
-        faktura.paymentMethod=""; //sposób platnosci
+        Faktura faktura = new Faktura();
 
         faktura.id = ed_numerFaktury.getText().toString();
         faktura.invoiceCity= ed_miejscowoscWystawienia.getText().toString();
@@ -47,6 +37,7 @@ public class FormActivity extends AppCompatActivity {
         faktura.paymentMethod= ed_sposobZaplaty.getText().toString();
 
         Intent intent = new Intent(this, ProviderFormActivity.class);
+        intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 }

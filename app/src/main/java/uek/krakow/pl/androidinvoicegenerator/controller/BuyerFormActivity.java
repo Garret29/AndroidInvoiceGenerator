@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import uek.krakow.pl.androidinvoicegenerator.MyApp;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Nabywca;
@@ -29,8 +28,7 @@ public class BuyerFormActivity extends AppCompatActivity {
     }
 
     public void toGoods(View view) {
-        MyApp myApp = (MyApp) getApplication();
-        Faktura faktura = myApp.getFaktura();
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
         Nabywca nabywca = new Nabywca();
 
         nabywca.buyerAppartment=ed_lokalNabyw.getText().toString();
@@ -41,7 +39,9 @@ public class BuyerFormActivity extends AppCompatActivity {
         nabywca.buyerStreet=ed_ulicaNabyw.getText().toString();
 
         faktura.nabywca=nabywca;
+
         Intent intent = new Intent(this, GoodsFormActivity.class);
+        intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 }
