@@ -31,6 +31,7 @@ import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Razem;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
 
 public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
@@ -52,6 +53,10 @@ public class SummaryFormActivity extends AppCompatActivity {
         Razem razem = new Razem();
         razem.bruttoWords=ed_naleznoscSlownie.getText().toString();//słownie
         //itd...
+        for (Towar t: faktura.towary
+             ) {faktura.razem.brutto+= t.priceBrutto;
+
+        }
 
         faktura.razem = razem;
 

@@ -65,14 +65,9 @@ public class GoodsFormActivity extends AppCompatActivity {
         towar.vatValue = stawkaVat;
 
         cenaBruttoJednostPoRabacie = Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100);
-        brutto = Double.parseDouble(ed_iloscTowar.getText().toString()) * Double.parseDouble(ed_cenaBruttTowar.getText().toString());
-        if (Integer.parseInt(stawkaVat) != 0) {
-            cenaVAT = (Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie) * (Double.parseDouble(stawkaVat) / 100);
-        } else {
-            cenaVAT = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie;
-        }
-
-        cenaNETTO = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie - cenaVAT;
+        brutto = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie;
+        cenaVAT = brutto * (Double.parseDouble(stawkaVat) / 100);
+        cenaNETTO = brutto - cenaVAT;
 
         towar.priceBruttoOfUnitAfterDiscount = Double.toString(cenaBruttoJednostPoRabacie);
         towar.priceBrutto = Double.toString(brutto);
