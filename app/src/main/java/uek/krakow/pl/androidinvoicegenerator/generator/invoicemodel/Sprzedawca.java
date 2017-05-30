@@ -25,4 +25,6 @@ public class Sprzedawca {
     public String providerPhoneNumber = " ";
     @Element(name = "email")
     public String providerEmail = " ";
+    @Element(name = "bank")
+    public String providerBank = " ";
 }

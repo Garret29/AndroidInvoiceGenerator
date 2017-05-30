@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 import org.w3c.dom.Document;
 
 import java.io.File;
@@ -26,6 +28,8 @@ import javax.xml.transform.stream.StreamResult;
 import uek.krakow.pl.androidinvoicegenerator.MyApp;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Razem;
 
 public class SummaryFormActivity extends AppCompatActivity {
 
@@ -38,9 +42,27 @@ public class SummaryFormActivity extends AppCompatActivity {
     public void toShare(View view) {
         PDFGenerator pdfGenerator = new PDFGenerator();
         MyApp app = (MyApp) getApplication();
-        Document document = app.getDoc();
-        TransformerFactory factory = TransformerFactory.newInstance();
+//        Document document = app.getDoc();
+//        TransformerFactory factory = TransformerFactory.newInstance();
+        Faktura faktura = app.getFaktura();
+        Razem razem = new Razem();
+        razem.bruttoWords=" ";//słownie
+        //itd...
+
+        faktura.razem = razem;
+
         File xml=new File(getCacheDir(), "invoice.xml");
+
+        Serializer serializer = new Persister();
+        try {
+            serializer.write(faktura, xml);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+        /*
         try {
             Transformer transformer = factory.newTransformer();
             Result result = new StreamResult(xml);
@@ -49,6 +71,7 @@ public class SummaryFormActivity extends AppCompatActivity {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
+        */
         app.setXml(xml);
 
         File dir = new File(String.valueOf(getFilesDir()));

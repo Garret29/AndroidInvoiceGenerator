@@ -8,7 +8,12 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.j256.ormlite.stmt.query.In;
+
+import uek.krakow.pl.androidinvoicegenerator.MyApp;
 import uek.krakow.pl.androidinvoicegenerator.R;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
 
 public class GoodsFormActivity extends AppCompatActivity {
 
@@ -32,8 +37,30 @@ public class GoodsFormActivity extends AppCompatActivity {
         });
     }
 
+    public void addMoreGoods(View view){
+        MyApp app = (MyApp) getApplication();
+        Faktura faktura = app.getFaktura();
+        // TODO: 30.05.2017  
+        Towar towar = new Towar();
+        towar.id="";
+        //itd.
+
+
+        faktura.towary.add(towar);
+        Intent intent = new Intent(this, GoodsFormActivity.class);
+        startActivity(intent);
+    }
 
     public void toSummary(View view) {
+        MyApp app = (MyApp) getApplication();
+        Faktura faktura = app.getFaktura();
+        //// TODO: 30.05.2017  
+        Towar towar = new Towar();
+        towar.id="";
+        //itd.
+
+
+        faktura.towary.add(towar);
         Intent intent = new Intent(this, SummaryFormActivity.class);
         startActivity(intent);
     }
