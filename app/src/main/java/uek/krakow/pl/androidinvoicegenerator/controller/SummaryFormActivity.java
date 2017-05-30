@@ -3,6 +3,7 @@ package uek.krakow.pl.androidinvoicegenerator.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,6 +18,10 @@ import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Razem;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax0;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax23;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax5;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax8;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
 
 public class SummaryFormActivity extends AppCompatActivity {
@@ -34,17 +39,34 @@ public class SummaryFormActivity extends AppCompatActivity {
         PDFGenerator pdfGenerator = new PDFGenerator();
 
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+
         Razem razem = new Razem();
-        razem.bruttoWords=ed_naleznoscSlownie.getText().toString();//słownie
+        razem.bruttoWords = ed_naleznoscSlownie.getText().toString();//słownie
+        faktura.razem = razem;
+        faktura.razem.brutto = Integer.toString(0);
+        faktura.razem.tax0 = new Tax0();
+        faktura.razem.tax5= new Tax5();
+        faktura.razem.tax8 = new Tax8();
+        faktura.razem.tax23 = new Tax23();
 
-        for (Towar t: faktura.towary
-             ) {faktura.razem.brutto+= t.priceBrutto;
+        int razemBrutto = 0;
 
+        for (Towar t : faktura.towary
+                ) {
+//            faktura.razem.brutto += t.priceBrutto;
+
+            Log.d("hehe", t.priceBrutto);
+
+            Double temp = Double.parseDouble(t.priceBrutto);
+
+            razemBrutto += temp.intValue();
         }
 
-        faktura.razem = razem;
+        faktura.razem.brutto=Integer.toString(razemBrutto);
 
-        File xml=new File(getCacheDir(), "invoice.xml");
+        File xml = new File(getCacheDir(), "invoice.xml");
+
+        Log.d("hehe", "linia 50");
 
         Serializer serializer = new Persister();
         try {
@@ -54,14 +76,18 @@ public class SummaryFormActivity extends AppCompatActivity {
         }
 
         File dir = new File(String.valueOf(getFilesDir()));
+        File pdf = null;
+
+        Log.d("hehe", "linia 62");
 
         try {
-            pdfGenerator.generatePDF(getResources().openRawResource(R.raw.faktury_style), new FileInputStream(xml), dir);
+            pdf = pdfGenerator.generatePDF(getResources().openRawResource(R.raw.faktury_style), new FileInputStream(xml), dir);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
         Intent intent = new Intent(this, ShareFormActivity.class);
+        intent.putExtra("faktura", pdf);
         startActivity(intent);
     }
 }

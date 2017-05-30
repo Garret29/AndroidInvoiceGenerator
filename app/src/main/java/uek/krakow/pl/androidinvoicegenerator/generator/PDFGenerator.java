@@ -27,6 +27,9 @@ public class PDFGenerator {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         File html = new File(dir, "invoice.html");
         File pdf = new File(dir, "invoice.pdf");
+
+        Log.d("hehe", "start PDF");
+
         try {
             Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslStream));
             transformer.transform(new StreamSource(xmlStream), new StreamResult(new FileOutputStream(html)));

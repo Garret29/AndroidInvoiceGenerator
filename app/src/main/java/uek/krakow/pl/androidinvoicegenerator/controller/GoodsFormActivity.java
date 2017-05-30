@@ -3,6 +3,7 @@ package uek.krakow.pl.androidinvoicegenerator.controller;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -105,6 +106,7 @@ public class GoodsFormActivity extends AppCompatActivity {
         faktura.towary.add(towar);
         Intent intent = new Intent(this, SummaryFormActivity.class);
         intent.putExtra("faktura", faktura);
+        Log.d("hehe", faktura.id+"heheheheeh");
         startActivity(intent);
     }
 }
