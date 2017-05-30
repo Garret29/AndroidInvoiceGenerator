@@ -7,6 +7,8 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
+import org.w3c.tidy.Tidy;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,6 +30,12 @@ public class PDFGenerator {
             File pdf = new File(dir, "invoice123.pdf");
             Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslStream));
             transformer.transform(new StreamSource(xmlStream), new StreamResult(new FileOutputStream(html)));
+
+            Tidy tidy = new Tidy();
+            tidy.setXHTML(true);
+            tidy.parseDOM(new FileInputStream(html), new FileOutputStream(new File(dir, "invoice2.html")));
+
+            html = new File(dir, "invoice2.html");
 
             OutputStream os = new FileOutputStream(pdf);
             Document document = new Document();

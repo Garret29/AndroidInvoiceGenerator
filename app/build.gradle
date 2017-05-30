@@ -34,4 +34,10 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.itextpdf:itextg:5.5.10'
     compile 'com.itextpdf.tool:xmlworker:5.5.11'
+    compile 'net.sf.jtidy:jtidy:r938'
+    compile ('org.simpleframework:simple-xml:2.7.1'){
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
 }
