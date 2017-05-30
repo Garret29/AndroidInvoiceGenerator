@@ -3,8 +3,10 @@ package uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import java.io.Serializable;
+
 @Root(name = "towar")
-public class Towar {
+public class Towar  implements Serializable {
     @Element(name = "liczba_porzadkowa")
     public String id=" ";
     @Element(name = "nazwa")

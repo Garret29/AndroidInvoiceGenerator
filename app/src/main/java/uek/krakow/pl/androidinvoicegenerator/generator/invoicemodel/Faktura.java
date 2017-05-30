@@ -4,11 +4,12 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Root(name = "faktura")
-public class Faktura {
+public class Faktura implements Serializable{
 
     @Element(name = "miejscowosc_wystawienia")
     public String invoiceCity;

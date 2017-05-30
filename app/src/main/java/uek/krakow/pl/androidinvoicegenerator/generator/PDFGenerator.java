@@ -25,9 +25,9 @@ import javax.xml.transform.stream.StreamSource;
 public class PDFGenerator {
     public File generatePDF(InputStream xslStream, InputStream xmlStream, File dir) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        File html = new File(dir, "invoice.html");
+        File pdf = new File(dir, "invoice.pdf");
         try {
-            File html = new File(dir, "invoice.html");
-            File pdf = new File(dir, "invoice123.pdf");
             Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslStream));
             transformer.transform(new StreamSource(xmlStream), new StreamResult(new FileOutputStream(html)));
 
@@ -44,11 +44,9 @@ public class PDFGenerator {
             XMLWorkerHelper.getInstance().parseXHtml(pdfWriter, document, new FileInputStream(html));
             document.close();
             os.close();
-            return pdf;
-
-        } catch (TransformerException | IOException | DocumentException e) {
+        } catch (DocumentException | IOException | TransformerException e) {
             e.printStackTrace();
         }
-        return null;
+        return pdf;
     }
 }
