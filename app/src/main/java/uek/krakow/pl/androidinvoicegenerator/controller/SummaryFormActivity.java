@@ -51,23 +51,11 @@ public class SummaryFormActivity extends AppCompatActivity {
         faktura.razem.tax5= new Tax5();
         faktura.razem.tax8 = new Tax8();
         faktura.razem.tax23 = new Tax23();
-        */
 
         int razemBrutto = 0;
 
-        for (Towar t : faktura.towary
-                ) {
-//            faktura.razem.brutto += t.priceBrutto;
-
-            Log.d("hehe", t.priceBrutto);
-
-            Double temp = Double.parseDouble(t.priceBrutto);
-
-            razemBrutto += temp.intValue();
-        }
-
         faktura.razem.brutto=Integer.toString(razemBrutto);
-
+        */
         File xml = new File(getCacheDir(), "invoice.xml");
 
         Log.d("hehe", "linia 50");

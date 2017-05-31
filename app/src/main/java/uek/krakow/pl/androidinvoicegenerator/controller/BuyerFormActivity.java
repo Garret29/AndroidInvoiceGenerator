@@ -45,7 +45,8 @@ public class BuyerFormActivity extends AppCompatActivity {
 
         faktura.nabywca=nabywca;
 
-
+        Razem razem = new Razem();
+        faktura.razem = razem;
         faktura.razem.brutto = Integer.toString(0);
         faktura.razem.tax0 = new Tax0();
         faktura.razem.tax5= new Tax5();

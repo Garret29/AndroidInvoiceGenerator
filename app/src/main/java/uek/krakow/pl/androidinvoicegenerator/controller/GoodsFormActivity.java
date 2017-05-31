@@ -130,6 +130,7 @@ public class GoodsFormActivity extends AppCompatActivity {
         cenaNETTO=brutto/((100+Double.parseDouble(stawkaVat))/100);
         cenaVAT = brutto-cenaNETTO;
 
+        //Przypisanie danych towaru do pól dokumentu faktury
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
         Towar towar = new Towar();
         towar.id = idS;
