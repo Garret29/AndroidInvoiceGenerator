@@ -19,7 +19,7 @@ import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 public class FormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     EditText ed_numerFaktury, ed_miejscowoscWystawienia, ed_sposobZaplaty;
     TextView date_DataWystawienia, date_dataDostawy, date_terimnZaplatyDo;
-    String terimnZaplatyDo = "DD/MM/RRRR", dataDostawy ="DD/MM/RRRR", dataWystawienia="DD/MM/RRRR";
+    String terimnZaplatyDo = "Ustaw datę", dataDostawy ="Ustaw datę", dataWystawienia="Ustaw datę";
     int id;
 
 

@@ -68,31 +68,16 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="109dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="1">
 
         <TextView
             android:id="@+id/date_dataWystawienia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="DD/MM/RRRR"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:layout_weight="0.30" />
-
-        <Button
-            android:id="@+id/b_dataWystawienia"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="setDataWystawienia"
-            android:text="Ustaw datę" />
-
-
-    </LinearLayout>
+            android:text="Ustaw datę"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
 
 
@@ -104,30 +89,17 @@
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/date_dataDostawy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
+            android:onClick="setDataDostawy"
+            android:text="Ustaw datę"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/date_dataDostawy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DD/MM/RRRR"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:layout_weight="0.30" />
-
-            <Button
-                android:id="@+id/b_dataDostawy"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ustaw datę"
-                android:onClick="setDataDostawy"/>
-
-        </LinearLayout>
 
 
         <TextView
@@ -153,30 +125,16 @@
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/date_terimnZaplatyDo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/date_terimnZaplatyDo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DD/MM/RRRR"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:layout_weight="0.30" />
-
-            <Button
-                android:id="@+id/b_terimnZaplatyDo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ustaw datę"
-                android:onClick="setTerimnZaplaty"/>
-
-        </LinearLayout>
+            android:onClick="setTerimnZaplaty"
+            android:text="Ustaw datę"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/b_fakturaSprzedawca"

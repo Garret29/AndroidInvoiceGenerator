@@ -17,7 +17,7 @@ import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
 public class GoodsFormActivity extends AppCompatActivity {
     EditText ed_nazwaTowar, ed_iloscTowar, ed_jednostkaTowar, ed_cenaBruttTowar, ed_rabatTowar;
     String stawkaVat, idS;
-    double cenaBruttoJednostPoRabacie, brutto, cenaVAT, cenaNETTO;
+    double cenaBruttoJednostPoRabacie, brutto, cenaVAT, cenaNETTO, nettoTAX, bruttoTAX, vatTAX, nettoRazemTAX, bruttoRazemTAX, vatRazemTAX;
     static int id = 0;
 
     @Override
@@ -51,6 +51,13 @@ public class GoodsFormActivity extends AppCompatActivity {
     public void addMoreGoods(View view) {
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
 
+        //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
+        cenaBruttoJednostPoRabacie = Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100);
+        brutto = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie;
+        cenaNETTO=brutto/((100+Double.parseDouble(stawkaVat))/100);
+        cenaVAT = brutto-cenaNETTO;
+
+        //Przypisanie danych towaru do pól dokumentu faktury
         Towar towar = new Towar();
         towar.id = idS;
         towar.name = ed_nazwaTowar.getText().toString();
@@ -59,16 +66,56 @@ public class GoodsFormActivity extends AppCompatActivity {
         towar.priceBruttoOfUnit = ed_cenaBruttTowar.getText().toString();
         towar.discount = ed_rabatTowar.getText().toString();
         towar.vatValue = stawkaVat;
-
-        cenaBruttoJednostPoRabacie = Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100);
-        brutto = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie;
-        cenaVAT = brutto * (Double.parseDouble(stawkaVat) / 100);
-        cenaNETTO = brutto - cenaVAT;
-
         towar.priceBruttoOfUnitAfterDiscount = Double.toString(cenaBruttoJednostPoRabacie);
         towar.priceBrutto = Double.toString(brutto);
         towar.vat = Double.toString(cenaVAT);
         towar.priceNetto = Double.toString(cenaNETTO);
+
+        //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
+        nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
+        bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
+        vatRazemTAX = Double.parseDouble(faktura.razem.vat);
+        faktura.razem.netto = Double.toString(cenaNETTO+nettoRazemTAX);
+        faktura.razem.brutto = Double.toString(brutto+bruttoRazemTAX);
+        faktura.razem.vat = Double.toString(cenaVAT+vatRazemTAX);
+
+        //Uzupełnienie tabeli "Razem" faktury ze względu na stawkę VAT poszczególnych produktów
+        switch (Integer.parseInt(stawkaVat)){
+            case 0:
+                nettoTAX = Double.parseDouble(faktura.razem.tax0.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax0.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax0.VAT);
+                faktura.razem.tax0.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax0.brutto = Double.toString(brutto+bruttoTAX);
+                faktura.razem.tax0.VAT = Double.toString(cenaVAT+vatTAX);
+                break;
+            case 5:
+                nettoTAX = Double.parseDouble(faktura.razem.tax5.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax5.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax5.VAT);
+                faktura.razem.tax5.brutto = Double.toString(brutto+bruttoTAX);
+                faktura.razem.tax5.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax5.VAT+=cenaVAT;
+                break;
+            case 8:
+                nettoTAX = Double.parseDouble(faktura.razem.tax8.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax8.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax8.VAT);
+                faktura.razem.tax8.brutto+=brutto;
+                faktura.razem.tax8.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax8.VAT+=cenaVAT;
+                break;
+            case 23:
+                nettoTAX = Double.parseDouble(faktura.razem.tax23.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax23.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax23.VAT);
+                faktura.razem.tax23.brutto = Double.toString(brutto+bruttoTAX);
+                faktura.razem.tax23.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax23.VAT = Double.toString(cenaVAT+vatTAX);
+                break;
+        }
+
+
 
         faktura.towary.add(towar);
         Intent intent = new Intent(this, GoodsFormActivity.class);
@@ -77,8 +124,13 @@ public class GoodsFormActivity extends AppCompatActivity {
     }
 
     public void toSummary(View view) {
-        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
+        cenaBruttoJednostPoRabacie = Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100);
+        brutto = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie;
+        cenaNETTO=brutto/((100+Double.parseDouble(stawkaVat))/100);
+        cenaVAT = brutto-cenaNETTO;
 
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
         Towar towar = new Towar();
         towar.id = idS;
         towar.name = ed_nazwaTowar.getText().toString();
@@ -87,21 +139,56 @@ public class GoodsFormActivity extends AppCompatActivity {
         towar.priceBruttoOfUnit = ed_cenaBruttTowar.getText().toString();
         towar.discount = ed_rabatTowar.getText().toString();
         towar.vatValue = stawkaVat;
-
-        cenaBruttoJednostPoRabacie = Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100);
-        brutto = Double.parseDouble(ed_iloscTowar.getText().toString()) * Double.parseDouble(ed_cenaBruttTowar.getText().toString());
-        if (Integer.parseInt(stawkaVat) != 0) {
-            cenaVAT = (Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie) * (Double.parseDouble(stawkaVat) / 100);
-        } else {
-            cenaVAT = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie;
-        }
-
-        cenaNETTO = Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie - cenaVAT;
-
         towar.priceBruttoOfUnitAfterDiscount = Double.toString(cenaBruttoJednostPoRabacie);
         towar.priceBrutto = Double.toString(brutto);
         towar.vat = Double.toString(cenaVAT);
         towar.priceNetto = Double.toString(cenaNETTO);
+
+        //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
+        nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
+        bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
+        vatRazemTAX = Double.parseDouble(faktura.razem.vat);
+        faktura.razem.netto = Double.toString(cenaNETTO+nettoRazemTAX);
+        faktura.razem.brutto = Double.toString(brutto+bruttoRazemTAX);
+        faktura.razem.vat = Double.toString(cenaVAT+vatRazemTAX);
+
+        //Uzupełnienie tabeli "Razem" faktury ze względu na stawkę VAT poszczególnych produktów
+        switch (Integer.parseInt(stawkaVat)){
+            case 0:
+                nettoTAX = Double.parseDouble(faktura.razem.tax0.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax0.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax0.VAT);
+                faktura.razem.tax0.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax0.brutto = Double.toString(brutto+bruttoTAX);
+                faktura.razem.tax0.VAT = Double.toString(cenaVAT+vatTAX);
+                break;
+            case 5:
+                nettoTAX = Double.parseDouble(faktura.razem.tax5.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax5.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax5.VAT);
+                faktura.razem.tax5.brutto = Double.toString(brutto+bruttoTAX);
+                faktura.razem.tax5.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax5.VAT+=cenaVAT;
+                break;
+            case 8:
+                nettoTAX = Double.parseDouble(faktura.razem.tax8.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax8.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax8.VAT);
+                faktura.razem.tax8.brutto+=brutto;
+                faktura.razem.tax8.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax8.VAT+=cenaVAT;
+                break;
+            case 23:
+                nettoTAX = Double.parseDouble(faktura.razem.tax23.netto);
+                bruttoTAX = Double.parseDouble(faktura.razem.tax23.brutto);
+                vatTAX = Double.parseDouble(faktura.razem.tax23.VAT);
+                faktura.razem.tax23.brutto = Double.toString(brutto+bruttoTAX);
+                faktura.razem.tax23.netto = Double.toString(cenaNETTO+nettoTAX);
+                faktura.razem.tax23.VAT = Double.toString(cenaVAT+vatTAX);
+                break;
+        }
+
+
 
         faktura.towary.add(towar);
         Intent intent = new Intent(this, SummaryFormActivity.class);

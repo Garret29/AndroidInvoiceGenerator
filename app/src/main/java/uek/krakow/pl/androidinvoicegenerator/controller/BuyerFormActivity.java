@@ -9,6 +9,11 @@ import android.widget.EditText;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Nabywca;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Razem;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax0;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax23;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax5;
+import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax8;
 
 public class BuyerFormActivity extends AppCompatActivity {
     EditText ed_nazwaNabyw, ed_ulicaNabyw, ed_domNabyw, ed_lokalNabyw, ed_miejscowoscNabyw, ed_kodNabyw;
@@ -39,6 +44,13 @@ public class BuyerFormActivity extends AppCompatActivity {
         nabywca.buyerStreet=ed_ulicaNabyw.getText().toString();
 
         faktura.nabywca=nabywca;
+
+
+        faktura.razem.brutto = Integer.toString(0);
+        faktura.razem.tax0 = new Tax0();
+        faktura.razem.tax5= new Tax5();
+        faktura.razem.tax8 = new Tax8();
+        faktura.razem.tax23 = new Tax23();
 
         Intent intent = new Intent(this, GoodsFormActivity.class);
         intent.putExtra("faktura", faktura);
