@@ -40,22 +40,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:weightSum="1">
 
             <Button
                 android:id="@+id/b_NIPpobierzDaneDost"
                 android:layout_width="185dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@android:color/holo_blue_dark"
                 android:text="Pobierz dane z GUS" />
 
             <Button
                 android:id="@+id/b_wczytajDaneSprzed"
                 android:layout_width="185dp"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:text="Wczytaj z pamięci" />
+                android:background="@android:color/holo_blue_bright"
+                android:text="Wczytaj z pamięci"
+                android:onClick="wczytajZPamieci"/>
 
 
 
@@ -209,6 +210,14 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_light"
+            android:text="Zapisz dane do pamięci"
+            android:onClick="zapiszDoPamieci"/>
 
         <Button
             android:id="@+id/b_sprzedawcaKontrahent"

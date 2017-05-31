@@ -1,6 +1,7 @@
 package uek.krakow.pl.androidinvoicegenerator.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,6 +56,15 @@ public class ProviderFormActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BuyerFormActivity.class);
         intent.putExtra("faktura", faktura);
         startActivity(intent);
+    }
+
+    public void zapiszDoPamieci(View view) {
+
+    }
+
+    public void wczytajZPamieci(View view) {
+        SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
+
     }
 
     public EditText getEd_NIPDost() {
@@ -144,4 +154,7 @@ public class ProviderFormActivity extends AppCompatActivity {
     public void setEd_emailDost(EditText ed_emailDost) {
         this.ed_emailDost = ed_emailDost;
     }
+
+
+
 }
