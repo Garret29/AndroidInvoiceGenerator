@@ -39,9 +39,7 @@ public class SummaryFormActivity extends AppCompatActivity {
         PDFGenerator pdfGenerator = new PDFGenerator();
 
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
-        Razem razem = new Razem();
-        faktura.razem = razem;
-        razem.bruttoWords = ed_naleznoscSlownie.getText().toString();//słownie
+        faktura.razem.bruttoWords = ed_naleznoscSlownie.getText().toString();//słownie
         //TODO: Tworzenie Tax przeniesione przed aktywnosć Goods, każdy nowy towar dodaje dane do Tax
         /*
         Razem razem = new Razem();
@@ -67,7 +65,7 @@ public class SummaryFormActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        File dir = new File(String.valueOf(getFilesDir()));
+        File dir = getExternalFilesDir("");
         File pdf = null;
 
         Log.d("hehe", "linia 62");

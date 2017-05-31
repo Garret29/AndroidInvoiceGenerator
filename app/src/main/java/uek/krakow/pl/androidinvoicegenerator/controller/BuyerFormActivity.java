@@ -48,10 +48,24 @@ public class BuyerFormActivity extends AppCompatActivity {
         Razem razem = new Razem();
         faktura.razem = razem;
         faktura.razem.brutto = Integer.toString(0);
+        faktura.razem.netto = Integer.toString(0);
+        faktura.razem.vat = Integer.toString(0);
         faktura.razem.tax0 = new Tax0();
+        faktura.razem.tax0.brutto=Integer.toString(0);
+        faktura.razem.tax0.netto=Integer.toString(0);
+        faktura.razem.tax0.VAT=Integer.toString(0);
         faktura.razem.tax5= new Tax5();
+        faktura.razem.tax5.brutto=Integer.toString(0);
+        faktura.razem.tax5.netto=Integer.toString(0);
+        faktura.razem.tax5.VAT=Integer.toString(0);
         faktura.razem.tax8 = new Tax8();
+        faktura.razem.tax8.brutto=Integer.toString(0);
+        faktura.razem.tax8.netto=Integer.toString(0);
+        faktura.razem.tax8.VAT=Integer.toString(0);
         faktura.razem.tax23 = new Tax23();
+        faktura.razem.tax23.brutto=Integer.toString(0);
+        faktura.razem.tax23.netto=Integer.toString(0);
+        faktura.razem.tax23.VAT=Integer.toString(0);
 
         Intent intent = new Intent(this, GoodsFormActivity.class);
         intent.putExtra("faktura", faktura);

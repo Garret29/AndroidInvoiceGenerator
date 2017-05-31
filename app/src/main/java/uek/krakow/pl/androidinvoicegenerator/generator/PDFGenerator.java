@@ -1,5 +1,10 @@
 package uek.krakow.pl.androidinvoicegenerator.generator;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 
 import com.itextpdf.text.Document;
@@ -25,6 +30,11 @@ import javax.xml.transform.stream.StreamSource;
 public class PDFGenerator {
     public File generatePDF(InputStream xslStream, InputStream xmlStream, File dir) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        dir = Environment.getExternalStorageDirectory();
+        dir = new File(dir.toString()+"/invoices");
+        if (!dir.mkdirs()){
+            Log.d("hehe", "nie ma :(");
+        }
         File html = new File(dir, "invoice.html");
         File pdf = new File(dir, "invoice.pdf");
 
@@ -50,6 +60,9 @@ public class PDFGenerator {
         } catch (DocumentException | IOException | TransformerException e) {
             e.printStackTrace();
         }
+
+        Log.d("hehe", pdf.getAbsolutePath());
+
         return pdf;
     }
 }
