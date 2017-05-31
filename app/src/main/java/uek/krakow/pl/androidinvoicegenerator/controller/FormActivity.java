@@ -1,16 +1,27 @@
 package uek.krakow.pl.androidinvoicegenerator.controller;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.Calendar;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 
-public class FormActivity extends AppCompatActivity {
-    EditText ed_numerFaktury, ed_miejscowoscWystawienia, date_DataWystawienia, date_dataDostawy, ed_sposobZaplaty, ed_terimnZaplatyDo;
+public class FormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+    EditText ed_numerFaktury, ed_miejscowoscWystawienia, ed_sposobZaplaty;
+    TextView date_DataWystawienia, date_dataDostawy, date_terimnZaplatyDo;
+    String terimnZaplatyDo = "DD/MM/RRRR", dataDostawy ="DD/MM/RRRR", dataWystawienia="DD/MM/RRRR";
+    int id;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +30,57 @@ public class FormActivity extends AppCompatActivity {
 
         ed_numerFaktury = (EditText) findViewById(R.id.ed_numerFaktury);
         ed_miejscowoscWystawienia = (EditText) findViewById(R.id.ed_miejscowoscWystawienia);
-        date_DataWystawienia = (EditText) findViewById(R.id.date_DataWystawienia);
-        date_dataDostawy = (EditText) findViewById(R.id.date_dataDostawy);
         ed_sposobZaplaty = (EditText) findViewById(R.id.ed_sposobZaplaty);
-        ed_terimnZaplatyDo = (EditText) findViewById(R.id.ed_terimnZaplatyDo);
+        date_DataWystawienia = (TextView) findViewById(R.id.date_dataWystawienia);
+        date_dataDostawy = (TextView) findViewById(R.id.date_dataDostawy);
+        date_terimnZaplatyDo = (TextView) findViewById(R.id.date_terimnZaplatyDo);
+
     }
+    public void setDataWystawienia(View v) {
+        id = 1;
+        DialogFragment newFragment1 = new DatePickerFragment();
+        newFragment1.show(getSupportFragmentManager(), "datePicker");
+    }
+    public void setDataDostawy(View v) {
+        id =2;
+        DialogFragment newFragment2 = new DatePickerFragment();
+        newFragment2.show(getSupportFragmentManager(), "datePicker");
+    }
+    public void setTerimnZaplaty(View v) {
+        id = 3;
+        DialogFragment newFragment3 = new DatePickerFragment();
+        newFragment3.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    public static class DatePickerFragment extends DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(),
+                    (DatePickerDialog.OnDateSetListener)
+                            getActivity(), year, month, day);
+        }
+
+    }
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            if (id==1) {
+                dataWystawienia = Integer.toString(year)+"/"+Integer.toString(month+1)+"/"+Integer.toString(dayOfMonth);
+                date_DataWystawienia.setText(dataWystawienia);
+            }else if (id==2){
+                dataDostawy= Integer.toString(year)+"/"+Integer.toString(month+1)+"/"+Integer.toString(dayOfMonth);
+                date_dataDostawy.setText(dataDostawy);
+            }else {
+                terimnZaplatyDo = Integer.toString(year)+"/"+Integer.toString(month+1)+"/"+Integer.toString(dayOfMonth);
+                date_terimnZaplatyDo.setText(terimnZaplatyDo);
+            }
+
+        }
+
 
 
     public void toProvider(View view) {
@@ -31,13 +88,16 @@ public class FormActivity extends AppCompatActivity {
 
         faktura.id = ed_numerFaktury.getText().toString();
         faktura.invoiceCity= ed_miejscowoscWystawienia.getText().toString();
-        faktura.invoiceDate= date_DataWystawienia.getText().toString();
-        faktura.invoiceShippingDate= date_dataDostawy.getText().toString();
-        faktura.paymentDate= ed_terimnZaplatyDo.getText().toString();
+        faktura.invoiceDate= dataWystawienia;
+        faktura.invoiceShippingDate= dataDostawy;
+        faktura.paymentDate= terimnZaplatyDo;
         faktura.paymentMethod= ed_sposobZaplaty.getText().toString();
 
         Intent intent = new Intent(this, ProviderFormActivity.class);
         intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
+
+
 }
+
