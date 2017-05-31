@@ -77,7 +77,7 @@ public class SummaryFormActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, ShareFormActivity.class);
-        intent.putExtra("faktura", pdf);
+        intent.putExtra("faktura", pdf.getName());
         startActivity(intent);
     }
 }
