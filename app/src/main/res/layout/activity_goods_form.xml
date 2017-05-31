@@ -118,8 +118,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_light"
-            android:text="Dodaj kolejny towar/usługę"
-            android:onClick="addMoreGoods"/>
+            android:onClick="addMoreGoods"
+            android:text="Dodaj kolejny towar/usługę" />
 
         <Button
             android:id="@+id/b_towarPodsumowanie"
