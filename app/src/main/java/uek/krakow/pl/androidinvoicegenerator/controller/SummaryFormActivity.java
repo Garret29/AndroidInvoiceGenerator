@@ -31,6 +31,7 @@ public class SummaryFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary_form);
+        getSupportActionBar().setTitle("Podsumowanie");
 
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
     }

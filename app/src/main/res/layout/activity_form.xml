@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +15,7 @@
             android:id="@+id/tv_daneFaktury"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dane faktury:"
+            android:text="@string/dane_faktury"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"
@@ -24,11 +23,22 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="7dp" />
 
+
+
+        <TextView
+            android:id="@+id/postep1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/postep1"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
         <TextView
             android:id="@+id/tv_numerFaktury"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Numer faktury:"
+            android:text="@string/numer_faktury"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -43,7 +53,7 @@
             android:id="@+id/tv_miejscowoscWystawiania"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Miejscowość wystawienia:"
+            android:text="@string/miejscowo_wystawienia"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="16dp"
@@ -62,7 +72,7 @@
             android:id="@+id/tv_dataWystawienia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data wystawienia:"
+            android:text="@string/data_wystawienia"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             tools:layout_editor_absoluteX="16dp"
@@ -74,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="setDataWystawienia"
-            android:text="Ustaw datę"
+            android:text="@string/ustaw_date"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -85,7 +95,7 @@
             android:id="@+id/tv_dataDostawy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data dokonania/zakończenia dostawy towarów:"
+            android:text="@string/data_dokonania_zako_czenia_dostawy_towar_w"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -95,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="setDataDostawy"
-            android:text="Ustaw datę"
+            android:text="@string/ustaw_date"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -106,7 +116,7 @@
             android:id="@+id/tv_sposobZaplaty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sposób zapłaty:"
+            android:text="@string/sposob_zaplaty"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -121,7 +131,7 @@
             android:id="@+id/tv_terminZaplatyDo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Termin zapłaty do:"
+            android:text="@string/termin_zaplaty_do"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -131,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="setTerimnZaplaty"
-            android:text="Ustaw datę"
+            android:text="@string/ustaw_date"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
@@ -141,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
-            android:text="Zapisz i przejdz dalej"
+            android:text="@string/zapisz_i_przejdz_dalej"
             android:onClick="toProvider"/>
 
 

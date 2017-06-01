@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +14,7 @@
             android:id="@+id/tv_towar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dane towarów i usług"
+            android:text="@string/dane_towarow_i_uslug"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"
@@ -24,10 +23,19 @@
             tools:layout_editor_absoluteY="182dp" />
 
         <TextView
+            android:id="@+id/postep4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/postep4"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
             android:id="@+id/tv_nazwaTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nazwa towaru/usługi:"
+            android:text="@string/nazwa_towaru_uslugi"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -42,7 +50,7 @@
             android:id="@+id/tv_iloscTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ilość:"
+            android:text="@string/ilosc"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -57,7 +65,7 @@
             android:id="@+id/tv_jednostkaTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jednostka miary:"
+            android:text="@string/jednostka_miary"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -72,7 +80,7 @@
             android:id="@+id/tv_cenaBruttoTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cena brutto za jednostkę:"
+            android:text="@string/cena_brutto_za_jednostke"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -87,7 +95,7 @@
             android:id="@+id/tv_rabatTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rabat w procentach:"
+            android:text="@string/rabat_w_procentach"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -102,7 +110,7 @@
             android:id="@+id/tv_stawkaVATTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stawka VAT w procentach:"
+            android:text="@string/stawka_vat_w_procentach"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -119,7 +127,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_light"
             android:onClick="addMoreGoods"
-            android:text="Dodaj kolejny towar/usługę" />
+            android:text="@string/dodaj_kolejny_towar_uslug" />
 
         <Button
             android:id="@+id/b_towarPodsumowanie"
@@ -127,7 +135,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
             android:onClick="toSummary"
-            android:text="Zakończ dodawanie towarów/usług i przejdz dalej"
+            android:text="@string/zako_cz_dodawanie_towar_w_us_ug_i_przejdz_dalej"
             android:textColor="@android:color/holo_red_dark" />
     </LinearLayout>
 

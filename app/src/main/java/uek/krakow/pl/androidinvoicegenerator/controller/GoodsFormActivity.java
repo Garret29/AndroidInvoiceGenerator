@@ -25,6 +25,7 @@ public class GoodsFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_form);
+        getSupportActionBar().setTitle("Dane towarów i usług");
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner_stawkaVAT);
         id++;

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,7 +14,7 @@
             android:id="@+id/tv_nabywca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nabywca"
+            android:text="@string/nabywca"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"
@@ -23,13 +22,22 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="182dp" />
 
+        <TextView
+            android:id="@+id/postep3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/postep3"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
 
 
         <TextView
             android:id="@+id/tv_nazwaNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nazwa:"
+            android:text="@string/nazwa"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -44,7 +52,7 @@
             android:id="@+id/tv_ulicaNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ulica:"
+            android:text="@string/ulica"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -59,7 +67,7 @@
             android:id="@+id/tv_domNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Numer budynku:"
+            android:text="@string/numer_budynku"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -74,7 +82,7 @@
             android:id="@+id/tv_lokalNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Numer lokalu:"
+            android:text="@string/numer_lokalu"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -89,7 +97,7 @@
             android:id="@+id/tv_miejscowośćNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Miejscowość:"
+            android:text="@string/miejscowosc"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -104,7 +112,7 @@
             android:id="@+id/tv_kodNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kod pocztowy:"
+            android:text="@string/kod_pocztowy"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -120,7 +128,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
-            android:text="Zapisz i przejdz dalej"
+            android:text="@string/zapisz_i_przejdz_dalej"
             android:onClick="toGoods"/>
 
     </LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
@@ -18,6 +19,7 @@ public class ProviderFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider_form);
+        getSupportActionBar().setTitle("Sprzedawca");
 
         ed_NIPDost = (EditText) findViewById(R.id.ed_NIPDost);
         ed_nazwaDost = (EditText) findViewById(R.id.ed_nazwaDost);
@@ -59,11 +61,48 @@ public class ProviderFormActivity extends AppCompatActivity {
     }
 
     public void zapiszDoPamieci(View view) {
+        SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
+        SharedPreferences.Editor pe = p.edit();
+
+        pe.putBoolean("zapisano", true);
+        pe.putString("lokalDost", ed_lokalDost.getText().toString());
+        pe.putString("rachunekDost", ed_rachunekDost.getText().toString());
+        pe.putString("miejscowoscDost", ed_miejscowoscDost.getText().toString());
+        pe.putString("emailDost", ed_emailDost.getText().toString());
+        pe.putString("domDost", ed_domDost.getText().toString());
+        pe.putString("NIPDost", ed_NIPDost.getText().toString());
+        pe.putString("nazwaDost", ed_nazwaDost.getText().toString());
+        pe.putString("ulicaDost", ed_ulicaDost.getText().toString());
+        pe.putString("kodDost", ed_kodDost.getText().toString());
+        pe.putString("telefonDost", ed_telefonDost.getText().toString());
+        pe.putString("bankDost", ed_bankDost.getText().toString());
+        pe.commit();
+
+        Toast.makeText(this, "Zapisano dane", Toast.LENGTH_SHORT).show();
+
+
 
     }
 
     public void wczytajZPamieci(View view) {
         SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
+        if (p.getBoolean("zapisano", false)){
+            ed_lokalDost.setText(p.getString("lokalDost", ""));
+            ed_rachunekDost.setText(p.getString("rachunekDost", ""));
+            ed_miejscowoscDost.setText(p.getString("miejscowoscDost", ""));
+            ed_emailDost.setText(p.getString("emailDost", ""));
+            ed_domDost.setText(p.getString("domDost", ""));
+            ed_NIPDost.setText(p.getString("NIPDost", ""));
+            ed_ulicaDost.setText(p.getString("ulicaDost", ""));
+            ed_kodDost.setText(p.getString("kodDost", ""));
+            ed_telefonDost.setText(p.getString("telefonDost", ""));
+            ed_bankDost.setText(p.getString("bankDost", ""));
+            ed_nazwaDost.setText(p.getString("nazwaDost", ""));
+            Toast.makeText(this, "Wczytano dane", Toast.LENGTH_SHORT).show();
+
+        }else {
+            Toast.makeText(this, "Brak zapisanych danych!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

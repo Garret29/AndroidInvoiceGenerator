@@ -27,6 +27,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        getSupportActionBar().setTitle("Dane faktury");
 
         ed_numerFaktury = (EditText) findViewById(R.id.ed_numerFaktury);
         ed_miejscowoscWystawienia = (EditText) findViewById(R.id.ed_miejscowoscWystawienia);
@@ -69,13 +70,13 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             if (id==1) {
-                dataWystawienia = Integer.toString(year)+"/"+Integer.toString(month+1)+"/"+Integer.toString(dayOfMonth);
+                dataWystawienia = Integer.toString(dayOfMonth)+"/"+Integer.toString(month+1)+"/"+Integer.toString(year);
                 date_DataWystawienia.setText(dataWystawienia);
             }else if (id==2){
-                dataDostawy= Integer.toString(year)+"/"+Integer.toString(month+1)+"/"+Integer.toString(dayOfMonth);
+                dataDostawy= Integer.toString(dayOfMonth)+"/"+Integer.toString(month+1)+"/"+Integer.toString(year);
                 date_dataDostawy.setText(dataDostawy);
             }else {
-                terimnZaplatyDo = Integer.toString(year)+"/"+Integer.toString(month+1)+"/"+Integer.toString(dayOfMonth);
+                terimnZaplatyDo = Integer.toString(dayOfMonth)+"/"+Integer.toString(month+1)+"/"+Integer.toString(year);
                 date_terimnZaplatyDo.setText(terimnZaplatyDo);
             }
 

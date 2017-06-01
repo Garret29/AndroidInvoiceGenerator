@@ -9,12 +9,22 @@
     android:weightSum="1">
 
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.29" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/ok"
         android:layout_weight="0.12" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.05" />
 
     <TextView
         android:id="@+id/textView3"
@@ -25,6 +35,11 @@
         android:textColor="@android:color/holo_green_dark"
         android:textSize="24sp" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.20" />
+
     <Button
         android:id="@+id/button2"
         android:layout_width="match_parent"
@@ -33,6 +48,11 @@
         android:text="Udostępnij"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.06" />
 
     <Button
         android:id="@+id/button3"
