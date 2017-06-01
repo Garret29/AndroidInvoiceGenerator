@@ -22,14 +22,6 @@
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="182dp" />
-        <TextView
-            android:id="@+id/postep2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/postep2"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_NIPSprzed"
@@ -226,6 +218,10 @@
             android:background="@android:color/holo_blue_light"
             android:text="@string/zapisz_dane_do_pamieci"
             android:onClick="zapiszDoPamieci"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <Button
             android:id="@+id/b_sprzedawcaKontrahent"

@@ -26,15 +26,6 @@
 
 
         <TextView
-            android:id="@+id/postep1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/postep1"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-
-        <TextView
             android:id="@+id/tv_numerFaktury"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

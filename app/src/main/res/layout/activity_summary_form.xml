@@ -20,14 +20,6 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/postep5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/postep5"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView2"

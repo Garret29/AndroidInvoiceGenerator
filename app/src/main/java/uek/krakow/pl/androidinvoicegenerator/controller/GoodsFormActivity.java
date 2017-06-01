@@ -25,7 +25,7 @@ public class GoodsFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_form);
-        getSupportActionBar().setTitle("Dane towarów i usług");
+        getSupportActionBar().setTitle("Krok 4 z 5");
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner_stawkaVAT);
         id++;
@@ -49,6 +49,7 @@ public class GoodsFormActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void addMoreGoods(View view) {
         if( TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) ||TextUtils.isEmpty(ed_rabatTowar.getText().toString()) ||TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) ||TextUtils.isEmpty(ed_iloscTowar.getText().toString())){

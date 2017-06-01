@@ -22,14 +22,6 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="182dp" />
 
-        <TextView
-            android:id="@+id/postep4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/postep4"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tv_nazwaTowar"

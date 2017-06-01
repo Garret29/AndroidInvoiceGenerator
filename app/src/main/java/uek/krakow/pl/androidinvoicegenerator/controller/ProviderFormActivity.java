@@ -1,7 +1,10 @@
 package uek.krakow.pl.androidinvoicegenerator.controller;
 
+
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +22,7 @@ public class ProviderFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_provider_form);
-        getSupportActionBar().setTitle("Sprzedawca");
+        getSupportActionBar().setTitle("Krok 2 z 5");
 
         ed_NIPDost = (EditText) findViewById(R.id.ed_NIPDost);
         ed_nazwaDost = (EditText) findViewById(R.id.ed_nazwaDost);
@@ -40,30 +43,29 @@ public class ProviderFormActivity extends AppCompatActivity {
         Faktura faktura = (Faktura) this.getIntent().getSerializableExtra("faktura");
 
         Sprzedawca sprzedawca = new Sprzedawca();
-        sprzedawca.providerApartment=ed_lokalDost.getText().toString();
-        sprzedawca.providerBankNumber=ed_rachunekDost.getText().toString();
-        sprzedawca.providerCity=ed_miejscowoscDost.getText().toString();
-        sprzedawca.providerEmail=ed_emailDost.getText().toString();
-        sprzedawca.providerHouse=ed_domDost.getText().toString();
-        sprzedawca.providerNIP=ed_NIPDost.getText().toString();
-        sprzedawca.providerName=ed_nazwaDost.getText().toString();
-        sprzedawca.providerStreet=ed_ulicaDost.getText().toString();
-        sprzedawca.providerPostalCode=ed_kodDost.getText().toString();
-        sprzedawca.providerPhoneNumber=ed_telefonDost.getText().toString();
-        sprzedawca.providerBank=ed_bankDost.getText().toString();
+        sprzedawca.providerApartment = ed_lokalDost.getText().toString();
+        sprzedawca.providerBankNumber = ed_rachunekDost.getText().toString();
+        sprzedawca.providerCity = ed_miejscowoscDost.getText().toString();
+        sprzedawca.providerEmail = ed_emailDost.getText().toString();
+        sprzedawca.providerHouse = ed_domDost.getText().toString();
+        sprzedawca.providerNIP = ed_NIPDost.getText().toString();
+        sprzedawca.providerName = ed_nazwaDost.getText().toString();
+        sprzedawca.providerStreet = ed_ulicaDost.getText().toString();
+        sprzedawca.providerPostalCode = ed_kodDost.getText().toString();
+        sprzedawca.providerPhoneNumber = ed_telefonDost.getText().toString();
+        sprzedawca.providerBank = ed_bankDost.getText().toString();
 
 
-        faktura.sprzedawca=sprzedawca;
+        faktura.sprzedawca = sprzedawca;
 
         Intent intent = new Intent(this, BuyerFormActivity.class);
         intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 
-    public void zapiszDoPamieci(View view) {
+    public void zapisz(){
         SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
         SharedPreferences.Editor pe = p.edit();
-
         pe.putBoolean("zapisano", true);
         pe.putString("lokalDost", ed_lokalDost.getText().toString());
         pe.putString("rachunekDost", ed_rachunekDost.getText().toString());
@@ -77,11 +79,34 @@ public class ProviderFormActivity extends AppCompatActivity {
         pe.putString("telefonDost", ed_telefonDost.getText().toString());
         pe.putString("bankDost", ed_bankDost.getText().toString());
         pe.commit();
-
         Toast.makeText(this, "Zapisano dane", Toast.LENGTH_SHORT).show();
+    }
 
+    public void zapiszDoPamieci(View view) {
+        SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
+        if (!p.getBoolean("zapisano", false)) {
+            zapisz();
+        } else {
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(ProviderFormActivity.this);
+            a_builder.setMessage("W pamięci znajdują się już dane, czy chcesz je nadpisać?")
+                    .setCancelable(false)
+                    .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            zapisz();
+                        }
+                    })
+                    .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Ostrzeżenie");
+            alert.show();
 
-
+        }
     }
 
     public void wczytajZPamieci(View view) {

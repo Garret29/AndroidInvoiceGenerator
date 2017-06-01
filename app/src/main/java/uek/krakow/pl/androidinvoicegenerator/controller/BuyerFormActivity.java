@@ -22,7 +22,7 @@ public class BuyerFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_form);
-        getSupportActionBar().setTitle("Nabywca");
+        getSupportActionBar().setTitle("Krok 3 z 5");
 
         ed_nazwaNabyw = (EditText) findViewById(R.id.ed_nazwaNabyw);
         ed_ulicaNabyw = (EditText) findViewById(R.id.ed_ulicaNabyw);

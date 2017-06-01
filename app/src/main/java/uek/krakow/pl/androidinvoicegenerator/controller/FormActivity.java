@@ -27,7 +27,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-        getSupportActionBar().setTitle("Dane faktury");
+        getSupportActionBar().setTitle("Krok 1 z 5");
 
         ed_numerFaktury = (EditText) findViewById(R.id.ed_numerFaktury);
         ed_miejscowoscWystawienia = (EditText) findViewById(R.id.ed_miejscowoscWystawienia);
