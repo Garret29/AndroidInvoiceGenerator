@@ -26,7 +26,7 @@ import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
 
 public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
-
+    //TODO Stworzyć więcej stylów faktury
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
