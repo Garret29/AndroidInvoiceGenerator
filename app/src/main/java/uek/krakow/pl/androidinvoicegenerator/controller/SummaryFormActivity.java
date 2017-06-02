@@ -41,7 +41,6 @@ public class SummaryFormActivity extends AppCompatActivity {
 
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
         faktura.razem.bruttoWords = ed_naleznoscSlownie.getText().toString();//słownie
-        //TODO: Tworzenie Tax przeniesione przed aktywnosć Goods, każdy nowy towar dodaje dane do Tax
         /*
         Razem razem = new Razem();
         faktura.razem = razem;
