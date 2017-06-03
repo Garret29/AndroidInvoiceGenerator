@@ -3,9 +3,8 @@
     package="uek.krakow.pl.androidinvoicegenerator">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
     <application
         android:name=".InvoiceGeneratorApplication"
         android:allowBackup="true"
@@ -30,5 +29,7 @@
         <activity android:name=".viewcontroller.GoodsFormActivity" />
         <activity android:name=".viewcontroller.SummaryFormActivity" />
         <activity android:name=".viewcontroller.ShareFormActivity" />
+        <activity android:name=".viewcontroller.Share2Activity"></activity>
     </application>
+
 </manifest>

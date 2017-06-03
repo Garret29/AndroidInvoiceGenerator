@@ -2,7 +2,6 @@ package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +10,13 @@ import java.io.File;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
 
-public class ShareFormActivity extends AppCompatActivity {
+public class Share2Activity extends AppCompatActivity {
     String filename;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_form);
+        setContentView(R.layout.activity_share2);
         filename = getIntent().getStringExtra("faktura");
     }
 
@@ -33,11 +32,6 @@ public class ShareFormActivity extends AppCompatActivity {
 
     public void toMain(View view) {
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void nowaFaktura(View view) {
-        Intent intent = new Intent(this, FormActivity.class);
         startActivity(intent);
     }
 

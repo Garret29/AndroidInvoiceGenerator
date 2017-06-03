@@ -1,12 +1,12 @@
-package uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel;
+package uek.krakow.pl.androidinvoicegenerator.invoicemodel;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name = "w_tym_8")
-public class Tax8  implements Serializable {
+@Root(name = "w_tym_23")
+public class Tax23  implements Serializable {
 
     @Element(name = "brutto")
     public String brutto=" ";

@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Sprzedawca;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Sprzedawca;
 import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
 
 public class ProviderFormActivity extends AppCompatActivity {

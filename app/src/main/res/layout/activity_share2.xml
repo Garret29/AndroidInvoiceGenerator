@@ -12,32 +12,6 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.29" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ok"
-        android:layout_weight="0.12" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tworzenie zakończone pomyślnie"
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="24sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_weight="0.20" />
 
     <Button
@@ -60,11 +34,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_green_light"
+        android:onClick="openFile"
         android:text="Otwórz utworzony dokument"
         android:textColor="@android:color/black"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:onClick="openFile"/>
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
@@ -85,18 +59,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.06" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_light"
-        android:text="Utwórz nową fakturę"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:onClick="nowaFaktura"/>
-
-
 
 
 </LinearLayout>

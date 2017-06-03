@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 
 public class FormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText ed_numerFaktury, ed_miejscowoscWystawienia, ed_sposobZaplaty;
@@ -38,7 +38,6 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         date_DataWystawienia = (TextView) findViewById(R.id.date_dataWystawienia);
         date_dataDostawy = (TextView) findViewById(R.id.date_dataDostawy);
         date_terimnZaplatyDo = (TextView) findViewById(R.id.date_terimnZaplatyDo);
-
     }
 
     private void pustyNumer() {
@@ -107,8 +106,14 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         if (TextUtils.isEmpty(ed_numerFaktury.getText().toString()) || ed_numerFaktury.getText().toString().equals(" ")) {
             pustyNumer();
         } else {
+            String[] forbiddenChars = new String[]{"\\|", "\\/", "\\?", "\\\\", "\\:", "\\<", "\\>", "\\*", "\\%","\""," "};
+
             Faktura faktura = new Faktura();
-            faktura.id = ed_numerFaktury.getText().toString();
+            String nazwa = ed_numerFaktury.getText().toString();
+            for (String s : forbiddenChars) {
+                nazwa = nazwa.replaceAll(s, "_");
+            }
+            faktura.id = nazwa;
             faktura.invoiceCity = ed_miejscowoscWystawienia.getText().toString();
             faktura.invoiceDate = dataWystawienia;
             faktura.invoiceShippingDate = dataDostawy;

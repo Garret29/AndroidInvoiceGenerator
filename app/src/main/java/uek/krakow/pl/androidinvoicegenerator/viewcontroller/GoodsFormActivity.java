@@ -12,14 +12,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Towar;
 
 public class GoodsFormActivity extends AppCompatActivity {
     EditText ed_nazwaTowar, ed_iloscTowar, ed_jednostkaTowar, ed_cenaBruttTowar, ed_rabatTowar;
     String stawkaVat, idS;
     double cenaBruttoJednostPoRabacie, brutto, cenaVAT, cenaNETTO, nettoTAX, bruttoTAX, vatTAX, nettoRazemTAX, bruttoRazemTAX, vatRazemTAX;
-    static int id = 0;
+    int id = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,11 +1,15 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,6 +18,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.apache.commons.io.FilenameUtils;
+
+import java.io.File;
 import java.util.ArrayList;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
@@ -23,12 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
     private ArrayList<String> styles;
     private ArrayAdapter<String> adapter;
 
-    private Button styleButton;
-    private Button remoteStyleButton;
-    private CheckBox validationCheckBox;
     private EditText styleNameText;
-    private ListView listView;
-
 
 
     @Override
@@ -36,25 +38,21 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        listView = (ListView) findViewById(R.id.stylesListView);
-        styleButton = (Button) findViewById(R.id.styleButton);
-        remoteStyleButton = (Button) findViewById(R.id.remoteStyleButton);
+        ListView listView = (ListView) findViewById(R.id.stylesListView);
         styleNameText = (EditText) findViewById(R.id.styleNameText);
 
         styles = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, styles);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, styles);
 
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("validation", validationCheckBox.isChecked());
+    protected void onPostResume() {
+        super.onPostResume();
+        fillStylesList();
+        adapter.notifyDataSetChanged();
     }
 
     public void wymazDostawce(View view) {
@@ -82,7 +80,7 @@ public class SettingsActivity extends AppCompatActivity {
                             pe.putString("kodDost", "");
                             pe.putString("telefonDost", "");
                             pe.putString("bankDost", "");
-                            pe.commit();
+                            pe.apply();
                             Toast.makeText(SettingsActivity.this, "Usunięto dane", Toast.LENGTH_SHORT).show();
                         }
                     })
@@ -96,6 +94,17 @@ public class SettingsActivity extends AppCompatActivity {
             alert.setTitle("Ostrzeżenie");
             alert.show();
 
+        }
+    }
+
+    private void fillStylesList() {
+        if (MainActivity.stylesDir.exists() && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            for (File f : MainActivity.stylesDir.listFiles()
+                    ) {
+                if (FilenameUtils.getExtension(f.getName()).equals("xsl") && !styles.contains(f.getName())){
+                    styles.add(f.getName());
+                }
+            }
         }
     }
 }

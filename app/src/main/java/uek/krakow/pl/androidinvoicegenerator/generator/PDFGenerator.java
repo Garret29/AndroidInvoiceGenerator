@@ -28,12 +28,13 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.MainActivity;
 
 public class PDFGenerator {
-    public File generatePDF(InputStream xslStream, InputStream xmlStream, File dir, String filename, File cacheDir) {
+    public File generatePDF(String xsl, File xml, File dir, String filename, File cacheDir) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
-
+        File style = new File(MainActivity.stylesDir, xsl);
         File html = new File(cacheDir, "invoice.html");
         File pdf = new File(dir, filename+".pdf");
         if (!dir.mkdirs()){
@@ -43,8 +44,9 @@ public class PDFGenerator {
         Log.d("hehe", "start PDF");
 
         try {
-            Transformer transformer = transformerFactory.newTransformer(new StreamSource(xslStream));
-            transformer.transform(new StreamSource(xmlStream), new StreamResult(new FileOutputStream(html)));
+
+            Transformer transformer = transformerFactory.newTransformer(new StreamSource(style));
+            transformer.transform(new StreamSource(xml), new StreamResult(new FileOutputStream(html)));
 
             Tidy tidy = new Tidy();
             tidy.setXHTML(true);
