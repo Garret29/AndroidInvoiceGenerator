@@ -65,7 +65,7 @@
                 <xsl:for-each select="faktura">
                     <h2><p align="center">Faktura VAT <xsl:value-of select="numer"/></p></h2>
                 </xsl:for-each>
-                <table border="3" align="center">
+                <table border="3" align="center" width="400">
                     <tr>
                         <th align="center">L.p</th>
                         <th align="center">Nazwa towaru/usługi</th>
