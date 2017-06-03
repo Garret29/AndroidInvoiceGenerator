@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,7 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private Button styleButton;
     private Button remoteStyleButton;
-    private CheckBox validationCheckBox;
+//    private CheckBox validationCheckBox;
     private EditText styleNameText;
     private ListView listView;
 
@@ -48,13 +49,14 @@ public class SettingsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+
     @Override
     protected void onPause() {
         super.onPause();
 
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean("validation", validationCheckBox.isChecked());
+//        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putBoolean("validation", validationCheckBox.isChecked());
     }
 
     public void wymazDostawce(View view) {
