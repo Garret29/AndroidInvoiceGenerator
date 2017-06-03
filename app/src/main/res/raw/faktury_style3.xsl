@@ -15,9 +15,11 @@
                         <xsl:value-of select="data_dostawy"/>
                     </p>
                 </xsl:for-each>
-                <b>Sprzedawca:</b>
-
                 <br/>
+                <br/>
+                <hr/>
+
+                <b>Sprzedawca:</b>
                 <xsl:for-each select="faktura/sprzedawca">
                     <xsl:value-of select="nazwa"/>
                     <br/>
@@ -32,10 +34,12 @@
                     Telefon: <xsl:value-of select="telefon"/>
                     <br/>
                     Email: <xsl:value-of select="email"/>
-                    <br/>
-
                 </xsl:for-each>
+
                 <br/>
+                <br/>
+
+                <hr/>
                 <br/>
                 <xsl:for-each select="faktura/nabywca">
                     <b>Nabywca:</b>
@@ -45,8 +49,16 @@
                     Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
                     <br/>
                     <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
-                    <br/>
                 </xsl:for-each>
+                <br/>
+                <br/>
+                <hr/>
+
+
+
+                <br/>
+                <br/>
+
                 <xsl:for-each select="faktura">
                     <h2><p align="center">Faktura VAT <xsl:value-of select="numer"/></p></h2>
                 </xsl:for-each>
@@ -169,11 +181,13 @@
                 </table>
 
                 <xsl:for-each select="faktura/razem">
-                    <a align="left">Należność ogółem: <xsl:value-of select="brutto"/>zł</a>
+                    <a align="left">Należność ogłem: <xsl:value-of select="brutto"/>zł</a>
                     <br/>
-                    Należność ogółem słownie: <xsl:value-of select="brutto_slownie"/>
+                    Należność ogłem słownie: <xsl:value-of select="brutto_slownie"/>
                 </xsl:for-each>
                 <br/>
+                <br/>
+                <hr/>
                 <br/>
                 <xsl:for-each select="faktura">
                     Sposób zapłaty: <xsl:value-of select="sposob_platnosci"/>

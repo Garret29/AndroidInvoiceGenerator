@@ -15,38 +15,53 @@
                         <xsl:value-of select="data_dostawy"/>
                     </p>
                 </xsl:for-each>
-                <b>Sprzedawca:</b>
+
+
+
+                <table width="100%" cellspacing="0" cellpadding="5" >
+                    <tr>
+                        <td align="left">
+                            <b>Sprzedawca:</b>
+                            <xsl:for-each select="faktura/sprzedawca">
+                                <xsl:value-of select="nazwa"/>
+                                <br/>
+                                Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
+                                <br/>
+                                <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
+                                <br/>
+                                NIP: <xsl:value-of select="NIP_PESEL"/>
+                                <br/>
+                                Rachunek: <xsl:value-of select="rachunek"/>; <xsl:value-of select="bank"/>
+                                <br/>
+                                Telefon: <xsl:value-of select="telefon"/>
+                                <br/>
+                                Email: <xsl:value-of select="email"/>
+                            </xsl:for-each>
+                        </td>
+                        <td align="right">
+                            <xsl:for-each select="faktura/nabywca">
+                                <b>Nabywca:</b>
+                                <br/>
+                                <xsl:value-of select="nazwa"/>
+                                <br/>
+                                Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
+                                <br/>
+                                <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
+                            </xsl:for-each>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+
+
 
                 <br/>
-                <xsl:for-each select="faktura/sprzedawca">
-                    <xsl:value-of select="nazwa"/>
-                    <br/>
-                    Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
-                    <br/>
-                    <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
-                    <br/>
-                    NIP: <xsl:value-of select="NIP_PESEL"/>
-                    <br/>
-                    Rachunek: <xsl:value-of select="rachunek"/>; <xsl:value-of select="bank"/>
-                    <br/>
-                    Telefon: <xsl:value-of select="telefon"/>
-                    <br/>
-                    Email: <xsl:value-of select="email"/>
-                    <br/>
+                <br/>
 
-                </xsl:for-each>
-                <br/>
-                <br/>
-                <xsl:for-each select="faktura/nabywca">
-                    <b>Nabywca:</b>
-                    <br/>
-                    <xsl:value-of select="nazwa"/>
-                    <br/>
-                    Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
-                    <br/>
-                    <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
-                    <br/>
-                </xsl:for-each>
                 <xsl:for-each select="faktura">
                     <h2><p align="center">Faktura VAT <xsl:value-of select="numer"/></p></h2>
                 </xsl:for-each>
@@ -90,7 +105,6 @@
                         </tr>
                     </xsl:for-each>
                 </table>
-
                 <br/>
                 <br/>
                 <table border="3" >
@@ -116,7 +130,6 @@
                                     <td align="center">Z podatkiem
                                         <br/> [zł]</td>
                                 </tr>
-
                                 <tr>
                                     <xsl:for-each select="faktura/razem">
                                         <td>Razem:</td>
@@ -167,11 +180,10 @@
                         </td>
                     </tr>
                 </table>
-
                 <xsl:for-each select="faktura/razem">
-                    <a align="left">Należność ogółem: <xsl:value-of select="brutto"/>zł</a>
+                    <a align="left">Należność ogłem: <xsl:value-of select="brutto"/>zł</a>
                     <br/>
-                    Należność ogółem słownie: <xsl:value-of select="brutto_slownie"/>
+                    Należność ogłem słownie: <xsl:value-of select="brutto_slownie"/>
                 </xsl:for-each>
                 <br/>
                 <br/>
@@ -181,8 +193,8 @@
                     Termin zapłaty do: <xsl:value-of select="termin_platnosci"/>
                 </xsl:for-each>
                 <br/>
-
             </body>
         </html>
+
     </xsl:template>
 </xsl:stylesheet>
