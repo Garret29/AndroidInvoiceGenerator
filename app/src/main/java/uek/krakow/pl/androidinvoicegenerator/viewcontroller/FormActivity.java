@@ -1,4 +1,4 @@
-package uek.krakow.pl.androidinvoicegenerator.controller;
+package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

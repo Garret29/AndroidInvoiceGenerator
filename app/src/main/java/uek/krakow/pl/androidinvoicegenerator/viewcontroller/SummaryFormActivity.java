@@ -1,4 +1,4 @@
-package uek.krakow.pl.androidinvoicegenerator.controller;
+package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.Manifest;
 import android.content.Intent;
@@ -18,21 +18,10 @@ import org.simpleframework.xml.core.Persister;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.jar.Attributes;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Razem;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax0;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax23;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax5;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Tax8;
-import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Towar;
-
-import static android.R.attr.name;
 
 public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
@@ -48,24 +37,21 @@ public class SummaryFormActivity extends AppCompatActivity {
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
     }
 
-    /*
     public void toShare(View view) {
         PDFGenerator pdfGenerator = new PDFGenerator();
 
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
-        faktura.razem.bruttoWords = ed_naleznoscSlownie.getText().toString();//słownie
-        /*
-        Razem razem = new Razem();
-        faktura.razem = razem;
-        faktura.razem.brutto = Integer.toString(0);
-        faktura.razem.tax0 = new Tax0();
-        faktura.razem.tax5= new Tax5();
-        faktura.razem.tax8 = new Tax8();
-        faktura.razem.tax23 = new Tax23();
+        faktura.razem.bruttoWords = ed_naleznoscSlownie.getText().toString();
+//        faktura.razem = new Razem();
+//        faktura.razem.brutto = Integer.toString(0);
+//        faktura.razem.tax0 = new Tax0();
+//        faktura.razem.tax5= new Tax5();
+//        faktura.razem.tax8 = new Tax8();
+//        faktura.razem.tax23 = new Tax23();
 
-        int razemBrutto = 0;
+//        int razemBrutto = 0;
 
-        faktura.razem.brutto=Integer.toString(razemBrutto);
+//        faktura.razem.brutto=Integer.toString(razemBrutto);
 
         File xml = new File(getCacheDir(), "invoice.xml");
 
@@ -78,7 +64,7 @@ public class SummaryFormActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        File dir = getExternalFilesDir("");
+        File dir = Environment.getExternalStorageDirectory();
         File pdf = null;
 
         Log.d("hehe", "linia 62");
@@ -93,7 +79,8 @@ public class SummaryFormActivity extends AppCompatActivity {
         intent.putExtra("faktura", pdf.getName());
         startActivity(intent);
     }
-    */
+
+    /*
     public void toShare(View view) {
         askPermissionAndWriteFile();
         PDFGenerator pdfGenerator = new PDFGenerator();
@@ -141,6 +128,7 @@ public class SummaryFormActivity extends AppCompatActivity {
 
 
     }
+    */
 
     private void askPermissionAndWriteFile() {
         boolean canWrite = this.askPermission(REQUEST_ID_WRITE_PERMISSION,

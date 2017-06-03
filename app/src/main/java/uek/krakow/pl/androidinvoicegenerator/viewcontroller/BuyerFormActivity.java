@@ -1,4 +1,4 @@
-package uek.krakow.pl.androidinvoicegenerator.controller;
+package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

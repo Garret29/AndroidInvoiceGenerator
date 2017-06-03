@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uek.krakow.pl.androidinvoicegenerator">
 
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
 
     <application
         android:allowBackup="true"
@@ -13,21 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.MainActivity">
+        <activity android:name=".viewcontroller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.FormActivity" />
+        <activity android:name=".viewcontroller.FormActivity" />
         <activity
-            android:name=".controller.SettingsActivity"
+            android:name=".viewcontroller.SettingsActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".controller.ProviderFormActivity" />
-        <activity android:name=".controller.BuyerFormActivity" />
-        <activity android:name=".controller.GoodsFormActivity" />
-        <activity android:name=".controller.SummaryFormActivity" />
-        <activity android:name=".controller.ShareFormActivity" />
+        <activity android:name=".viewcontroller.ProviderFormActivity" />
+        <activity android:name=".viewcontroller.BuyerFormActivity" />
+        <activity android:name=".viewcontroller.GoodsFormActivity" />
+        <activity android:name=".viewcontroller.SummaryFormActivity" />
+        <activity android:name=".viewcontroller.ShareFormActivity" />
     </application>
 </manifest>

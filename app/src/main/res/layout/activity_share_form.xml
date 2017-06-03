@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uek.krakow.pl.androidinvoicegenerator.controller.ShareFormActivity"
+    tools:context="uek.krakow.pl.androidinvoicegenerator.viewcontroller.ShareFormActivity"
     android:orientation="vertical"
     android:weightSum="1">
 

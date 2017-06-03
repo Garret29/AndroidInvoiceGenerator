@@ -1,6 +1,5 @@
 package uek.krakow.pl.androidinvoicegenerator.tasks;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 
 import org.json.JSONException;
@@ -15,7 +14,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 
-import uek.krakow.pl.androidinvoicegenerator.controller.ProviderFormActivity;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.ProviderFormActivity;
 
 /**
  * Created by Szymon on 30.05.2017.

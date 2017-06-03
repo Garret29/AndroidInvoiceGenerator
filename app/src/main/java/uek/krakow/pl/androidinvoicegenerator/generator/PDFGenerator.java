@@ -30,13 +30,13 @@ import javax.xml.transform.stream.StreamSource;
 public class PDFGenerator {
     public File generatePDF(InputStream xslStream, InputStream xmlStream, File dir) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        dir = Environment.getExternalStorageDirectory();
+//        dir = Environment.getExternalStorageDirectory();
         dir = new File(dir.toString()+"/invoices");
+        File html = new File(dir, "invoice.html");
+        File pdf = new File(dir, "invoice.pdf");
         if (!dir.mkdirs()){
             Log.d("hehe", "nie ma :(");
         }
-        File html = new File(dir, "invoice.html");
-        File pdf = new File(dir, "invoice.pdf");
 
         Log.d("hehe", "start PDF");
 

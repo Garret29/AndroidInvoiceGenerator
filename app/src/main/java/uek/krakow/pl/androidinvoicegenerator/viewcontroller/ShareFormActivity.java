@@ -1,13 +1,11 @@
-package uek.krakow.pl.androidinvoicegenerator.controller;
+package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 
 import java.io.File;
 
