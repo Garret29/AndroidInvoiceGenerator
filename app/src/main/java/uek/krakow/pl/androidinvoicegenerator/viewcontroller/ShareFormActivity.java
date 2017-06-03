@@ -32,4 +32,14 @@ public class ShareFormActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(intent, "Wybierz aplikacje do odczytu faktury"));
 
     }
+
+    public void toMain(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void nowaFaktura(View view) {
+        Intent intent = new Intent(this, FormActivity.class);
+        startActivity(intent);
+    }
 }
