@@ -48,6 +48,7 @@
                 android:layout_width="185dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/holo_blue_dark"
+                android:onClick="pobierzDaneGUS"
                 android:text="@string/pobierz_dane_z_gus" />
 
             <Button

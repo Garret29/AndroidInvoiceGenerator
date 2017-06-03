@@ -14,6 +14,7 @@ import android.widget.Toast;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Sprzedawca;
+import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
 
 public class ProviderFormActivity extends AppCompatActivity {
     private EditText ed_NIPDost, ed_nazwaDost, ed_ulicaDost, ed_domDost, ed_lokalDost, ed_miejscowoscDost, ed_kodDost, ed_rachunekDost, ed_bankDost, ed_telefonDost, ed_emailDost;
@@ -128,7 +129,11 @@ public class ProviderFormActivity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "Brak zapisanych danych!", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    public void pobierzDaneGUS(View view){
+        GetFromApiTask task = new GetFromApiTask(this);
+        task.execute(ed_NIPDost.getText().toString());
     }
 
     public EditText getEd_NIPDost() {

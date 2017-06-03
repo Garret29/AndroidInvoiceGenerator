@@ -32,14 +32,14 @@ public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
     protected JSONObject doInBackground(String... nip) {
         HashMap<String, String> tags = new HashMap<>();
 
-        String jsonStr="{}";
+        String jsonStr = "{}";
 
         try {
-            URL url = new URL("https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[krs_podmioty.nip]="+nip[0]);
+            URL url = new URL("https://api-v3.mojepanstwo.pl/dane/krs_podmioty.json?conditions[krs_podmioty.nip]=" + nip[0]);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-                jsonStr=readStream(in);
+                jsonStr = readStream(in);
             } finally {
                 urlConnection.disconnect();
             }
@@ -59,8 +59,8 @@ public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
 
     private String readStream(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
-        BufferedReader r = new BufferedReader(new InputStreamReader(is),1000);
-        for (String line = r.readLine(); line != null; line =r.readLine()){
+        BufferedReader r = new BufferedReader(new InputStreamReader(is), 1000);
+        for (String line = r.readLine(); line != null; line = r.readLine()) {
             sb.append(line);
         }
         is.close();
@@ -68,11 +68,10 @@ public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
     }
 
 
-
     @Override
     protected void onPostExecute(JSONObject jsonObject) {
         try {
-            jsonObject = jsonObject.getJSONObject("Dataobject").getJSONObject("data");
+            jsonObject = jsonObject.getJSONArray("Dataobject").getJSONObject(0).getJSONObject("data");
 
             String nazwa = jsonObject.getString("krs_podmioty.nazwa");
             String ulica = jsonObject.getString("krs_podmioty.adres_ulica");
@@ -82,7 +81,27 @@ public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
             String kod = jsonObject.getString("krs_podmioty.adres_kod_pocztowy");
             String mail = jsonObject.getString("krs_podmioty.email");
 
-
+            if (nazwa != null) {
+                activity.getEd_nazwaDost().setText(nazwa);
+            }
+            if (ulica != null) {
+                activity.getEd_ulicaDost().setText(ulica);
+            }
+            if (numerBudynku != null) {
+                activity.getEd_domDost().setText(numerBudynku);
+            }
+            if (numerLokalu != null) {
+                activity.getEd_lokalDost().setText(numerLokalu);
+            }
+            if (miejscowosc != null) {
+                activity.getEd_miejscowoscDost().setText(miejscowosc);
+            }
+            if (kod != null) {
+                activity.getEd_kodDost().setText(kod);
+            }
+            if (mail != null) {
+                activity.getEd_emailDost().setText(mail);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
