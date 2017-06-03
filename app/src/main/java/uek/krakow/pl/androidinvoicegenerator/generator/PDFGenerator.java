@@ -27,13 +27,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
+
 public class PDFGenerator {
-    public File generatePDF(InputStream xslStream, InputStream xmlStream, File dir) {
+    public File generatePDF(InputStream xslStream, InputStream xmlStream, File dir, String filename, File cacheDir) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
-//        dir = Environment.getExternalStorageDirectory();
-        dir = new File(dir.toString()+"/invoices");
-        File html = new File(dir, "invoice.html");
-        File pdf = new File(dir, "invoice.pdf");
+
+
+        File html = new File(cacheDir, "invoice.html");
+        File pdf = new File(dir, filename+".pdf");
         if (!dir.mkdirs()){
             Log.d("hehe", "nie ma :(");
         }
@@ -46,9 +48,9 @@ public class PDFGenerator {
 
             Tidy tidy = new Tidy();
             tidy.setXHTML(true);
-            tidy.parseDOM(new FileInputStream(html), new FileOutputStream(new File(dir, "invoice2.html")));
+            tidy.parseDOM(new FileInputStream(html), new FileOutputStream(new File(cacheDir, "invoice2.html")));
 
-            html = new File(dir, "invoice2.html");
+            html = new File(cacheDir, "invoice2.html");
 
             OutputStream os = new FileOutputStream(pdf);
             Document document = new Document();

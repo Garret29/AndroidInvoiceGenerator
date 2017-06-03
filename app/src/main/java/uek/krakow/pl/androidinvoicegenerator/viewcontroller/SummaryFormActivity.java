@@ -1,6 +1,7 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Environment;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
 import uek.krakow.pl.androidinvoicegenerator.generator.invoicemodel.Faktura;
@@ -48,12 +50,10 @@ public class SummaryFormActivity extends AppCompatActivity {
 //        faktura.razem.tax5= new Tax5();
 //        faktura.razem.tax8 = new Tax8();
 //        faktura.razem.tax23 = new Tax23();
-
 //        int razemBrutto = 0;
-
 //        faktura.razem.brutto=Integer.toString(razemBrutto);
 
-        File xml = new File(getCacheDir(), "invoice.xml");
+        File xml = new File(MainActivity.dataDir, faktura.id + ".xml");
 
         Log.d("hehe", "linia 50");
 
@@ -64,13 +64,14 @@ public class SummaryFormActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        File dir = Environment.getExternalStorageDirectory();
+//        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"invoice_generator"+"/invoices");
         File pdf = null;
 
         Log.d("hehe", "linia 62");
 
+        Context context = InvoiceGeneratorApplication.getAppContext();
         try {
-            pdf = pdfGenerator.generatePDF(getResources().openRawResource(R.raw.faktury_style), new FileInputStream(xml), dir);
+            pdf = pdfGenerator.generatePDF(getResources().openRawResource(R.raw.faktury_style), new FileInputStream(xml), MainActivity.invoicesDir, faktura.id, context.getCacheDir());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
