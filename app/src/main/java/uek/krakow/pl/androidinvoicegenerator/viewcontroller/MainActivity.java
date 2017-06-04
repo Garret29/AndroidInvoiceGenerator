@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
         fontsDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/invoice_generator", "fonts");
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                // FIXME: 03.06.2017 
-            } else {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
         } else {
@@ -76,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         if (invoicesDir.exists()) {
-           fillInvoicesList();
+            fillInvoicesList();
             adapterInv.notifyDataSetChanged();
         }
     }
@@ -86,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void addFromExistingData(View view){
+    public void addFromExistingData(View view) {
         Intent intent = new Intent(this, DataActivity.class);
         startActivity(intent);
     }
@@ -96,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void goToShare(String filename){
+    private void goToShare(String filename) {
         Intent intent = new Intent(this, Share2Activity.class);
         intent.putExtra("faktura", filename);
         startActivity(intent);
     }
 
-    private void createDirs(){
+    private void createDirs() {
         if (!invoicesDir.exists()) {
             if (!invoicesDir.mkdirs()) {
                 Log.d("hehe", "failed");
@@ -128,14 +126,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initializeListView(){
+    private void initializeListView() {
         invoices = new ArrayList<>();
         adapterInv = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, invoices);
         listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapterInv);
     }
 
-    private void addStylesToDir(){
+    private void addStylesToDir() {
         InputStream fileInputStream1 = getResources().openRawResource(R.raw.faktury_style);
         InputStream fileInputStream2 = getResources().openRawResource(R.raw.faktury_style2);
         InputStream fileInputStream3 = getResources().openRawResource(R.raw.faktury_style3);
@@ -172,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void fillInvoicesList(){
+    private void fillInvoicesList() {
         for (File f : invoicesDir.listFiles()
                 ) {
             if (FilenameUtils.getExtension(f.getName()).equals("pdf") && !invoices.contains(f.getName())) {

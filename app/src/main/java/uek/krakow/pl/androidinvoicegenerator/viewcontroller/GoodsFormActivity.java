@@ -114,7 +114,7 @@ public class GoodsFormActivity extends AppCompatActivity {
                 towar.priceNetto = Double.toString(cenaNETTO);
 
                 //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
-                //// TODO  tabelka razem podaje miliony monet po przcinku
+                // TODO  tabelka razem podaje miliony monet po przcinku
                 if(id ==1){
                     faktura.razem.netto = Double.toString(cenaNETTO);
                     faktura.razem.brutto = Double.toString(brutto);
