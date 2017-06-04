@@ -8,25 +8,39 @@ import java.io.Serializable;
 @Root(name = "towar")
 public class Towar  implements Serializable {
     @Element(name = "liczba_porzadkowa")
-    public String id=" ";
+    public String id;
     @Element(name = "nazwa")
-    public String name=" ";
+    public String name;
     @Element(name = "ilosc")
-    public String quantity=" ";
+    public String quantity;
     @Element(name = "jednostka")
-    public String unit=" ";
+    public String unit;
     @Element(name = "cena_brutto_jednost")
-    public String priceBruttoOfUnit=" ";
+    public String priceBruttoOfUnit;
     @Element(name = "rabat")
-    public String discount=" ";
+    public String discount;
     @Element(name = "cena_brutto_jednost_po_rabacie")
-    public String priceBruttoOfUnitAfterDiscount=" ";
+    public String priceBruttoOfUnitAfterDiscount;
     @Element(name = "brutto")
-    public String priceBrutto=" ";
+    public String priceBrutto;
     @Element(name = "stawka_VAT")
-    public String vatValue=" ";
+    public String vatValue;
     @Element(name = "VAT")
-    public String vat=" ";
+    public String vat;
     @Element(name = "netto")
-    public String priceNetto=" ";
+    public String priceNetto;
+
+    public Towar() {
+        id = " ";
+        name = " ";
+        quantity = " ";
+        unit = " ";
+        priceBruttoOfUnit = " ";
+        discount = " ";
+        priceBruttoOfUnitAfterDiscount = " ";
+        priceBrutto = " ";
+        vatValue = " ";
+        vat = " ";
+        priceNetto = " ";
+    }
 }

@@ -8,15 +8,24 @@ import java.io.Serializable;
 @Root(name = "nabywca")
 public class Nabywca  implements Serializable {
     @Element(name = "nazwa")
-    public String buyerName=" ";
+    public String buyerName;
     @Element(name = "ulica")
-    public String buyerStreet=" ";
+    public String buyerStreet;
     @Element(name = "dom")
-    public String buyerHouse=" ";
+    public String buyerHouse;
     @Element(name = "lokal")
-    public String buyerAppartment=" ";
+    public String buyerAppartment;
     @Element(name = "miasto")
-    public String buyerCity=" ";
+    public String buyerCity;
     @Element(name = "kod")
-    public String buyerPostalCode=" ";
+    public String buyerPostalCode;
+
+    public Nabywca() {
+        buyerName = " ";
+        buyerStreet = " ";
+        buyerHouse = " ";
+        buyerAppartment = " ";
+        buyerCity = " ";
+        buyerPostalCode = " ";
+    }
 }

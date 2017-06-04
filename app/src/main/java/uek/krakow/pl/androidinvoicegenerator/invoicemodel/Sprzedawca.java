@@ -8,25 +8,39 @@ import java.io.Serializable;
 @Root(name = "sprzedawca")
 public class Sprzedawca  implements Serializable {
     @Element(name = "nazwa")
-    public String providerName = " ";
+    public String providerName;
     @Element(name = "ulica")
-    public String providerStreet = " ";
+    public String providerStreet;
     @Element(name = "dom")
-    public String providerHouse = " ";
+    public String providerHouse;
     @Element(name = "lokal")
-    public String providerApartment = " ";
+    public String providerApartment;
     @Element(name = "miasto")
-    public String providerCity = " ";
+    public String providerCity;
     @Element(name = "kod")
-    public String providerPostalCode = " ";
+    public String providerPostalCode;
     @Element(name = "NIP_PESEL")
-    public String providerNIP = " ";
+    public String providerNIP;
     @Element(name = "rachunek")
-    public String providerBankNumber = " ";
+    public String providerBankNumber;
     @Element(name = "telefon")
-    public String providerPhoneNumber = " ";
+    public String providerPhoneNumber;
     @Element(name = "email")
-    public String providerEmail = " ";
+    public String providerEmail;
     @Element(name = "bank")
-    public String providerBank = " ";
+    public String providerBank;
+
+    public Sprzedawca() {
+        providerName = " ";
+        providerStreet = " ";
+        providerHouse = " ";
+        providerApartment = " ";
+        providerCity = " ";
+        providerPostalCode = " ";
+        providerNIP = " ";
+        providerBankNumber = " ";
+        providerPhoneNumber = " ";
+        providerEmail = " ";
+        providerBank = " ";
+    }
 }
