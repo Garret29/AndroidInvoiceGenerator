@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.j256.ormlite.stmt.query.In;
+import com.jcraft.jsch.IO;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static File dataDir;
     public static File stylesDir;
     public static File invoicesDir;
+    public static File fontsDir;
     ArrayAdapter<String> adapterInv;
     ArrayList<String> invoices;
     ListView listView;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         invoicesDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/invoice_generator", "invoices");
         stylesDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/invoice_generator", "invoice_styles");
         dataDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/invoice_generator", "invoice_data");
+        fontsDir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/invoice_generator", "fonts");
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -117,6 +120,12 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("hehe", "failed");
             }
         }
+
+        if (!fontsDir.exists()) {
+            if (!fontsDir.mkdirs()) {
+                Log.d("hehe", "failed");
+            }
+        }
     }
 
     private void initializeListView(){
@@ -132,8 +141,11 @@ public class MainActivity extends AppCompatActivity {
         InputStream fileInputStream3 = getResources().openRawResource(R.raw.faktury_style3);
         InputStream fileInputStream4 = getResources().openRawResource(R.raw.faktury_style4);
 
+
         FileOutputStream fo;
         try {
+
+
             fo = new FileOutputStream(new File(stylesDir, "default1.xsl"));
             IOUtils.copy(fileInputStream1, fo);
 
@@ -145,6 +157,16 @@ public class MainActivity extends AppCompatActivity {
 
             fo = new FileOutputStream(new File(stylesDir, "default4.xsl"));
             IOUtils.copy(fileInputStream4, fo);
+
+            InputStream fi1 = getAssets().open("Roboto-Regular.ttf");
+            InputStream fi2 = getAssets().open("Roboto-Bold.ttf");
+
+            fo = new FileOutputStream(new File(fontsDir, "Roboto-Regular.ttf"));
+            IOUtils.copy(fi1, fo);
+
+            fo = new FileOutputStream(new File(fontsDir, "Roboto-Bold.ttf"));
+            IOUtils.copy(fi2, fo);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
