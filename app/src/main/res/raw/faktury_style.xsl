@@ -6,7 +6,7 @@
             <head>
                 <meta charset="UTF-8"/>
             </head>
-            <body>
+            <body style="font-family:Roboto">
                 <xsl:for-each select="faktura">
                     <p align="right"><xsl:value-of select="miejscowosc_wystawienia"/>, data wystawienia:
                         <xsl:value-of select="data_wystawienia"/>

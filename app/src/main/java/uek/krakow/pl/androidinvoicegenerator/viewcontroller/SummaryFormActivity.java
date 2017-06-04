@@ -122,7 +122,7 @@ public class SummaryFormActivity extends AppCompatActivity {
         File pdf;
         File styleFile = new File(MainActivity.stylesDir, style);
         Context context = InvoiceGeneratorApplication.getAppContext();
-        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, faktura.id, context.getCacheDir());
+        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, faktura.id, context.getCacheDir(), MainActivity.fontsDir.getAbsolutePath()+"/Roboto-Regular.ttf", "Roboto");
 
         Intent intent = new Intent(this, ShareFormActivity.class);
         intent.putExtra("faktura", pdf.getName());

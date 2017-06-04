@@ -10,8 +10,19 @@ import android.util.Log;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorker;
 import com.itextpdf.tool.xml.XMLWorkerFontProvider;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
+import com.itextpdf.tool.xml.css.StyleAttrCSSResolver;
+import com.itextpdf.tool.xml.html.CssAppliers;
+import com.itextpdf.tool.xml.html.CssAppliersImpl;
+import com.itextpdf.tool.xml.html.Tags;
+import com.itextpdf.tool.xml.parser.XMLParser;
+import com.itextpdf.tool.xml.pipeline.css.CSSResolver;
+import com.itextpdf.tool.xml.pipeline.css.CssResolverPipeline;
+import com.itextpdf.tool.xml.pipeline.end.PdfWriterPipeline;
+import com.itextpdf.tool.xml.pipeline.html.HtmlPipeline;
+import com.itextpdf.tool.xml.pipeline.html.HtmlPipelineContext;
 
 import org.w3c.tidy.Tidy;
 
@@ -35,7 +46,7 @@ import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
 import uek.krakow.pl.androidinvoicegenerator.viewcontroller.MainActivity;
 
 public class PDFGenerator {
-    public File generatePDF(File xsl, File xml, File dir, String filename, File cacheDir) {
+    public File generatePDF(File xsl, File xml, File dir, String filename, File cacheDir, String fontPath, String fontFamily) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
         File html = new File(cacheDir, "invoice.html");
@@ -56,13 +67,16 @@ public class PDFGenerator {
             Document document = new Document();
             PdfWriter pdfWriter = PdfWriter.getInstance(document, os);
             document.open();
-            XMLWorkerHelper.getInstance().parseXHtml(pdfWriter, document, new FileInputStream(html));
+            XMLWorkerFontProvider xmlWorkerFontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
+            xmlWorkerFontProvider.register(fontPath, fontFamily);
+            XMLWorkerHelper.getInstance().parseXHtml(pdfWriter, document, new FileInputStream(html), Charset.forName("UTF-8"), xmlWorkerFontProvider);
             document.close();
             os.close();
         } catch (DocumentException | IOException | TransformerException e) {
             e.printStackTrace();
         }
 
+        Log.d("hehe", fontPath);
         Log.d("hehe", pdf.getAbsolutePath());
 
         return pdf;
