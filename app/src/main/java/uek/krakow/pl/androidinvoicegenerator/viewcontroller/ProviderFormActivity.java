@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,8 +21,9 @@ import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Sprzedawca;
 import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable;
 
-public class ProviderFormActivity extends AppCompatActivity {
+public class ProviderFormActivity extends AppCompatActivity implements Updatable {
     private EditText ed_NIPDost, ed_nazwaDost, ed_ulicaDost, ed_domDost, ed_lokalDost, ed_miejscowoscDost, ed_kodDost, ed_rachunekDost, ed_bankDost, ed_telefonDost, ed_emailDost;
     String pustePole = "";
     @Override
@@ -201,7 +205,7 @@ public class ProviderFormActivity extends AppCompatActivity {
         pe.putString("kodDost", ed_kodDost.getText().toString());
         pe.putString("telefonDost", ed_telefonDost.getText().toString());
         pe.putString("bankDost", ed_bankDost.getText().toString());
-        pe.commit();
+        pe.apply();
         Toast.makeText(this, "Zapisano dane", Toast.LENGTH_SHORT).show();
     }
 
@@ -285,6 +289,43 @@ public class ProviderFormActivity extends AppCompatActivity {
         }else {
             GetFromApiTask task = new GetFromApiTask(this);
             task.execute(ed_NIPDost.getText().toString());
+        }
+    }
+
+    @Override
+    public void update(JSONObject jsonObject) {
+        try {
+            String nazwa = jsonObject.getString("krs_podmioty.nazwa");
+            String ulica = jsonObject.getString("krs_podmioty.adres_ulica");
+            String numerBudynku = jsonObject.getString("krs_podmioty.adres_numer");
+            String numerLokalu = jsonObject.getString("krs_podmioty.adres_lokal");
+            String miejscowosc = jsonObject.getString("krs_podmioty.adres_miejscowosc");
+            String kod = jsonObject.getString("krs_podmioty.adres_kod_pocztowy");
+            String mail = jsonObject.getString("krs_podmioty.email");
+
+            if (nazwa != null) {
+                this.getEd_nazwaDost().setText(nazwa);
+            }
+            if (ulica != null) {
+                this.getEd_ulicaDost().setText(ulica);
+            }
+            if (numerBudynku != null) {
+                this.getEd_domDost().setText(numerBudynku);
+            }
+            if (numerLokalu != null) {
+                this.getEd_lokalDost().setText(numerLokalu);
+            }
+            if (miejscowosc != null) {
+                this.getEd_miejscowoscDost().setText(miejscowosc);
+            }
+            if (kod != null) {
+                this.getEd_kodDost().setText(kod);
+            }
+            if (mail != null) {
+                this.getEd_emailDost().setText(mail);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

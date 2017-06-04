@@ -1,5 +1,6 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -7,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,16 +24,17 @@ import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax23;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax5;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax8;
 import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable;
 
-public class BuyerFormActivity extends AppCompatActivity {
+public class BuyerFormActivity extends AppCompatActivity implements Updatable {
     EditText ed_nazwaNabyw, ed_ulicaNabyw, ed_domNabyw, ed_lokalNabyw, ed_miejscowoscNabyw, ed_kodNabyw, ed_NIpNabyw;
     String pustePole = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_form);
         getSupportActionBar().setTitle("Krok 3 z 5");
-
         ed_nazwaNabyw = (EditText) findViewById(R.id.ed_nazwaNabyw);
         ed_ulicaNabyw = (EditText) findViewById(R.id.ed_ulicaNabyw);
         ed_domNabyw = (EditText) findViewById(R.id.ed_domNabyw);
@@ -163,9 +168,105 @@ public class BuyerFormActivity extends AppCompatActivity {
         if(!NIP(ed_NIpNabyw.getText().toString())){
             ed_NIpNabyw.setError("Wymagane 10 cyfr");
         }else {
-            //TODO pobieranie danych z gus dla nabywcy
-            //GetFromApiTask task = new GetFromApiTask(this);
-            //task.execute(ed_NIpNabyw.getText().toString());
+            GetFromApiTask task = new GetFromApiTask(this);
+            task.execute(ed_NIpNabyw.getText().toString());
         }
+    }
+
+    @Override
+    public void update(JSONObject jsonObject) {
+        try {
+            String nazwa = jsonObject.getString("krs_podmioty.nazwa");
+            String ulica = jsonObject.getString("krs_podmioty.adres_ulica");
+            String numerBudynku = jsonObject.getString("krs_podmioty.adres_numer");
+            String numerLokalu = jsonObject.getString("krs_podmioty.adres_lokal");
+            String miejscowosc = jsonObject.getString("krs_podmioty.adres_miejscowosc");
+            String kod = jsonObject.getString("krs_podmioty.adres_kod_pocztowy");
+
+            if (nazwa != null) {
+                this.getEd_nazwaNabyw().setText(nazwa);
+            }
+            if (ulica != null) {
+                this.getEd_ulicaNabyw().setText(ulica);
+            }
+            if (numerBudynku != null) {
+                this.getEd_domNabyw().setText(numerBudynku);
+            }
+            if (numerLokalu != null) {
+                this.getEd_lokalNabyw().setText(numerLokalu);
+            }
+            if (miejscowosc != null) {
+                this.getEd_miejscowoscNabyw().setText(miejscowosc);
+            }
+            if (kod != null) {
+                this.getEd_kodNabyw().setText(kod);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public EditText getEd_nazwaNabyw() {
+        return ed_nazwaNabyw;
+    }
+
+    public void setEd_nazwaNabyw(EditText ed_nazwaNabyw) {
+        this.ed_nazwaNabyw = ed_nazwaNabyw;
+    }
+
+    public EditText getEd_ulicaNabyw() {
+        return ed_ulicaNabyw;
+    }
+
+    public void setEd_ulicaNabyw(EditText ed_ulicaNabyw) {
+        this.ed_ulicaNabyw = ed_ulicaNabyw;
+    }
+
+    public EditText getEd_domNabyw() {
+        return ed_domNabyw;
+    }
+
+    public void setEd_domNabyw(EditText ed_domNabyw) {
+        this.ed_domNabyw = ed_domNabyw;
+    }
+
+    public EditText getEd_lokalNabyw() {
+        return ed_lokalNabyw;
+    }
+
+    public void setEd_lokalNabyw(EditText ed_lokalNabyw) {
+        this.ed_lokalNabyw = ed_lokalNabyw;
+    }
+
+    public EditText getEd_miejscowoscNabyw() {
+        return ed_miejscowoscNabyw;
+    }
+
+    public void setEd_miejscowoscNabyw(EditText ed_miejscowoscNabyw) {
+        this.ed_miejscowoscNabyw = ed_miejscowoscNabyw;
+    }
+
+    public EditText getEd_kodNabyw() {
+        return ed_kodNabyw;
+    }
+
+    public void setEd_kodNabyw(EditText ed_kodNabyw) {
+        this.ed_kodNabyw = ed_kodNabyw;
+    }
+
+    public EditText getEd_NIpNabyw() {
+        return ed_NIpNabyw;
+    }
+
+    public void setEd_NIpNabyw(EditText ed_NIpNabyw) {
+        this.ed_NIpNabyw = ed_NIpNabyw;
+    }
+
+    public String getPustePole() {
+        return pustePole;
+    }
+
+    public void setPustePole(String pustePole) {
+        this.pustePole = pustePole;
     }
 }

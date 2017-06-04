@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.HashMap;
 
 import uek.krakow.pl.androidinvoicegenerator.viewcontroller.ProviderFormActivity;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable;
 
 /**
  * Created by Szymon on 30.05.2017.
@@ -22,15 +23,14 @@ import uek.krakow.pl.androidinvoicegenerator.viewcontroller.ProviderFormActivity
 
 public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
 
-    private ProviderFormActivity activity;
+    private Updatable activity;
 
-    public GetFromApiTask(ProviderFormActivity activity) {
+    public GetFromApiTask(Updatable activity) {
         this.activity = activity;
     }
 
     @Override
     protected JSONObject doInBackground(String... nip) {
-        HashMap<String, String> tags = new HashMap<>();
 
         String jsonStr = "{}";
 
@@ -73,6 +73,8 @@ public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
         try {
             jsonObject = jsonObject.getJSONArray("Dataobject").getJSONObject(0).getJSONObject("data");
 
+            activity.update(jsonObject);
+
             String nazwa = jsonObject.getString("krs_podmioty.nazwa");
             String ulica = jsonObject.getString("krs_podmioty.adres_ulica");
             String numerBudynku = jsonObject.getString("krs_podmioty.adres_numer");
@@ -81,27 +83,6 @@ public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
             String kod = jsonObject.getString("krs_podmioty.adres_kod_pocztowy");
             String mail = jsonObject.getString("krs_podmioty.email");
 
-            if (nazwa != null) {
-                activity.getEd_nazwaDost().setText(nazwa);
-            }
-            if (ulica != null) {
-                activity.getEd_ulicaDost().setText(ulica);
-            }
-            if (numerBudynku != null) {
-                activity.getEd_domDost().setText(numerBudynku);
-            }
-            if (numerLokalu != null) {
-                activity.getEd_lokalDost().setText(numerLokalu);
-            }
-            if (miejscowosc != null) {
-                activity.getEd_miejscowoscDost().setText(miejscowosc);
-            }
-            if (kod != null) {
-                activity.getEd_kodDost().setText(kod);
-            }
-            if (mail != null) {
-                activity.getEd_emailDost().setText(mail);
-            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
