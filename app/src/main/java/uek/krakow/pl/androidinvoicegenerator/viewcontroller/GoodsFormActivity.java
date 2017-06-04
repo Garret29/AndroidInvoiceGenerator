@@ -24,6 +24,7 @@ public class GoodsFormActivity extends AppCompatActivity {
     double cenaBruttoJednostPoRabacie, brutto, cenaVAT, cenaNETTO, nettoTAX, bruttoTAX, vatTAX, nettoRazemTAX, bruttoRazemTAX, vatRazemTAX;
     int id = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,20 +62,27 @@ public class GoodsFormActivity extends AppCompatActivity {
     }
 
     public void addMoreGoods(View view) {
+        boolean walidacja = true;
         if (TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) || TextUtils.isEmpty(ed_rabatTowar.getText().toString()) || TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) || TextUtils.isEmpty(ed_iloscTowar.getText().toString())) {
             Toast.makeText(this, "Uzupełnij wszystkie dane", Toast.LENGTH_SHORT).show();
         } else {
             if (!niePuste(ed_nazwaTowar.getText().toString())){
                 ed_nazwaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-            }else if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
+                walidacja=false;
+            } if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
                 ed_iloscTowar.setError("Błędna liczba");
-            }else if (!niePuste(ed_jednostkaTowar.getText().toString())) {
+                walidacja=false;
+            } if (!niePuste(ed_jednostkaTowar.getText().toString())) {
                 ed_jednostkaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-            } else if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
+                walidacja=false;
+            } if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
                 ed_cenaBruttTowar.setError("Błędna liczba");
-            } else if (!calkowita(ed_rabatTowar.getText().toString())) {
+                walidacja=false;
+            } if (!calkowita(ed_rabatTowar.getText().toString())) {
                 ed_rabatTowar.setError("Wymagana liczba całkowita");
-            } else  {
+                walidacja=false;
+            }
+            if (walidacja) {
                 Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
 
                 //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
@@ -177,25 +185,33 @@ public class GoodsFormActivity extends AppCompatActivity {
     }
 
     public void toSummary(View view) {
+        boolean walidacja = true;
         if (TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) || TextUtils.isEmpty(ed_rabatTowar.getText().toString()) || TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) || TextUtils.isEmpty(ed_iloscTowar.getText().toString())) {
             Toast.makeText(this, "Uzupełnij wszystkie dane", Toast.LENGTH_SHORT).show();
         } else {
-            
-            //// FIXME: 04.06.2017 wykona się tylko jedno z ponizszych, 
             if (!niePuste(ed_nazwaTowar.getText().toString())){
                 ed_nazwaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-            }else if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
+                walidacja=false;
+            } if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
                 ed_iloscTowar.setError("Błędna liczba");
-            }else if (!niePuste(ed_jednostkaTowar.getText().toString())) {
+                walidacja=false;
+            } if (!niePuste(ed_jednostkaTowar.getText().toString())) {
                 ed_jednostkaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-            } else if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
+                walidacja=false;
+            } if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
                 ed_cenaBruttTowar.setError("Błędna liczba");
-            } else if (!calkowita(ed_rabatTowar.getText().toString())) {
+                walidacja=false;
+            } if (!calkowita(ed_rabatTowar.getText().toString())) {
                 ed_rabatTowar.setError("Wymagana liczba całkowita");
-            } else  {
+                walidacja=false;
+            }
+            if (walidacja)  {
                 //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
                 double cenaBruttoJednostPoRabacieI = Math.round((Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100)) * 100);
+                Log.d("oblicz", "cana Brutto Jedn I"+Double.toString(cenaBruttoJednostPoRabacieI));
+
                 cenaBruttoJednostPoRabacie = cenaBruttoJednostPoRabacieI / 100;
+                Log.d("oblicz", "cana Brutto Jedn "+Double.toString(cenaBruttoJednostPoRabacie));
 
                 double bruttoI = Math.round((Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie) * 100);
                 brutto = bruttoI / 100;
