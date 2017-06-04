@@ -6,6 +6,6 @@ import org.json.JSONObject;
  * Created by Szymon on 04.06.2017.
  */
 
-public interface Updatable {
+public interface UpdatableActivity {
     public void update(JSONObject jsonObject);
 }

@@ -12,10 +12,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.HashMap;
 
-import uek.krakow.pl.androidinvoicegenerator.viewcontroller.ProviderFormActivity;
-import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.UpdatableActivity;
 
 /**
  * Created by Szymon on 30.05.2017.
@@ -23,9 +21,9 @@ import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable
 
 public class GetFromApiTask extends AsyncTask<String, Integer, JSONObject> {
 
-    private Updatable activity;
+    private UpdatableActivity activity;
 
-    public GetFromApiTask(Updatable activity) {
+    public GetFromApiTask(UpdatableActivity activity) {
         this.activity = activity;
     }
 

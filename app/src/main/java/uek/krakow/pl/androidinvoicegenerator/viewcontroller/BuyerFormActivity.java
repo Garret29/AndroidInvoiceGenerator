@@ -1,6 +1,5 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -24,9 +23,9 @@ import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax23;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax5;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax8;
 import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
-import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.UpdatableActivity;
 
-public class BuyerFormActivity extends AppCompatActivity implements Updatable {
+public class BuyerFormActivity extends AppCompatActivity implements UpdatableActivity {
     EditText ed_nazwaNabyw, ed_ulicaNabyw, ed_domNabyw, ed_lokalNabyw, ed_miejscowoscNabyw, ed_kodNabyw, ed_NIpNabyw;
     String pustePole = "";
 

@@ -21,9 +21,9 @@ import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Sprzedawca;
 import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
-import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable;
+import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.UpdatableActivity;
 
-public class ProviderFormActivity extends AppCompatActivity implements Updatable {
+public class ProviderFormActivity extends AppCompatActivity implements UpdatableActivity {
     private EditText ed_NIPDost, ed_nazwaDost, ed_ulicaDost, ed_domDost, ed_lokalDost, ed_miejscowoscDost, ed_kodDost, ed_rachunekDost, ed_bankDost, ed_telefonDost, ed_emailDost;
     String pustePole = "";
     @Override
