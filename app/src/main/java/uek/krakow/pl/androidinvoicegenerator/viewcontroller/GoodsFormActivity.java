@@ -50,8 +50,15 @@ public class GoodsFormActivity extends AppCompatActivity {
 
             }
         });
+
+        Log.d("hehe", "creation");
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        Log.d("hehe", "resume");
+    }
 
     public void addMoreGoods(View view) {
         if (TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) || TextUtils.isEmpty(ed_rabatTowar.getText().toString()) || TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) || TextUtils.isEmpty(ed_iloscTowar.getText().toString())) {
@@ -173,6 +180,8 @@ public class GoodsFormActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) || TextUtils.isEmpty(ed_rabatTowar.getText().toString()) || TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) || TextUtils.isEmpty(ed_iloscTowar.getText().toString())) {
             Toast.makeText(this, "Uzupełnij wszystkie dane", Toast.LENGTH_SHORT).show();
         } else {
+            
+            //// FIXME: 04.06.2017 wykona się tylko jedno z ponizszych, 
             if (!niePuste(ed_nazwaTowar.getText().toString())){
                 ed_nazwaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
             }else if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
