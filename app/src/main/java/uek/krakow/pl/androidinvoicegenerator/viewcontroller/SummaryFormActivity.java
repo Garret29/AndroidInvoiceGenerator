@@ -29,7 +29,6 @@ public class SummaryFormActivity extends AppCompatActivity {
     TextView tv_naleznoscOgolem;
     String style;
 
-    //TODO Stworzyć więcej stylów faktury
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

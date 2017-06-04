@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import uek.krakow.pl.androidinvoicegenerator.R;
 
 public class SettingsActivity extends AppCompatActivity {
-    //TODO Dodać możliwość czyszczenia zapisanych danych Dostawcy
     private ArrayList<String> styles;
     private ArrayAdapter<String> adapter;
 
