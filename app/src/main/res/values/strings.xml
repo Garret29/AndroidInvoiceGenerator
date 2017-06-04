@@ -50,6 +50,8 @@
     <string name="wybierz_styl_dokumentu">Wybierz styl dokumentu:</string>
     <string name="zakoncz_tworzenie_i_udostepnij">Zakończ tworzenie i udostępnij</string>
     <string name="nazwa_stylu_w_bazie_danych">Nazwa stylu w bazie danych</string>
+    <string name="nazwa_faktury">Nazwa faktury</string>
+    <string name="stw_rz_faktur">Stwórz fakturę</string>
 
     <string-array name="stawka_VAT">
         <item>0</item>

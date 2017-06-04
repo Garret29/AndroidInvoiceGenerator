@@ -31,10 +31,9 @@ import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
 import uek.krakow.pl.androidinvoicegenerator.viewcontroller.MainActivity;
 
 public class PDFGenerator {
-    public File generatePDF(String xsl, File xml, File dir, String filename, File cacheDir) {
+    public File generatePDF(File xsl, File xml, File dir, String filename, File cacheDir) {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
 
-        File style = new File(MainActivity.stylesDir, xsl);
         File html = new File(cacheDir, "invoice.html");
         File pdf = new File(dir, filename+".pdf");
         if (!dir.mkdirs()){
@@ -45,7 +44,7 @@ public class PDFGenerator {
 
         try {
 
-            Transformer transformer = transformerFactory.newTransformer(new StreamSource(style));
+            Transformer transformer = transformerFactory.newTransformer(new StreamSource(xsl));
             transformer.transform(new StreamSource(xml), new StreamResult(new FileOutputStream(html)));
 
             Tidy tidy = new Tidy();

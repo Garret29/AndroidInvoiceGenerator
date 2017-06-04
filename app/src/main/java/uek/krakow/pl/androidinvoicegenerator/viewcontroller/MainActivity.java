@@ -83,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void addFromExistingData(View view){
+        Intent intent = new Intent(this, DataActivity.class);
+        startActivity(intent);
+    }
+
     public void goToPrefs(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);

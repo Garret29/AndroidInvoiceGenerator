@@ -1,13 +1,16 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -23,7 +26,7 @@ public class Share2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_share2);
         filename = getIntent().getStringExtra("faktura");
 
-        tv_nazwaIstniejacejFaktury = (TextView) findViewById(R.id.tv_nazwaIstniejacejFaktury);
+        tv_nazwaIstniejacejFaktury = (TextView) findViewById(R.id.tv_nazwa_istniejacej_faktury);
         tv_nazwaIstniejacejFaktury.setText(filename);
     }
 
@@ -47,17 +50,26 @@ public class Share2Activity extends AppCompatActivity {
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "Faktura: "+filename);
         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(MainActivity.invoicesDir, filename)));
-        startActivity(Intent.createChooser(intent, "Wyślij mail z fakturą"));
+        startActivity(Intent.createChooser(intent, "Udostępnij fakturę"));
     }
 
     public void usunFakture(View view) {
+        final Context context = this;
         AlertDialog.Builder a_builder = new AlertDialog.Builder(Share2Activity.this);
         a_builder.setMessage("Czy na pewno chcesz usunąć fakturę "+filename+"?")
                 .setCancelable(false)
                 .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO dodać usuwanie faktury
+                        File file = new File(MainActivity.invoicesDir, filename);
+                        boolean result = file.delete();
+                        if(result){
+                            Toast.makeText(getApplicationContext(), "Sukces!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(context, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Porażka", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
                 .setNegativeButton("Nie", new DialogInterface.OnClickListener() {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +27,7 @@ public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
     TextView tv_naleznoscOgolem;
     String style;
+    Faktura faktura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,21 +37,18 @@ public class SummaryFormActivity extends AppCompatActivity {
         style = "default1.xsl";
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
         tv_naleznoscOgolem = (TextView) findViewById(R.id.tv_naleznoscOgolem);
-        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
-        tv_naleznoscOgolem.setText(faktura.razem.brutto+"zł");
-
-
-
+        faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        tv_naleznoscOgolem.setText(faktura.razem.brutto + "zł");
 
         ArrayList<String> styles = new ArrayList<>();
         for (File f : MainActivity.stylesDir.listFiles()
                 ) {
-            if (FilenameUtils.getExtension(f.getName()).equals("xsl") && !styles.contains(f.getName())){
+            if (FilenameUtils.getExtension(f.getName()).equals("xsl") && !styles.contains(f.getName())) {
                 styles.add(f.getName());
             }
         }
 
-        ArrayAdapter<String > adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, styles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, styles);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -60,7 +57,6 @@ public class SummaryFormActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 style = (String) parent.getSelectedItem();
-                Log.d("hehe", style);
             }
 
             @Override
@@ -87,8 +83,9 @@ public class SummaryFormActivity extends AppCompatActivity {
         }
 
         File pdf;
+        File styleFile = new File(MainActivity.stylesDir, style);
         Context context = InvoiceGeneratorApplication.getAppContext();
-        pdf = pdfGenerator.generatePDF(style, xml, MainActivity.invoicesDir, faktura.id, context.getCacheDir());
+        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, faktura.id, context.getCacheDir());
 
         Intent intent = new Intent(this, ShareFormActivity.class);
         intent.putExtra("faktura", pdf.getName());
