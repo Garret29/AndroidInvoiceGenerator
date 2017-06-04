@@ -96,6 +96,21 @@
         android:textStyle="bold"
         android:onClick="nowaFaktura"/>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.06" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_dark"
+        android:onClick="usunFakture"
+        android:text="Usuń fakturę"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 
 
 

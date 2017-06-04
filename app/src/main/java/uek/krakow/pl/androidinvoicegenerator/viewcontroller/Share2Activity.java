@@ -64,11 +64,11 @@ public class Share2Activity extends AppCompatActivity {
                         File file = new File(MainActivity.invoicesDir, filename);
                         boolean result = file.delete();
                         if(result){
-                            Toast.makeText(getApplicationContext(), "Sukces!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Poprawnie usunięto fakturę "+filename, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(context, MainActivity.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Porażka", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Błąd usuwania", Toast.LENGTH_SHORT).show();
                         }
                     }
                 })

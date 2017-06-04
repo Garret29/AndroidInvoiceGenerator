@@ -21,7 +21,36 @@
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="182dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:text="NIP:"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_NIpNabyw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Pobierz dane z GUS"
+            android:onClick="daneGUS"/>
+    </LinearLayout>
 
 
         <TextView

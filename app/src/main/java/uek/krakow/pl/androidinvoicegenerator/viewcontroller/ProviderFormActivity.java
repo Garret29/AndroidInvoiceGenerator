@@ -21,7 +21,7 @@ import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
 
 public class ProviderFormActivity extends AppCompatActivity {
     private EditText ed_NIPDost, ed_nazwaDost, ed_ulicaDost, ed_domDost, ed_lokalDost, ed_miejscowoscDost, ed_kodDost, ed_rachunekDost, ed_bankDost, ed_telefonDost, ed_emailDost;
-
+    String pustePole = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,125 @@ public class ProviderFormActivity extends AppCompatActivity {
 
     }
 
+    private boolean niePuste(String pole){
+        String NIEPUSTE_PATTERN = "^\\S.*$";
+        Pattern pattern = Pattern.compile(NIEPUSTE_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+    private boolean NIP(String pole){
+        String NIP_PATTERN = "^[0-9]{10}$";
+        Pattern pattern = Pattern.compile(NIP_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+    private boolean kodPocztowy(String pole){
+        String KOD_PATTERN = "^\\d{2}-\\d{3}$";
+        Pattern pattern = Pattern.compile(KOD_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+    private boolean rachunekBankowy(String pole){
+        String RACHUNEK_PATTERN = "^\\d{26}$|^\\d{2}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}\\s\\d{4}$";
+        Pattern pattern = Pattern.compile(RACHUNEK_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+    private boolean email(String pole){
+        String EMAIL_PATTERN = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\\b";
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+    private boolean telefon(String pole){
+        String TELEFON_PATTERN = "^(?:\\(?\\+?48)?(?:[-\\.\\(\\)\\s]*(\\d)){9}\\)?$";
+        Pattern pattern = Pattern.compile(TELEFON_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+
     public void toBuyer(View view) {
+        if(niePuste(ed_NIPDost.getText().toString()) && !NIP(ed_NIPDost.getText().toString())){
+            ed_NIPDost.setError("Wymagane 10 cyfr");
+        }else if(niePuste(ed_kodDost.getText().toString()) && !kodPocztowy(ed_kodDost.getText().toString())){
+            ed_kodDost.setError("Wymagane forma 00-000");
+        }else if(niePuste(ed_rachunekDost.getText().toString()) && !rachunekBankowy(ed_rachunekDost.getText().toString())){
+            ed_rachunekDost.setError("Wymagane 26 cyfr w postaci CCAAAAAAAABBBBBBBBBBBBBBBB lub CC AAAA AAAA BBBB BBBB BBBB BBBB");
+        }else if(niePuste(ed_telefonDost.getText().toString()) && !telefon(ed_telefonDost.getText().toString())){
+            ed_telefonDost.setError("Niepoprawny numer telefonu");
+        }else if(niePuste(ed_emailDost.getText().toString()) && !email(ed_emailDost.getText().toString())){
+            ed_emailDost.setError("Forma niepoprawna! Wymagane forma aaa@bbb.com");
+        }else if (!niePuste(ed_NIPDost.getText().toString()) || !niePuste(ed_nazwaDost.getText().toString()) || !niePuste(ed_ulicaDost.getText().toString()) || !niePuste(ed_domDost.getText().toString()) || !niePuste(ed_lokalDost.getText().toString()) || !niePuste(ed_miejscowoscDost.getText().toString()) || !niePuste(ed_kodDost.getText().toString()) || !niePuste(ed_rachunekDost.getText().toString()) || !niePuste(ed_bankDost.getText().toString()) || !niePuste(ed_telefonDost.getText().toString()) || !niePuste(ed_emailDost.getText().toString())){
+            if (!niePuste(ed_NIPDost.getText().toString())) {
+                ed_NIPDost.setError("Puste pole. Wymagane 10 cyfr");
+                pustePole +="NIP,\n";
+            }
+            if(!niePuste(ed_nazwaDost.getText().toString())){
+                ed_nazwaDost.setError("Puste pole");
+                pustePole +="Nazwa,\n";
+            }
+            if (!niePuste(ed_ulicaDost.getText().toString())) {
+                ed_ulicaDost.setError("Puste pole");
+                pustePole +="Ulica,\n";
+            }
+            if (!niePuste(ed_domDost.getText().toString())) {
+                ed_domDost.setError("Puste pole");
+                pustePole +="Numer domu,\n";
+            }
+            if (!niePuste(ed_lokalDost.getText().toString())) {
+                ed_lokalDost.setError("Puste pole");
+                pustePole +="nr lokalu,\n";
+            }
+            if (!niePuste(ed_miejscowoscDost.getText().toString())) {
+                ed_miejscowoscDost.setError("Puste pole");
+                pustePole +="Miejscowość,\n";
+            }
+            if (!niePuste(ed_kodDost.getText().toString())) {
+                ed_kodDost.setError("Puste pole. Wymagane forma 00-000");
+                pustePole +="Kod pocztowy,\n";
+            }
+            if (!niePuste(ed_rachunekDost.getText().toString())) {
+                ed_rachunekDost.setError("Puste pole");
+                pustePole +="Nr bankowy,\n";
+            }
+            if (!niePuste(ed_bankDost.getText().toString())) {
+                ed_bankDost.setError("Puste pole");
+                pustePole +="Bank,\n";
+            }
+            if (!niePuste(ed_telefonDost.getText().toString())) {
+                ed_telefonDost.setError("Puste pole");
+                pustePole +="Nr telefonu,\n";
+            }
+            if (!niePuste(ed_emailDost.getText().toString())) {
+                ed_emailDost.setError("Puste pole");
+                pustePole +="Email,\n";
+            }
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(ProviderFormActivity.this);
+            a_builder.setMessage("Nie wszystkie pola zostały uzupełnione:\n"+pustePole+"czy chcesz kontynuować mimo to?")
+                    .setCancelable(false)
+                    .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            przejdzDalej();
+                        }
+                    })
+                    .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            pustePole="";
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Ostrzeżenie");
+            alert.show();
+        }else{
+            przejdzDalej();
+        }
+
+    }
+
+    public void przejdzDalej(){
         Faktura faktura = (Faktura) this.getIntent().getSerializableExtra("faktura");
 
         Sprzedawca sprzedawca = new Sprzedawca();
@@ -65,6 +183,7 @@ public class ProviderFormActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BuyerFormActivity.class);
         intent.putExtra("faktura", faktura);
         startActivity(intent);
+
     }
 
     public void zapisz(){
@@ -88,11 +207,34 @@ public class ProviderFormActivity extends AppCompatActivity {
 
     public void zapiszDoPamieci(View view) {
         SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
+        String lokal = p.getString("lokalDost", "");
+        String rachunek = p.getString("rachunekDost", "");
+        String miejscowosc = p.getString("miejscowoscDost", "");
+        String email = p.getString("emailDost", "");
+        String dom = p.getString("domDost", "");
+        String NIP = p.getString("NIPDost", "");
+        String ulica = p.getString("ulicaDost", "");
+        String kod = p.getString("kodDost", "");
+        String telefon = p.getString("telefonDost", "");
+        String bank = p.getString("bankDost", "");
+        String nazwa = p.getString("nazwaDost", "");
         if (!p.getBoolean("zapisano", false)) {
             zapisz();
         } else {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(ProviderFormActivity.this);
-            a_builder.setMessage("W pamięci znajdują się już dane, czy chcesz je nadpisać?")
+            a_builder.setMessage("W pamięci znajdują się następujące dane:\n" +
+                    "Nazwa: "+nazwa+"\n" +
+                    "Nip: "+NIP+"\n" +
+                    "Ulica: "+ulica+"\n" +
+                    "Nr budynku: "+dom+"\n" +
+                    "Lokal: "+lokal+"\n" +
+                    "Miejscowość: "+miejscowosc+"\n" +
+                    "Kod pocztowy: "+kod+"\n" +
+                    "Nr rachunku: "+rachunek+"\n" +
+                    "Bank: "+bank+"\n" +
+                    "Nr telefonu: "+telefon+"\n" +
+                    "Email: "+email+"\n" +
+                    "Czy chcesz je nadpisać?")
                     .setCancelable(false)
                     .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                         @Override
@@ -113,12 +255,8 @@ public class ProviderFormActivity extends AppCompatActivity {
         }
     }
 
-    private boolean NIP(String pole){
-        String NIP_PATTERN = "^[0-9]{10}$";
-        Pattern pattern = Pattern.compile(NIP_PATTERN);
-        Matcher matcher = pattern.matcher(pole);
-        return matcher.matches();
-    }
+
+
 
     public void wczytajZPamieci(View view) {
         SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);

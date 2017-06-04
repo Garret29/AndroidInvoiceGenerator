@@ -1,8 +1,10 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +19,8 @@ import org.simpleframework.xml.core.Persister;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
 import uek.krakow.pl.androidinvoicegenerator.R;
@@ -65,9 +69,42 @@ public class SummaryFormActivity extends AppCompatActivity {
             }
         });
     }
+    private boolean niePuste(String pole){
+        String NIEPUSTE_PATTERN = "^\\S.*$";
+        Pattern pattern = Pattern.compile(NIEPUSTE_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
 
     public void toShare(View view) {
+        if (!niePuste(ed_naleznoscSlownie.getText().toString())){
+            ed_naleznoscSlownie.setError("Puste pole");
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(SummaryFormActivity.this);
+            a_builder.setMessage("Należność słownie nie została uzupełniona, czy chcesz kontynuować mimo to?")
+                    .setCancelable(false)
+                    .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            przejdzDalej();
+                        }
+                    })
+                    .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Ostrzeżenie");
+            alert.show();
+        }else {
+            przejdzDalej();
+        }
 
+
+    }
+
+    public void przejdzDalej(){
         //TODO zablokowac możliwość cofania do poprzedniej aktywności, wywala błędną sume po powrocie
         PDFGenerator pdfGenerator = new PDFGenerator();
 

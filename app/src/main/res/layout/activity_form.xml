@@ -52,7 +52,7 @@
 
         <EditText
             android:id="@+id/ed_miejscowoscWystawienia"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text|textCapWords"
@@ -70,6 +70,10 @@
             tools:layout_editor_absoluteY="109dp" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
         <TextView
             android:id="@+id/date_dataWystawienia"
             android:layout_width="match_parent"
@@ -78,9 +82,12 @@
             android:text="@string/ustaw_date"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <TextView
             android:id="@+id/tv_dataDostawy"
@@ -91,6 +98,10 @@
             android:textSize="18sp" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
         <TextView
             android:id="@+id/date_dataDostawy"
             android:layout_width="match_parent"
@@ -99,9 +110,12 @@
             android:text="@string/ustaw_date"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <TextView
             android:id="@+id/tv_sposobZaplaty"
@@ -127,6 +141,10 @@
             android:textSize="18sp" />
 
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
         <TextView
             android:id="@+id/date_terimnZaplatyDo"
             android:layout_width="match_parent"
@@ -135,7 +153,11 @@
             android:text="@string/ustaw_date"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
 
         <Button
             android:id="@+id/b_fakturaSprzedawca"

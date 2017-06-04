@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -15,14 +16,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 
+import static android.R.color.holo_red_dark;
+
 public class FormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText ed_numerFaktury, ed_miejscowoscWystawienia, ed_sposobZaplaty;
     TextView date_DataWystawienia, date_dataDostawy, date_terimnZaplatyDo;
-    String terimnZaplatyDo = "Ustaw datę", dataDostawy = "Ustaw datę", dataWystawienia = "Ustaw datę";
+    String terimnZaplatyDo = "Ustaw datę", dataDostawy = "Ustaw datę", dataWystawienia = "Ustaw datę", pustePole ="";
     int id;
 
 
@@ -71,6 +76,8 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         newFragment3.show(getSupportFragmentManager(), "datePicker");
     }
 
+
+
     public static class DatePickerFragment extends DialogFragment {
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -101,29 +108,82 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
 
     }
 
+    private boolean niePuste(String pole){
+        String NIEPUSTE_PATTERN = "^\\S.*$";
+        Pattern pattern = Pattern.compile(NIEPUSTE_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
 
     public void toProvider(View view) {
-        if (TextUtils.isEmpty(ed_numerFaktury.getText().toString()) || ed_numerFaktury.getText().toString().equals(" ")) {
+        if (TextUtils.isEmpty(ed_numerFaktury.getText().toString()) || !niePuste(ed_numerFaktury.getText().toString())) {
             pustyNumer();
-        } else {
-            String[] forbiddenChars = new String[]{"\\|", "\\/", "\\?", "\\\\", "\\:", "\\<", "\\>", "\\*", "\\%","\""," "};
-
-            Faktura faktura = new Faktura();
-            String nazwa = ed_numerFaktury.getText().toString();
-            for (String s : forbiddenChars) {
-                nazwa = nazwa.replaceAll(s, "_");
+            ed_numerFaktury.setError("Proszę wpisać numer faktury");
+        }else if (!niePuste(ed_miejscowoscWystawienia.getText().toString()) || !niePuste(ed_sposobZaplaty.getText().toString())|| date_DataWystawienia.getText().toString().equals("Ustaw datę") || date_dataDostawy.getText().toString().equals("Ustaw datę")|| date_terimnZaplatyDo.getText().toString().equals("Ustaw datę")){
+            if(!niePuste(ed_miejscowoscWystawienia.getText().toString())){
+                ed_miejscowoscWystawienia.setError("Puste pole");
+                pustePole+="Miejscowość wystawienia, \n";
             }
-            faktura.id = nazwa;
-            faktura.invoiceCity = ed_miejscowoscWystawienia.getText().toString();
-            faktura.invoiceDate = dataWystawienia;
-            faktura.invoiceShippingDate = dataDostawy;
-            faktura.paymentDate = terimnZaplatyDo;
-            faktura.paymentMethod = ed_sposobZaplaty.getText().toString();
-
-            Intent intent = new Intent(this, ProviderFormActivity.class);
-            intent.putExtra("faktura", faktura);
-            startActivity(intent);
+            if(!niePuste(ed_sposobZaplaty.getText().toString())){
+                ed_sposobZaplaty.setError("Puste pole");
+                pustePole+="Sposób zapłaty, \n";
+            }
+            if(date_DataWystawienia.getText().toString().equals("Ustaw datę")){
+                date_DataWystawienia.setError("Podaj datę");;
+                pustePole+="Data wystawienia, \n";
+            }
+            if(date_dataDostawy.getText().toString().equals("Ustaw datę")){
+                date_dataDostawy.setError("Podaj datę");
+                pustePole+="Data dostawy, \n";
+            }
+            if(date_terimnZaplatyDo.getText().toString().equals("Ustaw datę")){
+                date_terimnZaplatyDo.setError("Podaj datę");;
+                pustePole+="Termin zapłaty, \n";
+            }
+            AlertDialog.Builder a_builder = new AlertDialog.Builder(FormActivity.this);
+            a_builder.setMessage("Nie wszystkie pola zostały uzupełnione:\n"+pustePole+"czy chcesz kontynuować mimo to?")
+                    .setCancelable(false)
+                    .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            przejdzDalej();
+                        }
+                    })
+                    .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                            pustePole="";
+                        }
+                    });
+            AlertDialog alert = a_builder.create();
+            alert.setTitle("Ostrzeżenie");
+            alert.show();
         }
+        else {
+            przejdzDalej();
+
+        }
+    }
+    public void przejdzDalej(){
+        String[] forbiddenChars = new String[]{"\\|", "\\/", "\\?", "\\\\", "\\:", "\\<", "\\>", "\\*", "\\%","\""," "};
+
+        Faktura faktura = new Faktura();
+        String nazwa = ed_numerFaktury.getText().toString();
+        for (String s : forbiddenChars) {
+            nazwa = nazwa.replaceAll(s, "_");
+        }
+        faktura.id = nazwa;
+        faktura.invoiceCity = ed_miejscowoscWystawienia.getText().toString();
+        faktura.invoiceDate = dataWystawienia;
+        faktura.invoiceShippingDate = dataDostawy;
+        faktura.paymentDate = terimnZaplatyDo;
+        faktura.paymentMethod = ed_sposobZaplaty.getText().toString();
+
+        Intent intent = new Intent(this, ProviderFormActivity.class);
+        intent.putExtra("faktura", faktura);
+        startActivity(intent);
+
     }
 
 

@@ -76,11 +76,11 @@ public class GoodsFormActivity extends AppCompatActivity {
 
                 double bruttoI = Math.round((Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie) * 100);
                 brutto = bruttoI / 100;
-
                 double cenaNETTOI = Math.round((brutto / ((100 + Double.parseDouble(stawkaVat)) / 100)) * 100);
                 cenaNETTO = cenaNETTOI / 100;
 
-                cenaVAT = brutto - cenaNETTO;
+                double cenaVATI = Math.round(bruttoI - cenaNETTOI);
+                cenaVAT= cenaVATI/100;
 
                 //Przypisanie danych towaru do pól dokumentu faktury
                 Towar towar = new Towar();
@@ -194,7 +194,8 @@ public class GoodsFormActivity extends AppCompatActivity {
                 double cenaNETTOI = Math.round((brutto / ((100 + Double.parseDouble(stawkaVat)) / 100)) * 100);
                 cenaNETTO = cenaNETTOI / 100;
 
-                cenaVAT = brutto - cenaNETTO;
+                double cenaVATI = Math.round(bruttoI - cenaNETTOI);
+                cenaVAT= cenaVATI/100;
 
                 //Przypisanie danych towaru do pól dokumentu faktury
                 Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");

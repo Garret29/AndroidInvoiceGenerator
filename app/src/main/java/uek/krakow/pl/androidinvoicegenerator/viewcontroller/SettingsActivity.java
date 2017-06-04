@@ -56,11 +56,34 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void wymazDostawce(View view) {
         SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
+        String lokal = p.getString("lokalDost", "");
+        String rachunek = p.getString("rachunekDost", "");
+        String miejscowosc = p.getString("miejscowoscDost", "");
+        String email = p.getString("emailDost", "");
+        String dom = p.getString("domDost", "");
+        String NIP = p.getString("NIPDost", "");
+        String ulica = p.getString("ulicaDost", "");
+        String kod = p.getString("kodDost", "");
+        String telefon = p.getString("telefonDost", "");
+        String bank = p.getString("bankDost", "");
+        String nazwa = p.getString("nazwaDost", "");
         if (!p.getBoolean("zapisano", false)) {
             Toast.makeText(this, "Brak zapisanych danych", Toast.LENGTH_SHORT).show();
         } else {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(SettingsActivity.this);
-            a_builder.setMessage("Czy na pewno chcesz usunąć dane?")
+            a_builder.setMessage("W pamięci znajdują się następujące dane:\n" +
+                    "Nazwa: "+nazwa+"\n" +
+                    "Nip: "+NIP+"\n" +
+                    "Ulica: "+ulica+"\n" +
+                    "Nr budynku: "+dom+"\n" +
+                    "Lokal: "+lokal+"\n" +
+                    "Miejscowość: "+miejscowosc+"\n" +
+                    "Kod pocztowy: "+kod+"\n" +
+                    "Nr rachunku: "+rachunek+"\n" +
+                    "Bank: "+bank+"\n" +
+                    "Nr telefonu: "+telefon+"\n" +
+                    "Email: "+email+"\n" +
+                    "Czy na pewno chcesz je usunąć?")
                     .setCancelable(false)
                     .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                         @Override
