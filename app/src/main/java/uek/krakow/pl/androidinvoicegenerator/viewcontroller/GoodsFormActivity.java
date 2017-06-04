@@ -21,8 +21,8 @@ import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Towar;
 public class GoodsFormActivity extends AppCompatActivity {
     EditText ed_nazwaTowar, ed_iloscTowar, ed_jednostkaTowar, ed_cenaBruttTowar, ed_rabatTowar;
     String stawkaVat, idS;
-    double cenaBruttoJednostPoRabacie, brutto, cenaVAT, cenaNETTO, nettoTAX, bruttoTAX, vatTAX, nettoRazemTAX, bruttoRazemTAX, vatRazemTAX;
-    int id = 0;
+    double cenaBruttoJednostPoRabacie = 0, brutto = 0, cenaVAT = 0, cenaNETTO = 0, nettoTAX = 0, bruttoTAX = 0, vatTAX = 0, nettoRazemTAX = 0, bruttoRazemTAX = 0, vatRazemTAX = 0;
+    static int id = 0;
 
 
     @Override
@@ -87,10 +87,12 @@ public class GoodsFormActivity extends AppCompatActivity {
 
                 //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
                 double cenaBruttoJednostPoRabacieI = Math.round((Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100)) * 100);
+
                 cenaBruttoJednostPoRabacie = cenaBruttoJednostPoRabacieI / 100;
 
                 double bruttoI = Math.round((Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie) * 100);
                 brutto = bruttoI / 100;
+
                 double cenaNETTOI = Math.round((brutto / ((100 + Double.parseDouble(stawkaVat)) / 100)) * 100);
                 cenaNETTO = cenaNETTOI / 100;
 
@@ -112,12 +114,19 @@ public class GoodsFormActivity extends AppCompatActivity {
                 towar.priceNetto = Double.toString(cenaNETTO);
 
                 //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
-                nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
-                bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
-                vatRazemTAX = Double.parseDouble(faktura.razem.vat);
-                faktura.razem.netto = Double.toString(cenaNETTO + nettoRazemTAX);
-                faktura.razem.brutto = Double.toString(brutto + bruttoRazemTAX);
-                faktura.razem.vat = Double.toString(cenaVAT + vatRazemTAX);
+                //// TODO  tabelka razem podaje miliony monet po przcinku
+                if(id ==1){
+                    faktura.razem.netto = Double.toString(cenaNETTO);
+                    faktura.razem.brutto = Double.toString(brutto);
+                    faktura.razem.vat = Double.toString(cenaVAT);
+                }else {
+                    nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
+                    bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
+                    vatRazemTAX = Double.parseDouble(faktura.razem.vat);
+                    faktura.razem.netto = Double.toString(cenaNETTO + nettoRazemTAX);
+                    faktura.razem.brutto = Double.toString(brutto + bruttoRazemTAX);
+                    faktura.razem.vat = Double.toString(cenaVAT + vatRazemTAX);
+                }
 
                 //Uzupełnienie tabeli "Razem" faktury ze względu na stawkę VAT poszczególnych produktów
                 switch (Integer.parseInt(stawkaVat)) {
@@ -208,10 +217,7 @@ public class GoodsFormActivity extends AppCompatActivity {
             if (walidacja)  {
                 //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
                 double cenaBruttoJednostPoRabacieI = Math.round((Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100)) * 100);
-                Log.d("oblicz", "cana Brutto Jedn I"+Double.toString(cenaBruttoJednostPoRabacieI));
-
                 cenaBruttoJednostPoRabacie = cenaBruttoJednostPoRabacieI / 100;
-                Log.d("oblicz", "cana Brutto Jedn "+Double.toString(cenaBruttoJednostPoRabacie));
 
                 double bruttoI = Math.round((Double.parseDouble(ed_iloscTowar.getText().toString()) * cenaBruttoJednostPoRabacie) * 100);
                 brutto = bruttoI / 100;
@@ -238,6 +244,11 @@ public class GoodsFormActivity extends AppCompatActivity {
                 towar.priceNetto = Double.toString(cenaNETTO);
 
                 //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
+                if(id ==1){
+                    faktura.razem.netto = Double.toString(0);
+                    faktura.razem.brutto = Double.toString(0);
+                    faktura.razem.vat = Double.toString(0);
+                }
                 nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
                 bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
                 vatRazemTAX = Double.parseDouble(faktura.razem.vat);
