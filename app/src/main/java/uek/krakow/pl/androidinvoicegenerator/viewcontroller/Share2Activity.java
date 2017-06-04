@@ -1,10 +1,13 @@
 package uek.krakow.pl.androidinvoicegenerator.viewcontroller;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import java.io.File;
 
@@ -12,12 +15,16 @@ import uek.krakow.pl.androidinvoicegenerator.R;
 
 public class Share2Activity extends AppCompatActivity {
     String filename;
+    TextView tv_nazwaIstniejacejFaktury;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share2);
         filename = getIntent().getStringExtra("faktura");
+
+        tv_nazwaIstniejacejFaktury = (TextView) findViewById(R.id.tv_nazwaIstniejacejFaktury);
+        tv_nazwaIstniejacejFaktury.setText(filename);
     }
 
     public void openFile(View view) {
@@ -41,5 +48,26 @@ public class Share2Activity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_SUBJECT, "Faktura: "+filename);
         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(MainActivity.invoicesDir, filename)));
         startActivity(Intent.createChooser(intent, "Wyślij mail z fakturą"));
+    }
+
+    public void usunFakture(View view) {
+        AlertDialog.Builder a_builder = new AlertDialog.Builder(Share2Activity.this);
+        a_builder.setMessage("Czy na pewno chcesz usunąć fakturę "+filename+"?")
+                .setCancelable(false)
+                .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //TODO dodać usuwanie faktury
+                    }
+                })
+                .setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = a_builder.create();
+        alert.setTitle("Ostrzeżenie");
+        alert.show();
     }
 }

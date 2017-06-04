@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.apache.commons.io.FilenameUtils;
 import org.simpleframework.xml.Serializer;
@@ -25,6 +26,7 @@ import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 
 public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
+    TextView tv_naleznoscOgolem;
     String style;
 
     //TODO Stworzyć więcej stylów faktury
@@ -35,6 +37,11 @@ public class SummaryFormActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Krok 5 z 5");
         style = "default1.xsl";
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
+        tv_naleznoscOgolem = (TextView) findViewById(R.id.tv_naleznoscOgolem);
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        tv_naleznoscOgolem.setText(faktura.razem.brutto+"zł");
+
+
 
 
         ArrayList<String> styles = new ArrayList<>();
@@ -65,6 +72,8 @@ public class SummaryFormActivity extends AppCompatActivity {
     }
 
     public void toShare(View view) {
+
+        //TODO zablokowac możliwość cofania do poprzedniej aktywności, wywala błędną sume po powrocie
         PDFGenerator pdfGenerator = new PDFGenerator();
 
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");

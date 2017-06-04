@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Sprzedawca;
@@ -110,6 +113,13 @@ public class ProviderFormActivity extends AppCompatActivity {
         }
     }
 
+    private boolean NIP(String pole){
+        String NIP_PATTERN = "^[0-9]{10}$";
+        Pattern pattern = Pattern.compile(NIP_PATTERN);
+        Matcher matcher = pattern.matcher(pole);
+        return matcher.matches();
+    }
+
     public void wczytajZPamieci(View view) {
         SharedPreferences p = getSharedPreferences("Dostawca", MODE_PRIVATE);
         if (p.getBoolean("zapisano", false)){
@@ -132,8 +142,12 @@ public class ProviderFormActivity extends AppCompatActivity {
     }
 
     public void pobierzDaneGUS(View view){
-        GetFromApiTask task = new GetFromApiTask(this);
-        task.execute(ed_NIPDost.getText().toString());
+        if(!NIP(ed_NIPDost.getText().toString())){
+            ed_NIPDost.setError("Wymagane 10 cyfr");
+        }else {
+            GetFromApiTask task = new GetFromApiTask(this);
+            task.execute(ed_NIPDost.getText().toString());
+        }
     }
 
     public EditText getEd_NIPDost() {
