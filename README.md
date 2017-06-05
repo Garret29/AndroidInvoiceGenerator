@@ -24,7 +24,7 @@ Użytkownik po uzupełnieniu danych wybiera styl faktury w formacie xsl, a na wy
 
 ## Dokumentacja
 
-# Klasy:
+### Klasy:
 
 + pakiet invoicemodel - zawierający klasy reprezentujące fakturę oraz oznaczone adnotacjami Simple-XML w celu przeparsowania obiektu
   faktury na plik XML
