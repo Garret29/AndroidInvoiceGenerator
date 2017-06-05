@@ -146,39 +146,6 @@ public class ProviderFormActivity extends AppCompatActivity implements Updatable
                     .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (!niePuste(ed_NIPDost.getText().toString())) {
-                                ed_NIPDost.setText("____________________");
-                            }
-                            if(!niePuste(ed_nazwaDost.getText().toString())){
-                                ed_nazwaDost.setText("Nazwa: ____________________________________");
-                            }
-                            if (!niePuste(ed_ulicaDost.getText().toString())) {
-                                ed_ulicaDost.setText("Ulica: ____________________");
-                            }
-                            if (!niePuste(ed_domDost.getText().toString())) {
-                                ed_domDost.setText("Nr budynku: _____________");
-                            }
-                            if (!niePuste(ed_lokalDost.getText().toString())) {
-                                ed_lokalDost.setText("_________");
-                            }
-                            if (!niePuste(ed_miejscowoscDost.getText().toString())) {
-                                ed_miejscowoscDost.setText("Miejscowość: ____________________");
-                            }
-                            if (!niePuste(ed_kodDost.getText().toString())) {
-                                ed_kodDost.setText("Kod pocztowy: _____-__________");
-                            }
-                            if (!niePuste(ed_rachunekDost.getText().toString())) {
-                                ed_rachunekDost.setText("________________________________");
-                            }
-                            if (!niePuste(ed_bankDost.getText().toString())) {
-                                ed_bankDost.setText("Bank: ____________________");
-                            }
-                            if (!niePuste(ed_telefonDost.getText().toString())) {
-                                ed_telefonDost.setText("____________________");
-                            }
-                            if (!niePuste(ed_emailDost.getText().toString())) {
-                                ed_emailDost.setText("____________________");
-                            }
                             przejdzDalej();
                         }
                     })

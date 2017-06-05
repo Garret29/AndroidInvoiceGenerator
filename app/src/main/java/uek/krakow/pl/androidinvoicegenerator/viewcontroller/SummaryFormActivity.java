@@ -85,9 +85,6 @@ public class SummaryFormActivity extends AppCompatActivity {
                     .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (!niePuste(ed_naleznoscSlownie.getText().toString())) {
-                                ed_naleznoscSlownie.setText("____________________________________");
-                            }
                             przejdzDalej();
                         }
                     })

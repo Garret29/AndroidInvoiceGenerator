@@ -146,21 +146,6 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
                     .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if(!niePuste(ed_miejscowoscWystawienia.getText().toString())){
-                                ed_miejscowoscWystawienia.setText("Miejscowość:____________________");
-                            }
-                            if(!niePuste(ed_sposobZaplaty.getText().toString())){
-                                ed_sposobZaplaty.setText("____________________");
-                            }
-                            if(date_DataWystawienia.getText().toString().equals("Ustaw datę")){
-                                dataWystawienia = "____________________";
-                            }
-                            if(date_dataDostawy.getText().toString().equals("Ustaw datę")){
-                                dataDostawy= "____________________";
-                            }
-                            if(date_terimnZaplatyDo.getText().toString().equals("Ustaw datę")){
-                                terimnZaplatyDo = "____________________";
-                            }
                             przejdzDalej();
                         }
                     })

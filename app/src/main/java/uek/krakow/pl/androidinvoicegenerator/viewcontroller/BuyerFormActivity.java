@@ -84,27 +84,6 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
                     .setPositiveButton("Tak", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (!niePuste(ed_nazwaNabyw.getText().toString())){
-                                ed_nazwaNabyw.setText("Nazwa: ____________________________________");
-                            }
-                            if (!niePuste(ed_ulicaNabyw.getText().toString())){
-                                ed_ulicaNabyw.setText("Ulica: ____________________");
-                            }
-                            if (!niePuste(ed_domNabyw.getText().toString())){
-                                ed_domNabyw.setText("Nr budynku: _____________");
-                            }
-                            if (!niePuste(ed_lokalNabyw.getText().toString())){
-                                ed_lokalNabyw.setText("____________________");
-                            }
-                            if (!niePuste(ed_miejscowoscNabyw.getText().toString())){
-                                ed_miejscowoscNabyw.setText("Miejscowość: ____________________");
-                            }
-                            if (!niePuste(ed_kodNabyw.getText().toString())){
-                                ed_kodNabyw.setText("Kod pocztowy: _____-__________");
-                            }
-                            if (!niePuste(ed_NIpNabyw.getText().toString())){
-                                ed_NIpNabyw.setText("____________________");
-                            }
                             przejdzDalej();
                         }
                     })
