@@ -53,13 +53,11 @@ public class GoodsFormActivity extends AppCompatActivity {
             }
         });
 
-        Log.d("hehe", "creation");
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        Log.d("hehe", "resume");
     }
 
     public void addMoreGoods(View view) {
@@ -67,21 +65,25 @@ public class GoodsFormActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) || TextUtils.isEmpty(ed_rabatTowar.getText().toString()) || TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) || TextUtils.isEmpty(ed_iloscTowar.getText().toString())) {
             Toast.makeText(this, "Uzupełnij wszystkie dane", Toast.LENGTH_SHORT).show();
         } else {
-            if (!niePuste(ed_nazwaTowar.getText().toString())){
+            if (!niePuste(ed_nazwaTowar.getText().toString())) {
                 ed_nazwaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-                walidacja=false;
-            } if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
+                walidacja = false;
+            }
+            if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
                 ed_iloscTowar.setError("Błędna liczba");
-                walidacja=false;
-            } if (!niePuste(ed_jednostkaTowar.getText().toString())) {
+                walidacja = false;
+            }
+            if (!niePuste(ed_jednostkaTowar.getText().toString())) {
                 ed_jednostkaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-                walidacja=false;
-            } if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
+                walidacja = false;
+            }
+            if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
                 ed_cenaBruttTowar.setError("Błędna liczba");
-                walidacja=false;
-            } if (!calkowita(ed_rabatTowar.getText().toString())) {
+                walidacja = false;
+            }
+            if (!calkowita(ed_rabatTowar.getText().toString())) {
                 ed_rabatTowar.setError("Wymagana liczba całkowita");
-                walidacja=false;
+                walidacja = false;
             }
             if (walidacja) {
                 Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
@@ -98,11 +100,11 @@ public class GoodsFormActivity extends AppCompatActivity {
                 cenaNETTO = cenaNETTOI / 100;
 
                 double cenaVATI = Math.round(bruttoI - cenaNETTOI);
-                cenaVAT= cenaVATI/100;
+                cenaVAT = cenaVATI / 100;
 
                 //Przypisanie danych towaru do pól dokumentu faktury
                 Towar towar = new Towar();
-                towar.id = Integer.toString(faktura.towary.size()+1);
+                towar.id = faktura.towary.size() + 1;
                 towar.name = ed_nazwaTowar.getText().toString();
                 towar.quantity = ed_iloscTowar.getText().toString();
                 towar.unit = ed_jednostkaTowar.getText().toString();
@@ -116,12 +118,12 @@ public class GoodsFormActivity extends AppCompatActivity {
 
                 //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
                 // TODO  tabelka razem podaje miliony monet po przcinku
-                if(id==1){
-                    pierwszyTax=false;
+                if (id == 1) {
+                    pierwszyTax = false;
                     faktura.razem.netto = Double.toString(cenaNETTO);
                     faktura.razem.brutto = Double.toString(brutto);
                     faktura.razem.vat = Double.toString(cenaVAT);
-                }else {
+                } else {
                     nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
                     bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
                     vatRazemTAX = Double.parseDouble(faktura.razem.vat);
@@ -133,63 +135,43 @@ public class GoodsFormActivity extends AppCompatActivity {
                 //Uzupełnienie tabeli "Razem" faktury ze względu na stawkę VAT poszczególnych produktów
                 switch (Integer.parseInt(stawkaVat)) {
                     case 0:
-                        if(pierwszyTax0){
-                            pierwszyTax0 = false;
-                            faktura.razem.tax0.netto = Double.toString(cenaNETTO);
-                            faktura.razem.tax0.brutto = Double.toString(brutto);
-                            faktura.razem.tax0.VAT = Double.toString(cenaVAT);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax0.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax0.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax0.VAT);
-                            faktura.razem.tax0.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax0.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax0.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax0.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax0.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax0.VAT);
+                        faktura.razem.tax0.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax0.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax0.VAT = Double.toString(cenaVAT + vatTAX);
                         break;
                     case 5:
-                        if(pierwszyTax5){
-                            pierwszyTax5 = false;
-                            faktura.razem.tax5.brutto = Double.toString(brutto);
-                            faktura.razem.tax5.netto = Double.toString(cenaNETTO);
-                            faktura.razem.tax5.VAT = Double.toString(cenaVAT);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax5.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax5.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax5.VAT);
-                            faktura.razem.tax5.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax5.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax5.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax5.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax5.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax5.VAT);
+                        faktura.razem.tax5.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax5.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax5.VAT = Double.toString(cenaVAT + vatTAX);
+
                         break;
                     case 8:
-                        if(pierwszyTax8){
-                            pierwszyTax8 = false;
-                            faktura.razem.tax8.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax8.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax8.VAT = Double.toString(cenaVAT + vatTAX);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax8.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax8.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax8.VAT);
-                            faktura.razem.tax8.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax8.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax8.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax8.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax8.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax8.VAT);
+                        faktura.razem.tax8.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax8.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax8.VAT = Double.toString(cenaVAT + vatTAX);
+
                         break;
                     case 23:
-                        if(pierwszyTax23){
-                            faktura.razem.tax23.brutto = Double.toString(brutto);
-                            faktura.razem.tax23.netto = Double.toString(cenaNETTO);
-                            faktura.razem.tax23.VAT = Double.toString(cenaVAT);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax23.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax23.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax23.VAT);
-                            faktura.razem.tax23.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax23.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax23.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax23.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax23.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax23.VAT);
+                        faktura.razem.tax23.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax23.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax23.VAT = Double.toString(cenaVAT + vatTAX);
                         break;
                 }
 
@@ -215,7 +197,8 @@ public class GoodsFormActivity extends AppCompatActivity {
         Matcher matcher = pattern.matcher(pole);
         return matcher.matches();
     }
-    private boolean niePuste(String pole){
+
+    private boolean niePuste(String pole) {
         String NIEPUSTE_PATTERN = "^\\S.*$";
         Pattern pattern = Pattern.compile(NIEPUSTE_PATTERN);
         Matcher matcher = pattern.matcher(pole);
@@ -227,23 +210,27 @@ public class GoodsFormActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(ed_nazwaTowar.getText().toString()) || TextUtils.isEmpty(ed_cenaBruttTowar.getText().toString()) || TextUtils.isEmpty(ed_rabatTowar.getText().toString()) || TextUtils.isEmpty(ed_jednostkaTowar.getText().toString()) || TextUtils.isEmpty(ed_iloscTowar.getText().toString())) {
             Toast.makeText(this, "Uzupełnij wszystkie dane", Toast.LENGTH_SHORT).show();
         } else {
-            if (!niePuste(ed_nazwaTowar.getText().toString())){
+            if (!niePuste(ed_nazwaTowar.getText().toString())) {
                 ed_nazwaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-                walidacja=false;
-            } if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
-                ed_iloscTowar.setError("Błędna liczba");
-                walidacja=false;
-            } if (!niePuste(ed_jednostkaTowar.getText().toString())) {
-                ed_jednostkaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
-                walidacja=false;
-            } if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
-                ed_cenaBruttTowar.setError("Błędna liczba");
-                walidacja=false;
-            } if (!calkowita(ed_rabatTowar.getText().toString())) {
-                ed_rabatTowar.setError("Wymagana liczba całkowita");
-                walidacja=false;
+                walidacja = false;
             }
-            if (walidacja)  {
+            if (!poPrzecinku(ed_iloscTowar.getText().toString())) {
+                ed_iloscTowar.setError("Błędna liczba");
+                walidacja = false;
+            }
+            if (!niePuste(ed_jednostkaTowar.getText().toString())) {
+                ed_jednostkaTowar.setError("Pole tekstowe nie może zaczynać się od spacji");
+                walidacja = false;
+            }
+            if (!poPrzecinku(ed_cenaBruttTowar.getText().toString())) {
+                ed_cenaBruttTowar.setError("Błędna liczba");
+                walidacja = false;
+            }
+            if (!calkowita(ed_rabatTowar.getText().toString())) {
+                ed_rabatTowar.setError("Wymagana liczba całkowita");
+                walidacja = false;
+            }
+            if (walidacja) {
                 //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
                 double cenaBruttoJednostPoRabacieI = Math.round((Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100)) * 100);
                 cenaBruttoJednostPoRabacie = cenaBruttoJednostPoRabacieI / 100;
@@ -255,12 +242,12 @@ public class GoodsFormActivity extends AppCompatActivity {
                 cenaNETTO = cenaNETTOI / 100;
 
                 double cenaVATI = Math.round(bruttoI - cenaNETTOI);
-                cenaVAT= cenaVATI/100;
+                cenaVAT = cenaVATI / 100;
 
                 //Przypisanie danych towaru do pól dokumentu faktury
                 Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
                 Towar towar = new Towar();
-                towar.id = idS;
+                towar.id = faktura.towary.size() + 1;
                 towar.name = ed_nazwaTowar.getText().toString();
                 towar.quantity = ed_iloscTowar.getText().toString();
                 towar.unit = ed_jednostkaTowar.getText().toString();
@@ -273,12 +260,12 @@ public class GoodsFormActivity extends AppCompatActivity {
                 towar.priceNetto = Double.toString(cenaNETTO);
 
                 //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
-                if(id==1){
-                    pierwszyTax=false;
+                if (id == 1) {
+                    pierwszyTax = false;
                     faktura.razem.netto = Double.toString(cenaNETTO);
                     faktura.razem.brutto = Double.toString(brutto);
                     faktura.razem.vat = Double.toString(cenaVAT);
-                }else {
+                } else {
                     nettoRazemTAX = Double.parseDouble(faktura.razem.netto);
                     bruttoRazemTAX = Double.parseDouble(faktura.razem.brutto);
                     vatRazemTAX = Double.parseDouble(faktura.razem.vat);
@@ -290,63 +277,43 @@ public class GoodsFormActivity extends AppCompatActivity {
                 //Uzupełnienie tabeli "Razem" faktury ze względu na stawkę VAT poszczególnych produktów
                 switch (Integer.parseInt(stawkaVat)) {
                     case 0:
-                        if(pierwszyTax0){
-                            pierwszyTax0 = false;
-                            faktura.razem.tax0.netto = Double.toString(cenaNETTO);
-                            faktura.razem.tax0.brutto = Double.toString(brutto);
-                            faktura.razem.tax0.VAT = Double.toString(cenaVAT);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax0.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax0.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax0.VAT);
-                            faktura.razem.tax0.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax0.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax0.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax0.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax0.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax0.VAT);
+                        faktura.razem.tax0.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax0.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax0.VAT = Double.toString(cenaVAT + vatTAX);
                         break;
                     case 5:
-                        if(pierwszyTax5){
-                            pierwszyTax5 = false;
-                            faktura.razem.tax5.brutto = Double.toString(brutto);
-                            faktura.razem.tax5.netto = Double.toString(cenaNETTO);
-                            faktura.razem.tax5.VAT = Double.toString(cenaVAT);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax5.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax5.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax5.VAT);
-                            faktura.razem.tax5.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax5.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax5.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax5.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax5.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax5.VAT);
+                        faktura.razem.tax5.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax5.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax5.VAT = Double.toString(cenaVAT + vatTAX);
+
                         break;
                     case 8:
-                        if(pierwszyTax8){
-                            pierwszyTax8 = false;
-                            faktura.razem.tax8.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax8.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax8.VAT = Double.toString(cenaVAT + vatTAX);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax8.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax8.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax8.VAT);
-                            faktura.razem.tax8.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax8.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax8.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax8.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax8.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax8.VAT);
+                        faktura.razem.tax8.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax8.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax8.VAT = Double.toString(cenaVAT + vatTAX);
+
                         break;
                     case 23:
-                        if(pierwszyTax23){
-                            faktura.razem.tax23.brutto = Double.toString(brutto);
-                            faktura.razem.tax23.netto = Double.toString(cenaNETTO);
-                            faktura.razem.tax23.VAT = Double.toString(cenaVAT);
-                        }else {
-                            nettoTAX = Double.parseDouble(faktura.razem.tax23.netto);
-                            bruttoTAX = Double.parseDouble(faktura.razem.tax23.brutto);
-                            vatTAX = Double.parseDouble(faktura.razem.tax23.VAT);
-                            faktura.razem.tax23.brutto = Double.toString(brutto + bruttoTAX);
-                            faktura.razem.tax23.netto = Double.toString(cenaNETTO + nettoTAX);
-                            faktura.razem.tax23.VAT = Double.toString(cenaVAT + vatTAX);
-                        }
+
+                        nettoTAX = Double.parseDouble(faktura.razem.tax23.netto);
+                        bruttoTAX = Double.parseDouble(faktura.razem.tax23.brutto);
+                        vatTAX = Double.parseDouble(faktura.razem.tax23.VAT);
+                        faktura.razem.tax23.brutto = Double.toString(brutto + bruttoTAX);
+                        faktura.razem.tax23.netto = Double.toString(cenaNETTO + nettoTAX);
+                        faktura.razem.tax23.VAT = Double.toString(cenaVAT + vatTAX);
                         break;
                 }
 

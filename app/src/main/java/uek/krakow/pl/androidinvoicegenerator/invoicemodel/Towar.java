@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Root(name = "towar")
 public class Towar  implements Serializable {
     @Element(name = "liczba_porzadkowa")
-    public String id;
+    public int id;
     @Element(name = "nazwa")
     public String name;
     @Element(name = "ilosc")
@@ -31,7 +31,6 @@ public class Towar  implements Serializable {
     public String priceNetto;
 
     public Towar() {
-        id = " ";
         name = " ";
         quantity = " ";
         unit = " ";
