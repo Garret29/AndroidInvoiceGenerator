@@ -374,8 +374,7 @@
                     </tr>
                 </table>
                 <xsl:for-each select="faktura/razem">
-                    <p align="left">Należność ogółem:<xsl:value-of select="brutto" />zł
-                    </p>
+                    Należność ogółem:<xsl:value-of select="brutto" />zł
                     <br />
                     Należność ogółem słownie:
                     <xsl:if test="brutto_slownie !='' ">
