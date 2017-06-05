@@ -101,7 +101,7 @@ public class GoodsFormActivity extends AppCompatActivity {
 
                 //Przypisanie danych towaru do pól dokumentu faktury
                 Towar towar = new Towar();
-                towar.id = idS;
+                towar.id = Integer.toString(faktura.towary.size()+1);
                 towar.name = ed_nazwaTowar.getText().toString();
                 towar.quantity = ed_iloscTowar.getText().toString();
                 towar.unit = ed_jednostkaTowar.getText().toString();
