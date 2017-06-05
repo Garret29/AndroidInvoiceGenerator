@@ -111,7 +111,7 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
         nabywca.buyerAppartment=ed_lokalNabyw.getText().toString();
         nabywca.buyerCity=ed_miejscowoscNabyw.getText().toString();
         nabywca.buyerHouse=ed_domNabyw.getText().toString();
-        nabywca.buyerName=ed_nazwaNabyw.getText().toString()+"\n"+"NIP: "+ed_NIpNabyw.getText().toString();
+        nabywca.buyerName=ed_nazwaNabyw.getText().toString();
         nabywca.buyerPostalCode=ed_kodNabyw.getText().toString();
         nabywca.buyerStreet=ed_ulicaNabyw.getText().toString();
 
