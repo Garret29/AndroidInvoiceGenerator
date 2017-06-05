@@ -27,7 +27,7 @@
                                 <br/>
                                 Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
                                 <br/>
-                                <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
+                                <xsl:value-of select="miasto"/>, <xsl:value-of select="kod"/>
                                 <br/>
                                 NIP: <xsl:value-of select="NIP_PESEL"/>
                                 <br/>
@@ -46,7 +46,7 @@
                                 <br/>
                                 Adres: <xsl:value-of select="ulica"/>, <xsl:value-of select="dom"/>, lok. <xsl:value-of select="lokal"/>
                                 <br/>
-                                <xsl:value-of select="miasto"/> <xsl:value-of select="kod"/>
+                                <xsl:value-of select="miasto"/>, <xsl:value-of select="kod"/>
                             </xsl:for-each>
                             <br/>
                             <br/>
