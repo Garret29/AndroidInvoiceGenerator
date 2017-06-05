@@ -16,8 +16,8 @@ public class Tax23  implements Serializable {
     public String netto;
 
     public Tax23() {
-        brutto = " ";
-        VAT = " ";
-        netto = " ";
+        brutto = "";
+        VAT = "";
+        netto = "";
     }
 }

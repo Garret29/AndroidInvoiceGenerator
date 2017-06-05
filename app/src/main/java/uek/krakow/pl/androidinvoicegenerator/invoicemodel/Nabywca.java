@@ -21,11 +21,11 @@ public class Nabywca  implements Serializable {
     public String buyerPostalCode;
 
     public Nabywca() {
-        buyerName = " ";
-        buyerStreet = " ";
-        buyerHouse = " ";
-        buyerAppartment = " ";
-        buyerCity = " ";
-        buyerPostalCode = " ";
+        buyerName = "";
+        buyerStreet = "";
+        buyerHouse = "";
+        buyerAppartment = "";
+        buyerCity = "";
+        buyerPostalCode = "";
     }
 }

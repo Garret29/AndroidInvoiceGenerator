@@ -38,9 +38,9 @@ public class Razem implements Serializable {
     public Tax23 tax23;
 
     public Razem() {
-        brutto = " ";
-        vat = " ";
-        netto = " ";
-        bruttoWords = " ";
+        brutto = "";
+        vat = "";
+        netto = "";
+        bruttoWords = "";
     }
 }

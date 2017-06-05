@@ -31,15 +31,15 @@ public class Towar  implements Serializable {
     public String priceNetto;
 
     public Towar() {
-        name = " ";
-        quantity = " ";
-        unit = " ";
-        priceBruttoOfUnit = " ";
-        discount = " ";
-        priceBruttoOfUnitAfterDiscount = " ";
-        priceBrutto = " ";
-        vatValue = " ";
-        vat = " ";
-        priceNetto = " ";
+        name = "";
+        quantity = "";
+        unit = "";
+        priceBruttoOfUnit = "";
+        discount = "";
+        priceBruttoOfUnitAfterDiscount = "";
+        priceBrutto = "";
+        vatValue = "";
+        vat = "";
+        priceNetto = "";
     }
 }

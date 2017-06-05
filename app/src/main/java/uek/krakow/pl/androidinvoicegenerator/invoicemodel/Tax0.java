@@ -16,8 +16,8 @@ public class Tax0  implements Serializable {
     public String netto;
 
     public Tax0() {
-        brutto = " ";
-        VAT = " ";
-        netto = " ";
+        brutto = "";
+        VAT = "";
+        netto = "";
     }
 }

@@ -81,8 +81,8 @@ public class GoodsFormActivity extends AppCompatActivity {
                 ed_cenaBruttTowar.setError("Błędna liczba");
                 walidacja = false;
             }
-            if (!calkowita(ed_rabatTowar.getText().toString())) {
-                ed_rabatTowar.setError("Wymagana liczba całkowita");
+            if (!calkowita(ed_rabatTowar.getText().toString()) || Integer.parseInt(ed_rabatTowar.getText().toString())>100) {
+                ed_rabatTowar.setError("Wymagana liczba całkowita nie większa niż 100");
                 walidacja = false;
             }
             if (walidacja) {
@@ -226,8 +226,8 @@ public class GoodsFormActivity extends AppCompatActivity {
                 ed_cenaBruttTowar.setError("Błędna liczba");
                 walidacja = false;
             }
-            if (!calkowita(ed_rabatTowar.getText().toString())) {
-                ed_rabatTowar.setError("Wymagana liczba całkowita");
+            if (!calkowita(ed_rabatTowar.getText().toString()) || Integer.parseInt(ed_rabatTowar.getText().toString())>100) {
+                ed_rabatTowar.setError("Wymagana liczba całkowita nie większa niż 100");
                 walidacja = false;
             }
             if (walidacja) {

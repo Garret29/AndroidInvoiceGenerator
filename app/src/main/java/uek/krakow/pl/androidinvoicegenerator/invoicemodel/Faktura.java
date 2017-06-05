@@ -37,12 +37,12 @@ public class Faktura implements Serializable{
     public Razem razem;
 
     public Faktura() {
-        invoiceCity = " ";
-        invoiceDate = " ";
-        invoiceShippingDate = " ";
-        paymentDate = " ";
-        paymentMethod = " ";
-        id = " ";
+        invoiceCity = "";
+        invoiceDate = "";
+        invoiceShippingDate = "";
+        paymentDate = "";
+        paymentMethod = "";
+        id = "";
         towary = new ArrayList<>();
     }
 }

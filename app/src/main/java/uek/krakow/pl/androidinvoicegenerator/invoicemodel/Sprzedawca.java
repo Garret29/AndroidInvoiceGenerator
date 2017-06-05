@@ -31,16 +31,16 @@ public class Sprzedawca  implements Serializable {
     public String providerBank;
 
     public Sprzedawca() {
-        providerName = " ";
-        providerStreet = " ";
-        providerHouse = " ";
-        providerApartment = " ";
-        providerCity = " ";
-        providerPostalCode = " ";
-        providerNIP = " ";
-        providerBankNumber = " ";
-        providerPhoneNumber = " ";
-        providerEmail = " ";
-        providerBank = " ";
+        providerName = "";
+        providerStreet = "";
+        providerHouse = "";
+        providerApartment = "";
+        providerCity = "";
+        providerPostalCode = "";
+        providerNIP = "";
+        providerBankNumber = "";
+        providerPhoneNumber = "";
+        providerEmail = "";
+        providerBank = "";
     }
 }
