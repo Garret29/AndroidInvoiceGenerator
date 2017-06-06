@@ -12,34 +12,27 @@ public class Towar  implements Serializable {
     @Element(name = "nazwa")
     public String name;
     @Element(name = "ilosc")
-    public String quantity;
+    public double quantity;
     @Element(name = "jednostka")
     public String unit;
     @Element(name = "cena_brutto_jednost")
-    public String priceBruttoOfUnit;
+    public double priceBruttoOfUnit;
     @Element(name = "rabat")
-    public String discount;
+    public double discount;
     @Element(name = "cena_brutto_jednost_po_rabacie")
-    public String priceBruttoOfUnitAfterDiscount;
+    public double priceBruttoOfUnitAfterDiscount;
     @Element(name = "brutto")
-    public String priceBrutto;
+    public double priceBrutto;
     @Element(name = "stawka_VAT")
     public String vatValue;
     @Element(name = "VAT")
-    public String vat;
+    public double vat;
     @Element(name = "netto")
-    public String priceNetto;
+    public double priceNetto;
 
     public Towar() {
         name = "";
-        quantity = "";
         unit = "";
-        priceBruttoOfUnit = "";
-        discount = "";
-        priceBruttoOfUnitAfterDiscount = "";
-        priceBrutto = "";
         vatValue = "";
-        vat = "";
-        priceNetto = "";
     }
 }
