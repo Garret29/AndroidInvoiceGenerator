@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="uek.krakow.pl.androidinvoicegenerator.viewcontroller.FormActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_daneFaktury"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dane_faktury"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="7dp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_numerFaktury"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numer_faktury"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_numerFaktury"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_miejscowoscWystawiania"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/miejscowo_wystawienia"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="44dp" />
+
+        <EditText
+            android:id="@+id/ed_miejscowoscWystawienia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text|textCapWords"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="66dp" />
+
+        <TextView
+            android:id="@+id/tv_dataWystawienia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data_wystawienia"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="109dp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:id="@+id/date_dataWystawienia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setDataWystawienia"
+            android:text="@string/ustaw_date"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/tv_dataDostawy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/data_dokonania_zako_czenia_dostawy_towar_w"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:id="@+id/date_dataDostawy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setDataDostawy"
+            android:text="@string/ustaw_date"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/tv_sposobZaplaty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sposob_zaplaty"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_sposobZaplaty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_terminZaplatyDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/termin_zaplaty_do"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:id="@+id/date_terimnZaplatyDo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="setTerimnZaplaty"
+            android:text="@string/ustaw_date"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <Button
+            android:id="@+id/b_fakturaSprzedawca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_green_light"
+            android:text="@string/zapisz_i_przejdz_dalej"
+            android:onClick="toProvider"/>
+
+
+    </LinearLayout>
+</ScrollView>

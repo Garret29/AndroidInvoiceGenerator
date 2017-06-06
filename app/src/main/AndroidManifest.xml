@@ -2,19 +2,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uek.krakow.pl.androidinvoicegenerator">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/> -->
     <application
+        android:name=".InvoiceGeneratorApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".viewcontroller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".viewcontroller.DataActivity" />
+        <activity android:name=".viewcontroller.FormActivity" />
+        <activity
+            android:name=".viewcontroller.SettingsActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".viewcontroller.ProviderFormActivity" />
+        <activity android:name=".viewcontroller.BuyerFormActivity" />
+        <activity android:name=".viewcontroller.GoodsFormActivity" />
+        <activity android:name=".viewcontroller.SummaryFormActivity" />
+        <activity android:name=".viewcontroller.ShareFormActivity" />
+        <activity android:name=".viewcontroller.Share2Activity" />
+        <activity android:name=".viewcontroller.DataActivity"></activity>
     </application>
 
 </manifest>

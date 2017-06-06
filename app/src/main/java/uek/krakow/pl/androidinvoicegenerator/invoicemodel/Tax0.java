@@ -9,12 +9,15 @@ import java.io.Serializable;
 public class Tax0  implements Serializable {
 
     @Element(name = "brutto")
-    public double brutto;
+    public String brutto;
     @Element(name = "VAT")
-    public double VAT;
+    public String VAT;
     @Element(name = "netto")
-    public double netto;
+    public String netto;
 
     public Tax0() {
+        brutto = "";
+        VAT = "";
+        netto = "";
     }
 }

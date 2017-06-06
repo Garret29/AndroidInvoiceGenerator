@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="uek.krakow.pl.androidinvoicegenerator.viewcontroller.ProviderFormActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/tv_sprzedawca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sprzedawca"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="182dp" />
+
+        <TextView
+            android:id="@+id/tv_NIPSprzed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nip"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_NIPDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/b_NIPpobierzDaneDost"
+                android:layout_width="185dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_dark"
+                android:onClick="pobierzDaneGUS"
+                android:text="@string/pobierz_dane_z_gus" />
+
+            <Button
+                android:id="@+id/b_wczytajDaneSprzed"
+                android:layout_width="185dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_blue_bright"
+                android:text="@string/wczytaj_z_pamieci"
+                android:onClick="wczytajZPamieci"/>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_nazwaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nazwa"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_nazwaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences" />
+
+        <TextView
+            android:id="@+id/tv_ulicaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ulica"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_ulicaDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_domDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numer_budynku"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_domDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_lokalDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numer_lokalu"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_lokalDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_miejscowośćDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/miejscowosc"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_miejscowoscDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_kodDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/kod_pocztowy"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_kodDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:id="@+id/tv_rachunekDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numer_rachunku_bankowego"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_rachunekDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/tv_bankDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bank"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_bankDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/tv_telefonDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/numer_telefonu"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_telefonDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="phone" />
+        <TextView
+            android:id="@+id/tv_emailDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_emailDost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_light"
+            android:text="@string/zapisz_dane_do_pamieci"
+            android:onClick="zapiszDoPamieci"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <Button
+            android:id="@+id/b_sprzedawcaKontrahent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@android:color/holo_green_light"
+            android:onClick="toBuyer"
+            android:text="@string/zapisz_i_przejdz_dalej" />
+
+
+    </LinearLayout>
+
+</ScrollView>

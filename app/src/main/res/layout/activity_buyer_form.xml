@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uek.krakow.pl.androidinvoicegenerator.viewcontroller.GoodsFormActivity">
+    tools:context="uek.krakow.pl.androidinvoicegenerator.viewcontroller.BuyerFormActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,124 +11,147 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_towar"
+            android:id="@+id/tv_nabywca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/dane_towarow_i_uslug"
+            android:text="@string/nabywca"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="182dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
 
         <TextView
-            android:id="@+id/tv_nazwaTowar"
-            android:layout_width="match_parent"
+            android:id="@+id/textView11"
+            android:layout_width="45dp"
             android:layout_height="wrap_content"
-            android:text="@string/nazwa_towaru_uslugi"
+            android:text="NIP:"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/ed_nazwaTowar"
+            android:id="@+id/ed_NIpNabyw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_blue_dark"
+            android:text="Pobierz dane z GUS"
+            android:onClick="daneGUS"/>
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_nazwaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nazwa"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_nazwaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences" />
+
+        <TextView
+            android:id="@+id/tv_ulicaNabyw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ulica"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/ed_ulicaNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textCapWords" />
 
         <TextView
-            android:id="@+id/tv_iloscTowar"
+            android:id="@+id/tv_domNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ilosc"
+            android:text="@string/numer_budynku"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/ed_iloscTowar"
+            android:id="@+id/ed_domNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:inputType="textCapWords" />
 
         <TextView
-            android:id="@+id/tv_jednostkaTowar"
+            android:id="@+id/tv_lokalNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/jednostka_miary"
+            android:text="@string/numer_lokalu"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/ed_jednostkaTowar"
+            android:id="@+id/ed_lokalNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/tv_cenaBruttoTowar"
+            android:id="@+id/tv_miejscowośćNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cena_brutto_za_jednostke"
+            android:text="@string/miejscowosc"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/ed_cenaBruttTowar"
+            android:id="@+id/ed_miejscowoscNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
+            android:inputType="textCapWords" />
 
         <TextView
-            android:id="@+id/tv_rabatTowar"
+            android:id="@+id/tv_kodNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rabat_w_procentach"
+            android:text="@string/kod_pocztowy"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/ed_rabatTowar"
+            android:id="@+id/ed_kodNabyw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/tv_stawkaVATTowar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/stawka_vat_w_procentach"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-
-        <Spinner
-            android:id="@+id/spinner_stawkaVAT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dialog"
-            android:entries="@array/stawka_VAT" />
+            android:inputType="textCapWords" />
 
         <Button
-            android:id="@+id/b_kolejnyProdukt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_light"
-            android:onClick="addMoreGoods"
-            android:text="@string/dodaj_kolejny_towar_uslug" />
-
-        <Button
-            android:id="@+id/b_towarPodsumowanie"
+            android:id="@+id/b_nabywcaTowar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
-            android:onClick="toSummary"
-            android:text="@string/zako_cz_dodawanie_towar_w_us_ug_i_przejdz_dalej"
-            android:textColor="@android:color/holo_red_dark" />
+            android:text="@string/zapisz_i_przejdz_dalej"
+            android:onClick="toGoods"/>
+
     </LinearLayout>
+
 
 </ScrollView>
