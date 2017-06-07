@@ -9,7 +9,7 @@ AndroidInvoiceGenerator is application made to generate pdf output representing 
 
 ## Functionalities
 
-+ Generating pdf invoices with data from form or from xml file.
++ Generating pdf invoices with data from form or xml file.
 + Validation of typed data via mojepanstwo.pl api
 + Automatic calculations for: discounts, gross value and taxes
 + Sharing invoice
