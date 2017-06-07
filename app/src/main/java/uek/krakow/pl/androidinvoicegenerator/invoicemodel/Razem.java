@@ -8,15 +8,14 @@ import java.io.Serializable;
 @Root(name="razem")
 public class Razem implements Serializable {
     @Element(name = "brutto")
-    public String brutto;
+    public double brutto;
 
     @Element(name = "VAT")
-    public String vat;
+    public double vat;
 
 
     @Element(name = "netto")
-    public String netto;
-
+    public double netto;
 
     @Element(name = "brutto_slownie")
     public String bruttoWords;
@@ -38,9 +37,6 @@ public class Razem implements Serializable {
     public Tax23 tax23;
 
     public Razem() {
-        brutto = "";
-        vat = "";
-        netto = "";
         bruttoWords = "";
     }
 }

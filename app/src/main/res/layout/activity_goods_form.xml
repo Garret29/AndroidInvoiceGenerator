@@ -109,9 +109,14 @@
         <Spinner
             android:id="@+id/spinner_stawkaVAT"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+
+            android:layout_height="49dp"
             android:spinnerMode="dialog"
             android:entries="@array/stawka_VAT" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="22dp" />
 
         <Button
             android:id="@+id/b_kolejnyProdukt"
