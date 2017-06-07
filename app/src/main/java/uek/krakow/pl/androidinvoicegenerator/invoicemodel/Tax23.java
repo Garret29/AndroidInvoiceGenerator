@@ -16,5 +16,6 @@ public class Tax23  implements Serializable {
     public double netto;
 
     public Tax23() {
+
     }
 }

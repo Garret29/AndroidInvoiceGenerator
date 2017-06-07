@@ -12,6 +12,7 @@ public class Towar  implements Serializable {
     @Element(name = "nazwa")
     public String name;
     @Element(name = "ilosc")
+
     public double quantity;
     @Element(name = "jednostka")
     public String unit;
@@ -33,6 +34,6 @@ public class Towar  implements Serializable {
     public Towar() {
         name = "";
         unit = "";
-        vatValue = "";
+        vatValue = "";    
     }
 }

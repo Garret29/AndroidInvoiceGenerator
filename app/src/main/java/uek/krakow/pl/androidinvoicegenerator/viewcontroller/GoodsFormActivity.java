@@ -21,9 +21,11 @@ import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Towar;
 public class GoodsFormActivity extends AppCompatActivity {
     EditText ed_nazwaTowar, ed_iloscTowar, ed_jednostkaTowar, ed_cenaBruttTowar, ed_rabatTowar;
     String stawkaVat, idS;
+
     double cenaBruttoJednostPoRabacie = 0, brutto = 0, cenaVAT = 0, cenaNETTO = 0;
     static int id = 0;
     boolean dodajWiecej;
+
 
 
     @Override
@@ -86,11 +88,14 @@ public class GoodsFormActivity extends AppCompatActivity {
                 walidacja = false;
             }
             if (walidacja) {
+
                 dodajWiecej=true;
                 obliczenia();
+
             }
         }
     }
+
 
     public void obliczenia(){
         Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");

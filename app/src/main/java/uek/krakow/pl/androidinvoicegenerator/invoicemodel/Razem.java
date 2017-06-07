@@ -17,7 +17,6 @@ public class Razem implements Serializable {
     @Element(name = "netto")
     public double netto;
 
-
     @Element(name = "brutto_slownie")
     public String bruttoWords;
 

@@ -118,6 +118,7 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
         faktura.nabywca=nabywca;
 
         faktura.razem = new Razem();
+
         faktura.razem.brutto = 0;
         faktura.razem.netto = 0;
         faktura.razem.vat = 0;

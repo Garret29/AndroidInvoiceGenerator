@@ -16,5 +16,6 @@ public class Tax5  implements Serializable {
     public double netto;
 
     public Tax5() {
+    
     }
 }
