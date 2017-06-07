@@ -205,6 +205,20 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
         }
     }
 
+    @Override
+    public void onUpdateFailure() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Błąd podczas pobierania danych (sprawdź poprawność numeru NIP).")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     public EditText getEd_nazwaNabyw() {
         return ed_nazwaNabyw;
     }

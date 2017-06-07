@@ -8,4 +8,5 @@ import org.json.JSONObject;
 
 public interface UpdatableActivity {
     public void update(JSONObject jsonObject);
+    public void  onUpdateFailure();
 }

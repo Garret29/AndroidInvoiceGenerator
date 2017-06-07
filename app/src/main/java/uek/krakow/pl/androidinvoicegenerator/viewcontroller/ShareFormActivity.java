@@ -82,4 +82,18 @@ public class ShareFormActivity extends AppCompatActivity {
         alert.setTitle("Ostrzeżenie");
         alert.show();
     }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Brak możliwości cofania po wygenerowaniu pliku faktury.")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }
