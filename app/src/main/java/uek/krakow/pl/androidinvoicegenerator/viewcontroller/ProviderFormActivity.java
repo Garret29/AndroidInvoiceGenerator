@@ -18,8 +18,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Sprzedawca;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Provider;
 import uek.krakow.pl.androidinvoicegenerator.tasks.GetFromApiTask;
 import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.UpdatableActivity;
 
@@ -166,26 +166,26 @@ public class ProviderFormActivity extends AppCompatActivity implements Updatable
     }
 
     public void przejdzDalej(){
-        Faktura faktura = (Faktura) this.getIntent().getSerializableExtra("faktura");
+        Invoice invoice = (Invoice) this.getIntent().getSerializableExtra("invoice");
 
-        Sprzedawca sprzedawca = new Sprzedawca();
-        sprzedawca.providerApartment = ed_lokalDost.getText().toString();
-        sprzedawca.providerBankNumber = ed_rachunekDost.getText().toString();
-        sprzedawca.providerCity = ed_miejscowoscDost.getText().toString();
-        sprzedawca.providerEmail = ed_emailDost.getText().toString();
-        sprzedawca.providerHouse = ed_domDost.getText().toString();
-        sprzedawca.providerNIP = ed_NIPDost.getText().toString();
-        sprzedawca.providerName = ed_nazwaDost.getText().toString();
-        sprzedawca.providerStreet = ed_ulicaDost.getText().toString();
-        sprzedawca.providerPostalCode = ed_kodDost.getText().toString();
-        sprzedawca.providerPhoneNumber = ed_telefonDost.getText().toString();
-        sprzedawca.providerBank = ed_bankDost.getText().toString();
+        Provider provider = new Provider();
+        provider.providerApartment = ed_lokalDost.getText().toString();
+        provider.providerBankNumber = ed_rachunekDost.getText().toString();
+        provider.providerCity = ed_miejscowoscDost.getText().toString();
+        provider.providerEmail = ed_emailDost.getText().toString();
+        provider.providerHouse = ed_domDost.getText().toString();
+        provider.providerNIP = ed_NIPDost.getText().toString();
+        provider.providerName = ed_nazwaDost.getText().toString();
+        provider.providerStreet = ed_ulicaDost.getText().toString();
+        provider.providerPostalCode = ed_kodDost.getText().toString();
+        provider.providerPhoneNumber = ed_telefonDost.getText().toString();
+        provider.providerBank = ed_bankDost.getText().toString();
 
 
-        faktura.sprzedawca = sprzedawca;
+        invoice.provider = provider;
 
         Intent intent = new Intent(this, BuyerFormActivity.class);
-        intent.putExtra("faktura", faktura);
+        intent.putExtra("invoice", invoice);
         startActivity(intent);
 
     }

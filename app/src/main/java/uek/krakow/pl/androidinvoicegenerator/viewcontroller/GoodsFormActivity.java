@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -15,8 +14,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Towar;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Good;
 
 public class GoodsFormActivity extends AppCompatActivity {
     EditText ed_nazwaTowar, ed_iloscTowar, ed_jednostkaTowar, ed_cenaBruttTowar, ed_rabatTowar;
@@ -98,9 +97,9 @@ public class GoodsFormActivity extends AppCompatActivity {
 
 
     public void obliczenia(){
-        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        Invoice invoice = (Invoice) getIntent().getSerializableExtra("invoice");
 
-        //Obliczenie ceny brutto jedno., netto, vat, brutto dla każdego towaru
+        //Obliczenie ceny gross jedno., net, vat, gross dla każdego towaru
         double cenaBruttoJednostPoRabacieI = Math.round((Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100)) * 100);
 
         cenaBruttoJednostPoRabacie = cenaBruttoJednostPoRabacieI / 100;
@@ -115,97 +114,97 @@ public class GoodsFormActivity extends AppCompatActivity {
         cenaVAT = cenaVATI / 100;
 
         //Przypisanie danych towaru do pól dokumentu faktury
-        Towar towar = new Towar();
-        towar.id = faktura.towary.size() + 1;
-        towar.name = ed_nazwaTowar.getText().toString();
-        towar.quantity = Double.parseDouble(ed_iloscTowar.getText().toString());
-        towar.unit = ed_jednostkaTowar.getText().toString();
-        towar.priceBruttoOfUnit = Double.parseDouble(ed_cenaBruttTowar.getText().toString());
-        towar.discount = Double.parseDouble(ed_rabatTowar.getText().toString());
-        towar.vatValue = stawkaVat;
-        towar.priceBruttoOfUnitAfterDiscount = cenaBruttoJednostPoRabacie;
-        towar.priceBrutto = brutto;
-        towar.vat = cenaVAT;
-        towar.priceNetto = cenaNETTO;
+        Good good = new Good();
+        good.id = invoice.goods.size() + 1;
+        good.name = ed_nazwaTowar.getText().toString();
+        good.quantity = Double.parseDouble(ed_iloscTowar.getText().toString());
+        good.unit = ed_jednostkaTowar.getText().toString();
+        good.priceBruttoOfUnit = Double.parseDouble(ed_cenaBruttTowar.getText().toString());
+        good.discount = Double.parseDouble(ed_rabatTowar.getText().toString());
+        good.vatValue = stawkaVat;
+        good.priceBruttoOfUnitAfterDiscount = cenaBruttoJednostPoRabacie;
+        good.priceBrutto = brutto;
+        good.vat = cenaVAT;
+        good.netPrice = cenaNETTO;
 
-        //Uzupełnienie tabeli "Razem", pól wspólnych dla wszystkich produktów
-        // TODO  tabelka razem podaje miliony monet po przcinku
+        //Uzupełnienie tabeli "Summary", pól wspólnych dla wszystkich produktów
+        // TODO  tabelka summary podaje miliony monet po przcinku
 
-        double br1=(brutto + faktura.razem.brutto )*100;
+        double br1=(brutto + invoice.summary.gross)*100;
         double br2=Math.round(br1);
-        faktura.razem.brutto =br2/100 ;
+        invoice.summary.gross =br2/100 ;
 
-        double nr1=(cenaNETTO + faktura.razem.netto )*100;
+        double nr1=(cenaNETTO + invoice.summary.net)*100;
         double nr2=Math.round(nr1);
-        faktura.razem.netto =nr2/100 ;
+        invoice.summary.net =nr2/100 ;
 
-        double vr1=( cenaVAT + faktura.razem.vat)*100;
+        double vr1=( cenaVAT + invoice.summary.vat)*100;
         double vr2=Math.round(vr1);
-        faktura.razem.vat =vr2/100 ;
+        invoice.summary.vat =vr2/100 ;
 
-        //Uzupełnienie tabeli "Razem" faktury ze względu na stawkę VAT poszczególnych produktów
+        //Uzupełnienie tabeli "Summary" faktury ze względu na stawkę VAT poszczególnych produktów
         switch (Integer.parseInt(stawkaVat)) {
             case 0:
-                double b1=(brutto + faktura.razem.tax0.brutto )*100;
+                double b1=(brutto + invoice.summary.tax0.brutto )*100;
                 double b2=Math.round(b1);
-                faktura.razem.tax0.brutto =b2/100 ;
+                invoice.summary.tax0.brutto =b2/100 ;
 
-                double n1=(cenaNETTO + faktura.razem.tax0.netto )*100;
+                double n1=(cenaNETTO + invoice.summary.tax0.netto )*100;
                 double n2=Math.round(n1);
-                faktura.razem.tax0.netto =n2/100 ;
+                invoice.summary.tax0.netto =n2/100 ;
 
-                double v1=( cenaVAT + faktura.razem.tax0.VAT)*100;
+                double v1=( cenaVAT + invoice.summary.tax0.VAT)*100;
                 double v2=Math.round(v1);
-                faktura.razem.tax0.VAT =v2/100 ;
+                invoice.summary.tax0.VAT =v2/100 ;
                 break;
             case 5:
-                b1 = (brutto + faktura.razem.tax5.brutto) * 100;
+                b1 = (brutto + invoice.summary.tax5.brutto) * 100;
                 b2 = Math.round(b1);
-                faktura.razem.tax5.brutto =b2/100 ;
+                invoice.summary.tax5.brutto =b2/100 ;
 
-                n1 = (cenaNETTO + faktura.razem.tax5.netto) * 100;
+                n1 = (cenaNETTO + invoice.summary.tax5.netto) * 100;
                 n2 = Math.round(n1);
-                faktura.razem.tax5.netto =n2/100 ;
+                invoice.summary.tax5.netto =n2/100 ;
 
-                v1 = (cenaVAT + faktura.razem.tax5.VAT) * 100;
+                v1 = (cenaVAT + invoice.summary.tax5.VAT) * 100;
                 v2 = Math.round(v1);
-                faktura.razem.tax5.VAT =v2/100 ;
+                invoice.summary.tax5.VAT =v2/100 ;
                 break;
             case 8:
-                b1 = (brutto + faktura.razem.tax8.brutto) * 100;
+                b1 = (brutto + invoice.summary.tax8.brutto) * 100;
                 b2 = Math.round(b1);
-                faktura.razem.tax8.brutto =b2/100 ;
+                invoice.summary.tax8.brutto =b2/100 ;
 
-                n1 = (cenaNETTO + faktura.razem.tax8.netto) * 100;
+                n1 = (cenaNETTO + invoice.summary.tax8.netto) * 100;
                 n2 = Math.round(n1);
-                faktura.razem.tax8.netto =n2/100 ;
+                invoice.summary.tax8.netto =n2/100 ;
 
-                v1 = (cenaVAT + faktura.razem.tax8.VAT) * 100;
+                v1 = (cenaVAT + invoice.summary.tax8.VAT) * 100;
                 v2 = Math.round(v1);
-                faktura.razem.tax8.VAT =v2/100 ;
+                invoice.summary.tax8.VAT =v2/100 ;
                 break;
             case 23:
-                b1 = (brutto + faktura.razem.tax23.brutto) * 100;
+                b1 = (brutto + invoice.summary.tax23.brutto) * 100;
                 b2 = Math.round(b1);
-                faktura.razem.tax23.brutto =b2/100 ;
+                invoice.summary.tax23.brutto =b2/100 ;
 
-                n1 = (cenaNETTO + faktura.razem.tax23.netto) * 100;
+                n1 = (cenaNETTO + invoice.summary.tax23.netto) * 100;
                 n2 = Math.round(n1);
-                faktura.razem.tax23.netto =n2/100 ;
+                invoice.summary.tax23.netto =n2/100 ;
 
-                v1 = (cenaVAT + faktura.razem.tax23.VAT) * 100;
+                v1 = (cenaVAT + invoice.summary.tax23.VAT) * 100;
                 v2 = Math.round(v1);
-                faktura.razem.tax23.VAT =v2/100 ;
+                invoice.summary.tax23.VAT =v2/100 ;
                 break;
         }
-        faktura.towary.add(towar);
+        invoice.goods.add(good);
         if(dodajWiecej) {
             Intent intent = new Intent(this, GoodsFormActivity.class);
-            intent.putExtra("faktura", faktura);
+            intent.putExtra("invoice", invoice);
             startActivity(intent);
         }else {
             Intent intent = new Intent(this, SummaryFormActivity.class);
-            intent.putExtra("faktura", faktura);
+            intent.putExtra("invoice", invoice);
             startActivity(intent);
         }
     }

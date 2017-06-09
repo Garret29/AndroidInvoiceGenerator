@@ -25,13 +25,13 @@ import java.util.regex.Pattern;
 import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
 
 public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
     TextView tv_naleznoscOgolem;
     String style;
-    Faktura faktura;
+    Invoice invoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,8 @@ public class SummaryFormActivity extends AppCompatActivity {
         style = "default1.xsl";
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
         tv_naleznoscOgolem = (TextView) findViewById(R.id.tv_naleznoscOgolem);
-        faktura = (Faktura) getIntent().getSerializableExtra("faktura");
-        tv_naleznoscOgolem.setText(faktura.razem.brutto + "zł");
+        invoice = (Invoice) getIntent().getSerializableExtra("invoice");
+        tv_naleznoscOgolem.setText(invoice.summary.gross + "zł");
 
         ArrayList<String> styles = new ArrayList<>();
         for (File f : MainActivity.stylesDir.listFiles()
@@ -108,13 +108,13 @@ public class SummaryFormActivity extends AppCompatActivity {
         //TODO zablokowac możliwość cofania do poprzedniej aktywności, wywala błędną sume po powrocie
         PDFGenerator pdfGenerator = new PDFGenerator();
 
-        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
-        faktura.razem.bruttoWords = ed_naleznoscSlownie.getText().toString();
+        Invoice invoice = (Invoice) getIntent().getSerializableExtra("invoice");
+        invoice.summary.grossWords = ed_naleznoscSlownie.getText().toString();
 
-        File xml = new File(MainActivity.dataDir, faktura.id + ".xml");
+        File xml = new File(MainActivity.dataDir, invoice.id + ".xml");
         Serializer serializer = new Persister();
         try {
-            serializer.write(faktura, xml);
+            serializer.write(invoice, xml);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,10 +122,10 @@ public class SummaryFormActivity extends AppCompatActivity {
         File pdf;
         File styleFile = new File(MainActivity.stylesDir, style);
         Context context = InvoiceGeneratorApplication.getAppContext();
-        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, faktura.id, context.getCacheDir(), MainActivity.fontsDir.getAbsolutePath()+"/Roboto-Regular.ttf", "Roboto");
+        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, invoice.id, context.getCacheDir(), MainActivity.fontsDir.getAbsolutePath()+"/Roboto-Regular.ttf", "Roboto");
 
         Intent intent = new Intent(this, ShareFormActivity.class);
-        intent.putExtra("faktura", pdf.getName());
+        intent.putExtra("invoice", pdf.getName());
         startActivity(intent);
     }
 

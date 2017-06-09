@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -20,9 +19,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
-
-import static android.R.color.holo_red_dark;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
 
 public class FormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText ed_numerFaktury, ed_miejscowoscWystawienia, ed_sposobZaplaty;
@@ -168,20 +165,20 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
     public void przejdzDalej(){
         String[] forbiddenChars = new String[]{"\\|", "\\/", "\\?", "\\\\", "\\:", "\\<", "\\>", "\\*", "\\%","\""," "};
 
-        Faktura faktura = new Faktura();
+        Invoice invoice = new Invoice();
         String nazwa = ed_numerFaktury.getText().toString();
         for (String s : forbiddenChars) {
             nazwa = nazwa.replaceAll(s, "_");
         }
-        faktura.id = nazwa;
-        faktura.invoiceCity = ed_miejscowoscWystawienia.getText().toString();
-        faktura.invoiceDate = dataWystawienia;
-        faktura.invoiceShippingDate = dataDostawy;
-        faktura.paymentDate = terimnZaplatyDo;
-        faktura.paymentMethod = ed_sposobZaplaty.getText().toString();
+        invoice.id = nazwa;
+        invoice.invoiceCity = ed_miejscowoscWystawienia.getText().toString();
+        invoice.invoiceDate = dataWystawienia;
+        invoice.invoiceShippingDate = dataDostawy;
+        invoice.paymentDate = terimnZaplatyDo;
+        invoice.paymentMethod = ed_sposobZaplaty.getText().toString();
 
         Intent intent = new Intent(this, ProviderFormActivity.class);
-        intent.putExtra("faktura", faktura);
+        intent.putExtra("invoice", invoice);
         startActivity(intent);
 
     }

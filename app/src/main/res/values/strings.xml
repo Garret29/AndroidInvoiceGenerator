@@ -15,7 +15,7 @@
     <string name="sposob_zaplaty">Sposób zapłaty:</string>
     <string name="termin_zaplaty_do">Termin zapłaty do:</string>
     <string name="zapisz_i_przejdz_dalej">Zapisz i przejdz dalej</string>
-    <string name="sprzedawca">Sprzedawca</string>
+    <string name="provider">Sprzedawca</string>
     <string name="postep2">(Krok 2 z 5)</string>
     <string name="nip">NIP:</string>
     <string name="pobierz_dane_z_gus">Pobierz dane z GUS</string>
@@ -31,7 +31,7 @@
     <string name="numer_telefonu">Numer telefonu:</string>
     <string name="email">Email:</string>
     <string name="zapisz_dane_do_pamieci">Zapisz dane do pamięci</string>
-    <string name="nabywca">Nabywca</string>
+    <string name="buyer">Nabywca</string>
     <string name="postep3">(Krok 3 z 5)</string>
     <string name="dane_towarow_i_uslug">Dane towarów i usług</string>
     <string name="postep4">(Krok 4 z 5)</string>
@@ -41,7 +41,7 @@
     <string name="cena_brutto_za_jednostke">Cena brutto za jednostkę:</string>
     <string name="rabat_w_procentach">Rabat w procentach:</string>
     <string name="stawka_vat_w_procentach">Stawka VAT w procentach:</string>
-    <string name="dodaj_kolejny_towar_uslug">Dodaj kolejny towar/usługę</string>
+    <string name="dodaj_kolejny_towar_uslug">Dodaj kolejny good/usługę</string>
     <string name="zako_cz_dodawanie_towar_w_us_ug_i_przejdz_dalej">Zakończ dodawanie towarów/usług i przejdz dalej</string>
     <string name="podsumowanie">Podsumowanie</string>
     <string name="postep5">(Krok 5 z 5)</string>

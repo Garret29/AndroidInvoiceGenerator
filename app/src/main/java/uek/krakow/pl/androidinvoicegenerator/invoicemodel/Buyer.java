@@ -5,22 +5,22 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name = "nabywca")
-public class Nabywca  implements Serializable {
-    @Element(name = "nazwa")
+@Root(name = "buyer")
+public class Buyer implements Serializable {
+    @Element(name = "name")
     public String buyerName;
-    @Element(name = "ulica")
+    @Element(name = "street")
     public String buyerStreet;
-    @Element(name = "dom")
+    @Element(name = "house")
     public String buyerHouse;
-    @Element(name = "lokal")
+    @Element(name = "apartment")
     public String buyerAppartment;
-    @Element(name = "miasto")
+    @Element(name = "city")
     public String buyerCity;
-    @Element(name = "kod")
+    @Element(name = "postal_code")
     public String buyerPostalCode;
 
-    public Nabywca() {
+    public Buyer() {
         buyerName = "";
         buyerStreet = "";
         buyerHouse = "";

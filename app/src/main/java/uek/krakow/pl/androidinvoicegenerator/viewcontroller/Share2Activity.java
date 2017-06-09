@@ -24,7 +24,7 @@ public class Share2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share2);
-        filename = getIntent().getStringExtra("faktura");
+        filename = getIntent().getStringExtra("invoice");
 
         tv_nazwaIstniejacejFaktury = (TextView) findViewById(R.id.tv_nazwa_istniejacej_faktury);
         tv_nazwaIstniejacejFaktury.setText(filename);
@@ -48,7 +48,7 @@ public class Share2Activity extends AppCompatActivity {
     public void share(View view){
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Faktura: "+filename);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Invoice: "+filename);
         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(MainActivity.invoicesDir, filename)));
         startActivity(Intent.createChooser(intent, "Udostępnij fakturę"));
     }

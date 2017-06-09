@@ -8,41 +8,41 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Root(name = "faktura")
-public class Faktura implements Serializable{
+@Root(name = "invoice")
+public class Invoice implements Serializable{
 
-    @Element(name = "miejscowosc_wystawienia")
+    @Element(name = "invoice_city")
     public String invoiceCity;
-    @Element(name = "data_wystawienia")
+    @Element(name = "invoice_date")
     public String invoiceDate;
-    @Element(name = "data_dostawy")
+    @Element(name = "shipment_date")
     public String invoiceShippingDate;
-    @Element(name = "termin_platnosci")
+    @Element(name = "payment_date")
     public String paymentDate;
-    @Element(name = "sposob_platnosci")
+    @Element(name = "payment_method")
     public String paymentMethod;
-    @Element(name = "numer")
+    @Element(name = "id")
     public String id;
 
-    @Element(name = "sprzedawca")
-    public Sprzedawca sprzedawca;
+    @Element(name = "provider")
+    public Provider provider;
 
-    @Element(name = "nabywca")
-    public Nabywca nabywca;
+    @Element(name = "buyer")
+    public Buyer buyer;
 
-    @ElementList(name="towary")
-    public List<Towar> towary;
+    @ElementList(name="goods")
+    public List<Good> goods;
 
-    @Element(name = "razem")
-    public Razem razem;
+    @Element(name = "summary")
+    public Summary summary;
 
-    public Faktura() {
+    public Invoice() {
         invoiceCity = "";
         invoiceDate = "";
         invoiceShippingDate = "";
         paymentDate = "";
         paymentMethod = "";
         id = "";
-        towary = new ArrayList<>();
+        goods = new ArrayList<>();
     }
 }

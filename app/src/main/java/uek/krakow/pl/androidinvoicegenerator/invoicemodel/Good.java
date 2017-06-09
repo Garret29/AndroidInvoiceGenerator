@@ -5,33 +5,32 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name = "towar")
-public class Towar  implements Serializable {
-    @Element(name = "liczba_porzadkowa")
+@Root(name = "good")
+public class Good implements Serializable {
+    @Element(name = "id")
     public int id;
-    @Element(name = "nazwa")
+    @Element(name = "name")
     public String name;
-    @Element(name = "ilosc")
-
+    @Element(name = "quantity")
     public double quantity;
-    @Element(name = "jednostka")
+    @Element(name = "unit")
     public String unit;
-    @Element(name = "cena_brutto_jednost")
+    @Element(name = "gross_price_per_unit")
     public double priceBruttoOfUnit;
-    @Element(name = "rabat")
+    @Element(name = "discount")
     public double discount;
-    @Element(name = "cena_brutto_jednost_po_rabacie")
+    @Element(name = "gross_price_discount")
     public double priceBruttoOfUnitAfterDiscount;
-    @Element(name = "brutto")
+    @Element(name = "gross_price")
     public double priceBrutto;
-    @Element(name = "stawka_VAT")
+    @Element(name = "vat_value")
     public String vatValue;
     @Element(name = "VAT")
     public double vat;
-    @Element(name = "netto")
-    public double priceNetto;
+    @Element(name = "net_price")
+    public double netPrice;
 
-    public Towar() {
+    public Good() {
         name = "";
         unit = "";
         vatValue = "";    

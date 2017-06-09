@@ -5,20 +5,20 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name="razem")
-public class Razem implements Serializable {
-    @Element(name = "brutto")
-    public double brutto;
+@Root(name="summary")
+public class Summary implements Serializable {
+    @Element(name = "gross")
+    public double gross;
 
     @Element(name = "VAT")
     public double vat;
 
 
-    @Element(name = "netto")
-    public double netto;
+    @Element(name = "net")
+    public double net;
 
-    @Element(name = "brutto_slownie")
-    public String bruttoWords;
+    @Element(name = "gross_words")
+    public String grossWords;
 
 
     @Element(name = "w_tym_0")
@@ -36,7 +36,7 @@ public class Razem implements Serializable {
     @Element(name = "w_tym_23")
     public Tax23 tax23;
 
-    public Razem() {
-        bruttoWords = "";
+    public Summary() {
+        grossWords = "";
     }
 }

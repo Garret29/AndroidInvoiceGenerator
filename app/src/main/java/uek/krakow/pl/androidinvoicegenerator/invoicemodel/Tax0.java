@@ -5,14 +5,14 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name = "w_tym_0")
+@Root(name = "tax_0")
 public class Tax0  implements Serializable {
 
-    @Element(name = "brutto")
+    @Element(name = "gross")
     public double brutto;
     @Element(name = "VAT")
     public double VAT;
-    @Element(name = "netto")
+    @Element(name = "net")
     public double netto;
 
     public Tax0(){

@@ -22,7 +22,7 @@ public class ShareFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_form);
-        filename = getIntent().getStringExtra("faktura");
+        filename = getIntent().getStringExtra("invoice");
     }
 
     public void openFile(View view) {
@@ -48,7 +48,7 @@ public class ShareFormActivity extends AppCompatActivity {
     public void share(View view){
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Faktura: "+filename);
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Invoice: "+filename);
         intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(MainActivity.invoicesDir, filename)));
         startActivity(Intent.createChooser(intent, "Wyślij mail z fakturą"));
     }

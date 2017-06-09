@@ -104,7 +104,7 @@ public class DataActivity extends AppCompatActivity {
         PDFGenerator pdfGenerator = new PDFGenerator();
         File pdf = pdfGenerator.generatePDF(style, data, MainActivity.invoicesDir, filename, getCacheDir(), MainActivity.fontsDir.getAbsolutePath()+"/Roboto-Regular.ttf", "Roboto");
         Intent intent = new Intent(this, ShareFormActivity.class);
-        intent.putExtra("faktura", pdf.getName());
+        intent.putExtra("invoice", pdf.getName());
         startActivity(intent);
     }
 }
