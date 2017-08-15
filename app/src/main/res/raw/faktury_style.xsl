@@ -12,74 +12,74 @@
                 <meta charset="UTF-8" />
             </head>
             <body style="font-family:Roboto">
-                <xsl:for-each select="invoice">
+                <xsl:for-each select="faktura">
                     <p align="right">
-                        <xsl:if test="invoice_city !='' ">
-                            <xsl:value-of select="invoice_city" />
+                        <xsl:if test="miejscowosc_wystawienia !='' ">
+                            <xsl:value-of select="miejscowosc_wystawienia" />
                         </xsl:if>
-                        <xsl:if test="not(invoice_city)">Miejscowość:___________</xsl:if>
-                        <xsl:if test="invoice_city = ''">Miejscowość:___________</xsl:if>
+                        <xsl:if test="not(miejscowosc_wystawienia)">Miejscowość:___________</xsl:if>
+                        <xsl:if test="miejscowosc_wystawienia = ''">Miejscowość:___________</xsl:if>
                         , data
                         wystawienia:
 
-                        <xsl:if test="invoice_date !='' ">
-                            <xsl:value-of select="invoice_date" />
+                        <xsl:if test="data_wystawienia !='' ">
+                            <xsl:value-of select="data_wystawienia" />
                         </xsl:if>
-                        <xsl:if test="not(invoice_date)">__________</xsl:if>
-                        <xsl:if test="invoice_date = ''">__________</xsl:if>
+                        <xsl:if test="not(data_wystawienia)">__________</xsl:if>
+                        <xsl:if test="data_wystawienia = ''">__________</xsl:if>
 
                     </p>
                     <p align="right">Data dokonania/zakończenia dostawy towarów:
-                        <xsl:if test="shipment_date !='' ">
-                            <xsl:value-of select="shipment_date" />
+                        <xsl:if test="data_dostawy !='' ">
+                            <xsl:value-of select="data_dostawy" />
                         </xsl:if>
-                        <xsl:if test="not(shipment_date)">__________</xsl:if>
-                        <xsl:if test="shipment_date = ''">__________</xsl:if>
+                        <xsl:if test="not(data_dostawy)">__________</xsl:if>
+                        <xsl:if test="data_dostawy = ''">__________</xsl:if>
 
                     </p>
                 </xsl:for-each>
                 <b>Sprzedawca:</b>
 
                 <br />
-                <xsl:for-each select="invoice/provider">
-                    <xsl:if test="name !='' ">
-                        <xsl:value-of select="name" />
+                <xsl:for-each select="faktura/sprzedawca">
+                    <xsl:if test="nazwa !='' ">
+                        <xsl:value-of select="nazwa" />
                     </xsl:if>
-                    <xsl:if test="not(name)">Nazwa:__________</xsl:if>
-                    <xsl:if test="name = ''">Nazwa:__________</xsl:if>
+                    <xsl:if test="not(nazwa)">Nazwa:__________</xsl:if>
+                    <xsl:if test="nazwa = ''">Nazwa:__________</xsl:if>
                     <br />
 
                     Adres:
                     <br />
-                    <xsl:if test="street !='' ">
-                        <xsl:value-of select="street" />
+                    <xsl:if test="ulica !='' ">
+                        <xsl:value-of select="ulica" />
                     </xsl:if>
-                    <xsl:if test="not(street)">Ul.:___________</xsl:if>
-                    <xsl:if test="street = ''">Ul.:___________</xsl:if>
+                    <xsl:if test="not(ulica)">Ul.:___________</xsl:if>
+                    <xsl:if test="ulica = ''">Ul.:___________</xsl:if>
                     ,
-                    <xsl:if test="house !='' ">
-                        <xsl:value-of select="house" />
+                    <xsl:if test="dom !='' ">
+                        <xsl:value-of select="dom" />
                     </xsl:if>
-                    <xsl:if test="not(house)">dom:______</xsl:if>
-                    <xsl:if test="house = ''">dom:______</xsl:if>
+                    <xsl:if test="not(dom)">dom:______</xsl:if>
+                    <xsl:if test="dom = ''">dom:______</xsl:if>
                     , lok.
-                    <xsl:if test="apartment !='' ">
-                        <xsl:value-of select="apartment" />
+                    <xsl:if test="lokal !='' ">
+                        <xsl:value-of select="lokal" />
                     </xsl:if>
-                    <xsl:if test="not(apartment)">________</xsl:if>
-                    <xsl:if test="apartment = ''">________</xsl:if>
+                    <xsl:if test="not(lokal)">________</xsl:if>
+                    <xsl:if test="lokal = ''">________</xsl:if>
                     <br />
-                    <xsl:if test="city !='' ">
-                        <xsl:value-of select="city" />;
+                    <xsl:if test="miasto !='' ">
+                        <xsl:value-of select="miasto" />;
                     </xsl:if>
-                    <xsl:if test="not(city)">Miejscowość:____________</xsl:if>
-                    <xsl:if test="city = ''">Miejscowość:____________</xsl:if>
+                    <xsl:if test="not(miasto)">Miejscowość:____________</xsl:if>
+                    <xsl:if test="miasto = ''">Miejscowość:____________</xsl:if>
 
-                    <xsl:if test="postal_code !='' ">
-                        <xsl:value-of select="postal_code" />
+                    <xsl:if test="kod !='' ">
+                        <xsl:value-of select="kod" />
                     </xsl:if>
-                    <xsl:if test="not(postal_code)">, kod pocztowy:________</xsl:if>
-                    <xsl:if test="postal_code = ''">, kod pocztowy:________</xsl:if>
+                    <xsl:if test="not(kod)">, kod pocztowy:________</xsl:if>
+                    <xsl:if test="kod = ''">, kod pocztowy:________</xsl:if>
                     <br />
 
                     NIP:
@@ -90,12 +90,12 @@
                     <xsl:if test="NIP_PESEL = ''">______________</xsl:if>
                     <br />
 
-                    <xsl:if test="bank_number !='' ">
+                    <xsl:if test="rachunek !='' ">
                         Rachunek:
-                        <xsl:value-of select="bank_number" />
+                        <xsl:value-of select="rachunek" />
                     </xsl:if>
-                    <xsl:if test="not(bank_number)">Nr. rachunku:___________________</xsl:if>
-                    <xsl:if test="bank_number = ''">Nr. rachunku:___________________</xsl:if>
+                    <xsl:if test="not(rachunek)">Nr. rachunku:___________________</xsl:if>
+                    <xsl:if test="rachunek = ''">Nr. rachunku:___________________</xsl:if>
                     ,
 
                     <xsl:if test="bank !='' ">
@@ -106,11 +106,11 @@
                     <br />
 
                     Telefon:
-                    <xsl:if test="phone !='' ">
-                        <xsl:value-of select="phone" />
+                    <xsl:if test="telefon !='' ">
+                        <xsl:value-of select="telefon" />
                     </xsl:if>
-                    <xsl:if test="not(phone)">_____________</xsl:if>
-                    <xsl:if test="phone = ''">_____________</xsl:if>
+                    <xsl:if test="not(telefon)">_____________</xsl:if>
+                    <xsl:if test="telefon = ''">_____________</xsl:if>
                     <br />
                     Email:
                     <xsl:if test="email !='' ">
@@ -123,55 +123,55 @@
                 </xsl:for-each>
                 <br />
                 <br />
-                <xsl:for-each select="invoice/buyer">
+                <xsl:for-each select="faktura/nabywca">
                     <b>Nabywca:</b>
                     <br />
-                    <xsl:if test="name !='' ">
-                        <xsl:value-of select="name" />
+                    <xsl:if test="nazwa !='' ">
+                        <xsl:value-of select="nazwa" />
                     </xsl:if>
-                    <xsl:if test="not(name)">Nazwa:________________</xsl:if>
-                    <xsl:if test="name = ''">Nazwa:________________</xsl:if>
+                    <xsl:if test="not(nazwa)">Nazwa:________________</xsl:if>
+                    <xsl:if test="nazwa = ''">Nazwa:________________</xsl:if>
                     <br />
-                    <xsl:if test="street !='' ">
+                    <xsl:if test="ulica !='' ">
                         Adres:
-                        <xsl:value-of select="street" />
+                        <xsl:value-of select="ulica" />
                     </xsl:if>
-                    <xsl:if test="not(street)">Ulica:____________</xsl:if>
-                    <xsl:if test="street = ''">Ulica:____________</xsl:if>
+                    <xsl:if test="not(ulica)">Ulica:____________</xsl:if>
+                    <xsl:if test="ulica = ''">Ulica:____________</xsl:if>
                     ,
-                    <xsl:if test="house !='' ">
-                        <xsl:value-of select="house" />
+                    <xsl:if test="dom !='' ">
+                        <xsl:value-of select="dom" />
                     </xsl:if>
-                    <xsl:if test="not(house)">house:______</xsl:if>
-                    <xsl:if test="house = ''">house:______</xsl:if>
+                    <xsl:if test="not(dom)">dom:______</xsl:if>
+                    <xsl:if test="dom = ''">dom:______</xsl:if>
                     , lok.
-                    <xsl:if test="apartment !='' ">
-                        <xsl:value-of select="apartment" />
+                    <xsl:if test="lokal !='' ">
+                        <xsl:value-of select="lokal" />
                     </xsl:if>
-                    <xsl:if test="not(apartment)">________</xsl:if>
-                    <xsl:if test="apartment = ''">________</xsl:if>
+                    <xsl:if test="not(lokal)">________</xsl:if>
+                    <xsl:if test="lokal = ''">________</xsl:if>
                     <br />
-                    <xsl:if test="city !='' ">
-                        <xsl:value-of select="city" />
+                    <xsl:if test="miasto !='' ">
+                        <xsl:value-of select="miasto" />
                     </xsl:if>
-                    <xsl:if test="not(city)">Miejscowość:___________</xsl:if>
-                    <xsl:if test="city = ''">Miejscowość:___________</xsl:if>
+                    <xsl:if test="not(miasto)">Miejscowość:___________</xsl:if>
+                    <xsl:if test="miasto = ''">Miejscowość:___________</xsl:if>
                     ,
-                    <xsl:if test="postal_code !='' ">
-                        <xsl:value-of select="postal_code" />
+                    <xsl:if test="kod !='' ">
+                        <xsl:value-of select="kod" />
                     </xsl:if>
-                    <xsl:if test="not(postal_code)">postal_code pocztowy:________</xsl:if>
-                    <xsl:if test="postal_code = ''">postal_code pocztowy:________</xsl:if>
+                    <xsl:if test="not(kod)">kod pocztowy:________</xsl:if>
+                    <xsl:if test="kod = ''">kod pocztowy:________</xsl:if>
                     <br />
                 </xsl:for-each>
-                <xsl:for-each select="invoice">
+                <xsl:for-each select="faktura">
                     <h2>
                         <p align="center">Faktura VAT
-                            <xsl:if test="id !='' ">
-                                <xsl:value-of select="id" />
+                            <xsl:if test="numer !='' ">
+                                <xsl:value-of select="numer" />
                             </xsl:if>
-                            <xsl:if test="not(id)">_______________</xsl:if>
-                            <xsl:if test="id = ''">_______________</xsl:if>
+                            <xsl:if test="not(numer)">Tel.:_______________</xsl:if>
+                            <xsl:if test="numer = ''">Tel.:_______________</xsl:if>
                         </p>
                     </h2>
                 </xsl:for-each>
@@ -219,40 +219,40 @@
                             [zł]
                         </th>
                     </tr>
-                    <xsl:for-each select="invoice/goods/good">
+                    <xsl:for-each select="faktura/towary/towar">
                         <tr>
                             <td align="right">
-                                <xsl:value-of select="id" />
+                                <xsl:value-of select="liczba_porzadkowa" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="name" />
+                                <xsl:value-of select="nazwa" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="quantity" />
+                                <xsl:value-of select="ilosc" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="unit" />
+                                <xsl:value-of select="jednostka" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="gross_price_per_unit" />
+                                <xsl:value-of select="cena_brutto_jednost" />
                             </td>
                             <td align="right">
                                 <xsl:value-of select="rabat" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="gross_price_discount" />
+                                <xsl:value-of select="cena_brutto_jednost_po_rabacie" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="gross_price" />
+                                <xsl:value-of select="brutto" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="vat_value" />
+                                <xsl:value-of select="stawka_VAT" />
                             </td>
                             <td align="right">
                                 <xsl:value-of select="VAT" />
                             </td>
                             <td align="right">
-                                <xsl:value-of select="net_price" />
+                                <xsl:value-of select="netto" />
                             </td>
                         </tr>
                     </xsl:for-each>
@@ -294,78 +294,78 @@
                                 </tr>
 
                                 <tr>
-                                    <xsl:for-each select="invoice/summary">
+                                    <xsl:for-each select="faktura/razem">
                                         <td>Razem:</td>
                                         <td align="right">
-                                            <xsl:value-of select="net" />
+                                            <xsl:value-of select="netto" />
                                         </td>
                                         <td align="right">
                                             <xsl:value-of select="VAT" />
                                         </td>
                                         <td align="right" />
                                         <td align="right">
-                                            <xsl:value-of select="gross" />
+                                            <xsl:value-of select="brutto" />
                                         </td>
                                     </xsl:for-each>
                                 </tr>
 
                                 <tr>
-                                    <xsl:for-each select="invoice/summary/tax_0">
+                                    <xsl:for-each select="faktura/razem/w_tym_0">
                                         <td>W tym:</td>
                                         <td align="right">
-                                            <xsl:value-of select="net" />
+                                            <xsl:value-of select="netto" />
                                         </td>
                                         <td align="right">
                                             <xsl:value-of select="VAT" />
                                         </td>
                                         <td align="right">0%</td>
                                         <td align="right">
-                                            <xsl:value-of select="gross" />
+                                            <xsl:value-of select="brutto" />
                                         </td>
                                     </xsl:for-each>
                                 </tr>
                                 <tr>
-                                    <xsl:for-each select="invoice/summary/tax_5">
+                                    <xsl:for-each select="faktura/razem/w_tym_5">
                                         <td align="right" />
                                         <td align="right">
-                                            <xsl:value-of select="net" />
+                                            <xsl:value-of select="netto" />
                                         </td>
                                         <td align="right">
                                             <xsl:value-of select="VAT" />
                                         </td>
                                         <td align="right">5%</td>
                                         <td align="right">
-                                            <xsl:value-of select="gross" />
+                                            <xsl:value-of select="brutto" />
                                         </td>
                                     </xsl:for-each>
                                 </tr>
                                 <tr>
-                                    <xsl:for-each select="invoice/summary/tax_8">
+                                    <xsl:for-each select="faktura/razem/w_tym_8">
                                         <td align="right" />
                                         <td align="right">
-                                            <xsl:value-of select="net" />
+                                            <xsl:value-of select="netto" />
                                         </td>
                                         <td align="right">
                                             <xsl:value-of select="VAT" />
                                         </td>
                                         <td align="right">8%</td>
                                         <td align="right">
-                                            <xsl:value-of select="gross" />
+                                            <xsl:value-of select="brutto" />
                                         </td>
                                     </xsl:for-each>
                                 </tr>
                                 <tr>
-                                    <xsl:for-each select="invoice/summary/tax_23">
+                                    <xsl:for-each select="faktura/razem/w_tym_23">
                                         <td align="right" />
                                         <td align="right">
-                                            <xsl:value-of select="net" />
+                                            <xsl:value-of select="netto" />
                                         </td>
                                         <td align="right">
                                             <xsl:value-of select="VAT" />
                                         </td>
                                         <td align="right">23%</td>
                                         <td align="right">
-                                            <xsl:value-of select="gross" />
+                                            <xsl:value-of select="brutto" />
                                         </td>
                                     </xsl:for-each>
                                 </tr>
@@ -373,32 +373,32 @@
                         </td>
                     </tr>
                 </table>
-                <xsl:for-each select="invoice/summary">
-                    Należność ogółem:<xsl:value-of select="gross" />zł
+                <xsl:for-each select="faktura/razem">
+                    Należność ogółem:<xsl:value-of select="brutto" />zł
                     <br />
                     Należność ogółem słownie:
-                    <xsl:if test="gross_words !='' ">
-                        <xsl:value-of select="gross_words" />
+                    <xsl:if test="brutto_slownie !='' ">
+                        <xsl:value-of select="brutto_slownie" />
                     </xsl:if>
-                    <xsl:if test="not(gross_words)">______________________________________</xsl:if>
-                    <xsl:if test="gross_words = ''">______________________________________</xsl:if>
+                    <xsl:if test="not(brutto_slownie)">______________________________________</xsl:if>
+                    <xsl:if test="brutto_slownie = ''">______________________________________</xsl:if>
                 </xsl:for-each>
                 <br />
                 <br />
-                <xsl:for-each select="invoice">
+                <xsl:for-each select="faktura">
                     Sposób zapłaty:
-                    <xsl:if test="payment_method !='' ">
-                        <xsl:value-of select="payment_method" />
+                    <xsl:if test="sposob_platnosci !='' ">
+                        <xsl:value-of select="sposob_platnosci" />
                     </xsl:if>
-                    <xsl:if test="not(payment_method)">_______________</xsl:if>
-                    <xsl:if test="payment_method = ''">_______________</xsl:if>
+                    <xsl:if test="not(sposob_platnosci)">_______________</xsl:if>
+                    <xsl:if test="sposob_platnosci = ''">_______________</xsl:if>
                     <br />
                     Termin zapłaty do:
-                    <xsl:if test="payment_date !='' ">
-                        <xsl:value-of select="payment_date" />
+                    <xsl:if test="termin_platnosci !='' ">
+                        <xsl:value-of select="termin_platnosci" />
                     </xsl:if>
-                    <xsl:if test="not(payment_date)">_______________</xsl:if>
-                    <xsl:if test="payment_date = ''">_______________</xsl:if>
+                    <xsl:if test="not(termin_platnosci)">_______________</xsl:if>
+                    <xsl:if test="termin_platnosci = ''">_______________</xsl:if>
                 </xsl:for-each>
                 <br />
 

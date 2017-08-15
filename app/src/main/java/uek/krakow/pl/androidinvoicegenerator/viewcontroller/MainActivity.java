@@ -15,10 +15,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.j256.ormlite.stmt.query.In;
+import com.jcraft.jsch.IO;
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,13 +69,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
-
-        initializeListView();
 
         if (invoicesDir.exists()) {
             fillInvoicesList();
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goToShare(String filename) {
         Intent intent = new Intent(this, Share2Activity.class);
-        intent.putExtra("invoice", filename);
+        intent.putExtra("faktura", filename);
         startActivity(intent);
     }
 
@@ -133,10 +134,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addStylesToDir() {
-        InputStream fileInputStream1 = getResources().openRawResource(R.raw.invoice_style);
-        InputStream fileInputStream2 = getResources().openRawResource(R.raw.invoice_style2);
-        InputStream fileInputStream3 = getResources().openRawResource(R.raw.invoice_style3);
-        InputStream fileInputStream4 = getResources().openRawResource(R.raw.invoice_style4);
+        InputStream fileInputStream1 = getResources().openRawResource(R.raw.faktury_style);
+        InputStream fileInputStream2 = getResources().openRawResource(R.raw.faktury_style2);
+        InputStream fileInputStream3 = getResources().openRawResource(R.raw.faktury_style3);
+        InputStream fileInputStream4 = getResources().openRawResource(R.raw.faktury_style4);
 
 
         FileOutputStream fo;

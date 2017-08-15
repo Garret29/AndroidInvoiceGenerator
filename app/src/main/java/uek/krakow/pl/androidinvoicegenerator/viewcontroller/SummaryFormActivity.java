@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.inject.Inject;
-
 import org.apache.commons.io.FilenameUtils;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -27,14 +25,13 @@ import java.util.regex.Pattern;
 import uek.krakow.pl.androidinvoicegenerator.InvoiceGeneratorApplication;
 import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.generator.PDFGenerator;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
 
 public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
     TextView tv_naleznoscOgolem;
     String style;
-    @Inject
-    Invoice invoice;
+    Faktura faktura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +41,8 @@ public class SummaryFormActivity extends AppCompatActivity {
         style = "default1.xsl";
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
         tv_naleznoscOgolem = (TextView) findViewById(R.id.tv_naleznoscOgolem);
-        tv_naleznoscOgolem.setText(invoice.summary.gross + "zł");
+        faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        tv_naleznoscOgolem.setText(faktura.razem.brutto + "zł");
 
         ArrayList<String> styles = new ArrayList<>();
         for (File f : MainActivity.stylesDir.listFiles()
@@ -110,13 +108,13 @@ public class SummaryFormActivity extends AppCompatActivity {
         //TODO zablokowac możliwość cofania do poprzedniej aktywności, wywala błędną sume po powrocie
         PDFGenerator pdfGenerator = new PDFGenerator();
 
-        Invoice invoice = (Invoice) getIntent().getSerializableExtra("invoice");
-        invoice.summary.grossWords = ed_naleznoscSlownie.getText().toString();
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        faktura.razem.bruttoWords = ed_naleznoscSlownie.getText().toString();
 
-        File xml = new File(MainActivity.dataDir, invoice.id + ".xml");
+        File xml = new File(MainActivity.dataDir, faktura.id + ".xml");
         Serializer serializer = new Persister();
         try {
-            serializer.write(invoice, xml);
+            serializer.write(faktura, xml);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,10 +122,10 @@ public class SummaryFormActivity extends AppCompatActivity {
         File pdf;
         File styleFile = new File(MainActivity.stylesDir, style);
         Context context = InvoiceGeneratorApplication.getAppContext();
-        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, invoice.id, context.getCacheDir(), MainActivity.fontsDir.getAbsolutePath()+"/Roboto-Regular.ttf", "Roboto");
+        pdf = pdfGenerator.generatePDF(styleFile, xml, MainActivity.invoicesDir, faktura.id, context.getCacheDir(), MainActivity.fontsDir.getAbsolutePath()+"/Roboto-Regular.ttf", "Roboto");
 
         Intent intent = new Intent(this, ShareFormActivity.class);
-        intent.putExtra("invoice", pdf.getName());
+        intent.putExtra("faktura", pdf.getName());
         startActivity(intent);
     }
 

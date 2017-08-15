@@ -5,32 +5,32 @@ import org.simpleframework.xml.Root;
 
 import java.io.Serializable;
 
-@Root(name = "provider")
-public class Provider implements Serializable {
-    @Element(name = "name")
+@Root(name = "sprzedawca")
+public class Sprzedawca  implements Serializable {
+    @Element(name = "nazwa")
     public String providerName;
-    @Element(name = "street")
+    @Element(name = "ulica")
     public String providerStreet;
-    @Element(name = "house")
+    @Element(name = "dom")
     public String providerHouse;
-    @Element(name = "apartment")
+    @Element(name = "lokal")
     public String providerApartment;
-    @Element(name = "city")
+    @Element(name = "miasto")
     public String providerCity;
-    @Element(name = "postal_code")
+    @Element(name = "kod")
     public String providerPostalCode;
     @Element(name = "NIP_PESEL")
     public String providerNIP;
-    @Element(name = "bank_number")
+    @Element(name = "rachunek")
     public String providerBankNumber;
-    @Element(name = "phone")
+    @Element(name = "telefon")
     public String providerPhoneNumber;
     @Element(name = "email")
     public String providerEmail;
     @Element(name = "bank")
     public String providerBank;
 
-    public Provider() {
+    public Sprzedawca() {
         providerName = "";
         providerStreet = "";
         providerHouse = "";

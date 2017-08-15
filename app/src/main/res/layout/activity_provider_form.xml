@@ -15,7 +15,7 @@
             android:id="@+id/tv_sprzedawca"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/provider"
+            android:text="@string/sprzedawca"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24sp"

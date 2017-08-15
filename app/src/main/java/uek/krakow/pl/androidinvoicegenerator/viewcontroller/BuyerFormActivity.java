@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.google.inject.Inject;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,9 +15,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import uek.krakow.pl.androidinvoicegenerator.R;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Buyer;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
-import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Summary;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Faktura;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Nabywca;
+import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Razem;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax0;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax23;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Tax5;
@@ -30,8 +28,6 @@ import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable
 public class BuyerFormActivity extends AppCompatActivity implements UpdatableActivity {
     EditText ed_nazwaNabyw, ed_ulicaNabyw, ed_domNabyw, ed_lokalNabyw, ed_miejscowoscNabyw, ed_kodNabyw, ed_NIpNabyw;
     String pustePole = "";
-    @Inject
-    Invoice invoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,40 +105,42 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
     }
 
     public void przejdzDalej(){
-        Buyer buyer = new Buyer();
+        Faktura faktura = (Faktura) getIntent().getSerializableExtra("faktura");
+        Nabywca nabywca = new Nabywca();
 
-        buyer.buyerAppartment=ed_lokalNabyw.getText().toString();
-        buyer.buyerCity=ed_miejscowoscNabyw.getText().toString();
-        buyer.buyerHouse=ed_domNabyw.getText().toString();
-        buyer.buyerName=ed_nazwaNabyw.getText().toString();
-        buyer.buyerPostalCode=ed_kodNabyw.getText().toString();
-        buyer.buyerStreet=ed_ulicaNabyw.getText().toString();
+        nabywca.buyerAppartment=ed_lokalNabyw.getText().toString();
+        nabywca.buyerCity=ed_miejscowoscNabyw.getText().toString();
+        nabywca.buyerHouse=ed_domNabyw.getText().toString();
+        nabywca.buyerName=ed_nazwaNabyw.getText().toString();
+        nabywca.buyerPostalCode=ed_kodNabyw.getText().toString();
+        nabywca.buyerStreet=ed_ulicaNabyw.getText().toString();
 
-        invoice.buyer = buyer;
+        faktura.nabywca=nabywca;
 
-        invoice.summary = new Summary();
+        faktura.razem = new Razem();
 
-        invoice.summary.gross = 0;
-        invoice.summary.net = 0;
-        invoice.summary.vat = 0;
-        invoice.summary.tax0 = new Tax0();
-        invoice.summary.tax0.brutto=0;
-        invoice.summary.tax0.netto=0;
-        invoice.summary.tax0.VAT=0;
-        invoice.summary.tax5= new Tax5();
-        invoice.summary.tax5.brutto=0;
-        invoice.summary.tax5.netto=0;
-        invoice.summary.tax5.VAT=0;
-        invoice.summary.tax8 = new Tax8();
-        invoice.summary.tax8.brutto=0;
-        invoice.summary.tax8.netto=0;
-        invoice.summary.tax8.VAT=0;
-        invoice.summary.tax23 = new Tax23();
-        invoice.summary.tax23.brutto=0;
-        invoice.summary.tax23.netto=0;
-        invoice.summary.tax23.VAT=0;
+        faktura.razem.brutto = 0;
+        faktura.razem.netto = 0;
+        faktura.razem.vat = 0;
+        faktura.razem.tax0 = new Tax0();
+        faktura.razem.tax0.brutto=0;
+        faktura.razem.tax0.netto=0;
+        faktura.razem.tax0.VAT=0;
+        faktura.razem.tax5= new Tax5();
+        faktura.razem.tax5.brutto=0;
+        faktura.razem.tax5.netto=0;
+        faktura.razem.tax5.VAT=0;
+        faktura.razem.tax8 = new Tax8();
+        faktura.razem.tax8.brutto=0;
+        faktura.razem.tax8.netto=0;
+        faktura.razem.tax8.VAT=0;
+        faktura.razem.tax23 = new Tax23();
+        faktura.razem.tax23.brutto=0;
+        faktura.razem.tax23.netto=0;
+        faktura.razem.tax23.VAT=0;
 
         Intent intent = new Intent(this, GoodsFormActivity.class);
+        intent.putExtra("faktura", faktura);
         startActivity(intent);
     }
 
