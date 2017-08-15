@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.inject.Inject;
+
 import org.apache.commons.io.FilenameUtils;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -31,6 +33,7 @@ public class SummaryFormActivity extends AppCompatActivity {
     EditText ed_naleznoscSlownie;
     TextView tv_naleznoscOgolem;
     String style;
+    @Inject
     Invoice invoice;
 
     @Override
@@ -41,7 +44,6 @@ public class SummaryFormActivity extends AppCompatActivity {
         style = "default1.xsl";
         ed_naleznoscSlownie = (EditText) findViewById(R.id.ed_naleznoscSlownie);
         tv_naleznoscOgolem = (TextView) findViewById(R.id.tv_naleznoscOgolem);
-        invoice = (Invoice) getIntent().getSerializableExtra("invoice");
         tv_naleznoscOgolem.setText(invoice.summary.gross + "zł");
 
         ArrayList<String> styles = new ArrayList<>();

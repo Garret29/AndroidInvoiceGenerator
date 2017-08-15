@@ -14,6 +14,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.inject.Inject;
+
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,10 +24,12 @@ import uek.krakow.pl.androidinvoicegenerator.R;
 import uek.krakow.pl.androidinvoicegenerator.invoicemodel.Invoice;
 
 public class FormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    EditText ed_numerFaktury, ed_miejscowoscWystawienia, ed_sposobZaplaty;
+    EditText invoiceIdField, ed_miejscowoscWystawienia, ed_sposobZaplaty;
     TextView date_DataWystawienia, date_dataDostawy, date_terimnZaplatyDo;
     String terimnZaplatyDo = "", dataDostawy = "", dataWystawienia = "", pustePole ="";
     int id;
+    @Inject
+    Invoice invoice;
 
 
     @Override
@@ -34,7 +38,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         setContentView(R.layout.activity_form);
         getSupportActionBar().setTitle("Krok 1 z 5");
 
-        ed_numerFaktury = (EditText) findViewById(R.id.ed_numerFaktury);
+        invoiceIdField = (EditText) findViewById(R.id.ed_numerFaktury);
         ed_miejscowoscWystawienia = (EditText) findViewById(R.id.ed_miejscowoscWystawienia);
         ed_sposobZaplaty = (EditText) findViewById(R.id.ed_sposobZaplaty);
         date_DataWystawienia = (TextView) findViewById(R.id.date_dataWystawienia);
@@ -105,7 +109,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
 
     }
 
-    private boolean niePuste(String pole){
+    private boolean checkIfEmpty(String pole){
         String NIEPUSTE_PATTERN = "^\\S.*$";
         Pattern pattern = Pattern.compile(NIEPUSTE_PATTERN);
         Matcher matcher = pattern.matcher(pole);
@@ -113,15 +117,15 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     public void toProvider(View view) {
-        if (TextUtils.isEmpty(ed_numerFaktury.getText().toString()) || !niePuste(ed_numerFaktury.getText().toString())) {
+        if (TextUtils.isEmpty(invoiceIdField.getText().toString()) || !checkIfEmpty(invoiceIdField.getText().toString())) {
             pustyNumer();
-            ed_numerFaktury.setError("Proszę wpisać numer faktury");
-        }else if (!niePuste(ed_miejscowoscWystawienia.getText().toString()) || !niePuste(ed_sposobZaplaty.getText().toString())|| date_DataWystawienia.getText().toString().equals("Ustaw datę") || date_dataDostawy.getText().toString().equals("Ustaw datę")|| date_terimnZaplatyDo.getText().toString().equals("Ustaw datę")){
-            if(!niePuste(ed_miejscowoscWystawienia.getText().toString())){
+            invoiceIdField.setError("Proszę wpisać numer faktury");
+        }else if (!checkIfEmpty(ed_miejscowoscWystawienia.getText().toString()) || !checkIfEmpty(ed_sposobZaplaty.getText().toString())|| date_DataWystawienia.getText().toString().equals("Ustaw datę") || date_dataDostawy.getText().toString().equals("Ustaw datę")|| date_terimnZaplatyDo.getText().toString().equals("Ustaw datę")){
+            if(!checkIfEmpty(ed_miejscowoscWystawienia.getText().toString())){
                 ed_miejscowoscWystawienia.setError("Puste pole");
                 pustePole+="Miejscowość wystawienia, \n";
             }
-            if(!niePuste(ed_sposobZaplaty.getText().toString())){
+            if(!checkIfEmpty(ed_sposobZaplaty.getText().toString())){
                 ed_sposobZaplaty.setError("Puste pole");
                 pustePole+="Sposób zapłaty, \n";
             }
@@ -165,8 +169,7 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
     public void przejdzDalej(){
         String[] forbiddenChars = new String[]{"\\|", "\\/", "\\?", "\\\\", "\\:", "\\<", "\\>", "\\*", "\\%","\""," "};
 
-        Invoice invoice = new Invoice();
-        String nazwa = ed_numerFaktury.getText().toString();
+        String nazwa = invoiceIdField.getText().toString();
         for (String s : forbiddenChars) {
             nazwa = nazwa.replaceAll(s, "_");
         }
@@ -178,7 +181,6 @@ public class FormActivity extends AppCompatActivity implements DatePickerDialog.
         invoice.paymentMethod = ed_sposobZaplaty.getText().toString();
 
         Intent intent = new Intent(this, ProviderFormActivity.class);
-        intent.putExtra("invoice", invoice);
         startActivity(intent);
 
     }

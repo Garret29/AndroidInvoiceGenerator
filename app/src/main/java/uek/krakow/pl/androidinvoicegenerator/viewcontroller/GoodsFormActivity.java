@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.inject.Inject;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,6 +26,9 @@ public class GoodsFormActivity extends AppCompatActivity {
     double cenaBruttoJednostPoRabacie = 0, brutto = 0, cenaVAT = 0, cenaNETTO = 0;
     static int id = 0;
     boolean dodajWiecej;
+
+    @Inject
+    Invoice invoice;
 
 
 
@@ -97,8 +102,6 @@ public class GoodsFormActivity extends AppCompatActivity {
 
 
     public void obliczenia(){
-        Invoice invoice = (Invoice) getIntent().getSerializableExtra("invoice");
-
         //Obliczenie ceny gross jedno., net, vat, gross dla każdego towaru
         double cenaBruttoJednostPoRabacieI = Math.round((Double.parseDouble(ed_cenaBruttTowar.getText().toString()) * ((100 - Double.parseDouble(ed_rabatTowar.getText().toString())) / 100)) * 100);
 
@@ -200,11 +203,9 @@ public class GoodsFormActivity extends AppCompatActivity {
         invoice.goods.add(good);
         if(dodajWiecej) {
             Intent intent = new Intent(this, GoodsFormActivity.class);
-            intent.putExtra("invoice", invoice);
             startActivity(intent);
         }else {
             Intent intent = new Intent(this, SummaryFormActivity.class);
-            intent.putExtra("invoice", invoice);
             startActivity(intent);
         }
     }

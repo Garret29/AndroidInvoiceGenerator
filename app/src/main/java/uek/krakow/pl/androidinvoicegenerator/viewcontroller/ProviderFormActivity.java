@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.inject.Inject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,6 +28,9 @@ import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable
 public class ProviderFormActivity extends AppCompatActivity implements UpdatableActivity {
     private EditText ed_NIPDost, ed_nazwaDost, ed_ulicaDost, ed_domDost, ed_lokalDost, ed_miejscowoscDost, ed_kodDost, ed_rachunekDost, ed_bankDost, ed_telefonDost, ed_emailDost;
     String pustePole = "";
+    @Inject
+    Invoice invoice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,7 +171,6 @@ public class ProviderFormActivity extends AppCompatActivity implements Updatable
     }
 
     public void przejdzDalej(){
-        Invoice invoice = (Invoice) this.getIntent().getSerializableExtra("invoice");
 
         Provider provider = new Provider();
         provider.providerApartment = ed_lokalDost.getText().toString();
@@ -185,7 +189,6 @@ public class ProviderFormActivity extends AppCompatActivity implements Updatable
         invoice.provider = provider;
 
         Intent intent = new Intent(this, BuyerFormActivity.class);
-        intent.putExtra("invoice", invoice);
         startActivity(intent);
 
     }

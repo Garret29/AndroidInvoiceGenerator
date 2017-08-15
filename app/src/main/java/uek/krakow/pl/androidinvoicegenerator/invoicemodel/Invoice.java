@@ -1,5 +1,7 @@
 package uek.krakow.pl.androidinvoicegenerator.invoicemodel;
 
+import com.google.inject.Singleton;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
@@ -8,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Singleton
 @Root(name = "invoice")
 public class Invoice implements Serializable{
 
@@ -23,16 +26,12 @@ public class Invoice implements Serializable{
     public String paymentMethod;
     @Element(name = "id")
     public String id;
-
     @Element(name = "provider")
     public Provider provider;
-
     @Element(name = "buyer")
     public Buyer buyer;
-
     @ElementList(name="goods")
     public List<Good> goods;
-
     @Element(name = "summary")
     public Summary summary;
 

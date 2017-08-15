@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.inject.Inject;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +30,8 @@ import uek.krakow.pl.androidinvoicegenerator.viewcontroller.interfaces.Updatable
 public class BuyerFormActivity extends AppCompatActivity implements UpdatableActivity {
     EditText ed_nazwaNabyw, ed_ulicaNabyw, ed_domNabyw, ed_lokalNabyw, ed_miejscowoscNabyw, ed_kodNabyw, ed_NIpNabyw;
     String pustePole = "";
+    @Inject
+    Invoice invoice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +109,6 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
     }
 
     public void przejdzDalej(){
-        Invoice invoice = (Invoice) getIntent().getSerializableExtra("invoice");
         Buyer buyer = new Buyer();
 
         buyer.buyerAppartment=ed_lokalNabyw.getText().toString();
@@ -140,7 +143,6 @@ public class BuyerFormActivity extends AppCompatActivity implements UpdatableAct
         invoice.summary.tax23.VAT=0;
 
         Intent intent = new Intent(this, GoodsFormActivity.class);
-        intent.putExtra("invoice", invoice);
         startActivity(intent);
     }
 
